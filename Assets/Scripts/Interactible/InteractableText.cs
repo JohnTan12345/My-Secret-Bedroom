@@ -1,39 +1,85 @@
 /*
     Created by: John
-    Description: Handles the informative in-game text parts of the game as well as handling the tasks if any
+    Description: Handles the informative in-game text parts of the game
 */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
-public class InteractibleObject : MonoBehaviour
+public class InteractableText : MonoBehaviour
 {
-    public string interactibleName;
-    public List<GameText> textFlow;
+    [SerializeField]
+    private GameObject objectToHighlight;
+    public string interactibleName; // May be removed if unused
+    [SerializeField]
+    private List<GameText> texts;
+
+    [Header("Hidden Parameters")]
+    [SerializeField]
     private int currentTextElementNumber = 0;
-    
+
+    [SerializeField]
     private bool textStart = false;
+    [SerializeField]
+    private bool taskActive = false;
+
+    [Header("Events")]
+    [Space(5)]
     // Events
     public UnityEvent onTextsStart;
     public UnityEvent onTextChange;
     public UnityEvent onTextsEnd;
 
-    // Initialization
     void Awake()
     {
-        
+
+        // Sets the object to be highlighted if no set object
+        if (objectToHighlight == null)
+        {
+            objectToHighlight = gameObject;
+        }
+
+        StartCoroutine(AddInteractibleTextToList());
     }
 
+    // Adds this script to the game manager for ordered interaction
+    private IEnumerator AddInteractibleTextToList()
+    {
+        // Wait for the game manager to load before adding this script
+        yield return new WaitUntil(() => GameManager.instance != null);
+        bool success = GameManager.instance.AddInteractibleText(this);
+
+        if (success)
+        {
+            Debug.Log("Successfully added interactible text to game manager");
+        }
+    }
+    
     public GameText GetTextObject()
     {
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
-        return textFlow[currentTextElementNumber];
+        return texts[currentTextElementNumber];
     }
 
-    public GameText NextTextObject(int option = 0)
+    public void SelectOption(int option)
     {
-        GameText currentText = textFlow[currentTextElementNumber];
-        int nextTextElementNumber = currentTextElementNumber;
+        GetNextTextObject(option);
+    }
+
+    private GameText GetNextTextObject(int option = 0)
+    {
+
+        if (taskActive == true)
+        {
+            Debug.LogWarning("There is a task currently active");
+            return texts[currentTextElementNumber];
+        }
+
+        GameText currentText = texts[currentTextElementNumber];
+        int nextTextElementNumber = currentTextElementNumber + 1;
+
         if (currentText.options.Count == 0)
         {
             if (currentText.jumpTo > -1)
@@ -44,8 +90,9 @@ public class InteractibleObject : MonoBehaviour
             {
                 nextTextElementNumber++;
 
-                if (nextTextElementNumber == textFlow.Count)
+                if (nextTextElementNumber == texts.Count)
                 {
+                    Debug.Log("Finished text block");
                     onTextsEnd.Invoke();
                     textStart = false;
                 }
@@ -75,7 +122,7 @@ public class InteractibleObject : MonoBehaviour
             currentTextElementNumber = nextTextElementNumber;
         }
 
-        return textFlow[currentTextElementNumber];
+        return texts[currentTextElementNumber];
     }
 
 
@@ -86,6 +133,7 @@ public class GameText
 {
     public string text;
     public int jumpTo = -1;
+    public InteractableTask taskToComplete;
     public List<TextOptions> options;
 }
 
