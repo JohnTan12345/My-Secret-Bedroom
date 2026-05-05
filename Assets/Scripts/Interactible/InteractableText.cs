@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class InteractableText : MonoBehaviour
 {
@@ -41,20 +40,29 @@ public class InteractableText : MonoBehaviour
             objectToHighlight = gameObject;
         }
 
-        StartCoroutine(AddInteractibleTextToList());
+        StartCoroutine(WaitForGameManagerInstance());
     }
 
-    // Adds this script to the game manager for ordered interaction
-    private IEnumerator AddInteractibleTextToList()
+    private IEnumerator WaitForGameManagerInstance()
     {
         // Wait for the game manager to load before adding this script
         yield return new WaitUntil(() => GameManager.instance != null);
+        GameManager.instance.onGameReset.AddListener(ResetProgress);
+
+        // Adds this script to the game manager for ordered interaction
         bool success = GameManager.instance.AddInteractibleText(this);
 
         if (success)
         {
             Debug.Log("Successfully added interactible text to game manager");
         }
+    }
+
+    private void ResetProgress()
+    {
+        currentTextElementNumber = 0;
+        textStart = false;
+        taskActive = false;
     }
     
     public GameText GetTextObject()
@@ -68,7 +76,7 @@ public class InteractableText : MonoBehaviour
         GetNextTextObject(option);
     }
 
-    private GameText GetNextTextObject(int option = 0)
+    private GameText GetNextTextObject(int option = -1)
     {
 
         if (taskActive == true)
@@ -80,7 +88,7 @@ public class InteractableText : MonoBehaviour
         GameText currentText = texts[currentTextElementNumber];
         int nextTextElementNumber = currentTextElementNumber + 1;
 
-        if (currentText.options.Count == 0)
+        if (currentText.options.Count == -1)
         {
             if (currentText.jumpTo > -1)
             {
@@ -98,7 +106,7 @@ public class InteractableText : MonoBehaviour
                 }
             }
         }
-        else if (0 > option && option > currentText.options.Count)
+        else if (0 <= option && option < currentText.options.Count)
         {
             TextOptions chosenOption = currentText.options[option];
             
@@ -120,11 +128,22 @@ public class InteractableText : MonoBehaviour
         {
             onTextChange.Invoke();
             currentTextElementNumber = nextTextElementNumber;
+
+            if (texts[currentTextElementNumber].taskToComplete != null)
+            {
+                taskActive = true;
+                texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
+            }
         }
 
         return texts[currentTextElementNumber];
     }
 
+    private void OnTaskComplete()
+    {
+        texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);
+        GetNextTextObject(-1);
+    }
 
 }
 

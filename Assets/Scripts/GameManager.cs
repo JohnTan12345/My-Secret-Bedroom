@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector]
     public static GameManager instance {get; private set;}
+    [HideInInspector]
+    public UnityEvent onGameReset;
     [SerializeField]
     [Tooltip("You can set an ordered list of interactible texts. Any interactible texts that is not added here will be automatically added with no order")]
     private List<InteractableText> interactibleTexts = new List<InteractableText>();
@@ -20,14 +22,19 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    void StartGame()
+    public void StartGame()
     {
         
     }
 
-    private void EndGame()
+    public void EndGame()
     {
         
+    }
+
+    public void ResetGame()
+    {
+        onGameReset.Invoke();
     }
 
     public bool AddInteractibleText(InteractableText interactibleText)
