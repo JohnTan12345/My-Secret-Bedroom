@@ -4,14 +4,18 @@
 */
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class InteractableText : MonoBehaviour
 {
     [SerializeField]
-    private GameObject objectToHighlight;
+    private GameObject objectHighlighted;
     public string interactibleName; // May be removed if unused
+    [SerializeField]
+    [Tooltip("This is the text used if there are no options")]
+    private string continueText = "Continue";
     [SerializeField]
     private List<GameText> texts;
 
@@ -33,13 +37,6 @@ public class InteractableText : MonoBehaviour
 
     void Awake()
     {
-
-        // Sets the object to be highlighted if no set object
-        if (objectToHighlight == null)
-        {
-            objectToHighlight = gameObject;
-        }
-
         StartCoroutine(WaitForGameManagerInstance());
     }
 
@@ -47,7 +44,7 @@ public class InteractableText : MonoBehaviour
     {
         // Wait for the game manager to load before adding this script
         yield return new WaitUntil(() => GameManager.instance != null);
-        GameManager.instance.onGameReset.AddListener(ResetProgress);
+        GameManager.instance.onGameReset.AddListener(ResetTextProgress);
 
         // Adds this script to the game manager for ordered interaction
         bool success = GameManager.instance.AddInteractibleText(this);
@@ -57,19 +54,14 @@ public class InteractableText : MonoBehaviour
             Debug.Log("Successfully added interactible text to game manager");
         }
     }
-
-    private void ResetProgress()
-    {
-        currentTextElementNumber = 0;
-        textStart = false;
-        taskActive = false;
-    }
     
-    public GameText GetTextObject()
+    public GameText GetGameText()
     {
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
         return texts[currentTextElementNumber];
     }
+
+// Text related Functions
 
     public void SelectOption(int option)
     {
@@ -112,16 +104,18 @@ public class InteractableText : MonoBehaviour
             
             if (chosenOption.jumpTo < 0) 
             {
-                Debug.LogError($"Invalid text number to jump to\nText Element Number: {currentTextElementNumber}\nOption given: {option}\nOption to jump to: {currentText.options[option].jumpTo}");
+                throw new System.Exception($"Invalid text number to jump to\nText Element Number: {currentTextElementNumber}\nOption given: {option}\nOption to jump to: {currentText.options[option].jumpTo}");
             }
             else
             {
                 nextTextElementNumber = chosenOption.jumpTo;
             }
+
+            GameManager.instance.AddPoints(chosenOption.pointsToAward);
         }
         else
         {
-            Debug.LogError($"Invalid option given\nText Element Number: {currentTextElementNumber}\nTotal option amount: {currentText.options.Count}\nOption given: {option}");
+            throw new System.Exception($"Invalid option given\nText Element Number: {currentTextElementNumber}\nTotal option amount: {currentText.options.Count}\nOption given: {option}");
         }
 
         if (currentTextElementNumber != nextTextElementNumber)
@@ -137,6 +131,13 @@ public class InteractableText : MonoBehaviour
         }
 
         return texts[currentTextElementNumber];
+    }
+
+    private void ResetTextProgress()
+    {
+        currentTextElementNumber = 0;
+        textStart = false;
+        taskActive = false;
     }
 
     private void OnTaskComplete()

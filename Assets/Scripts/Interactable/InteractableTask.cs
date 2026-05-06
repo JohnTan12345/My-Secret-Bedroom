@@ -4,13 +4,17 @@ using UnityEngine.Events;
 
 public class InteractableTask : MonoBehaviour
 {
-    public UnityEvent onTaskComplete;
     public int MaxProgress = 1;
     public GameObject ObjectHighlight;
 
     [Header("Hidden Parameters")]
     [SerializeField]
     private int currentProgress = 0;
+
+    // Events
+    [Header("Events")]
+    [Space(5)]
+    public UnityEvent onTaskComplete;
 
     void Awake()
     {
