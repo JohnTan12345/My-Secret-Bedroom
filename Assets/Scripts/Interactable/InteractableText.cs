@@ -4,7 +4,6 @@
 */
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,9 +12,8 @@ public class InteractableText : MonoBehaviour
     [SerializeField]
     private GameObject objectHighlighted;
     public string interactibleName; // May be removed if unused
-    [SerializeField]
     [Tooltip("This is the text used if there are no options")]
-    private string continueText = "Continue";
+    public string continueText = "Continue";
     [SerializeField]
     private List<GameText> texts;
 
@@ -63,12 +61,12 @@ public class InteractableText : MonoBehaviour
 
 // Text related Functions
 
-    public void SelectOption(int option)
+    public void SelectOption(int option = -1)
     {
         GetNextTextObject(option);
     }
 
-    private GameText GetNextTextObject(int option = -1)
+    private GameText GetNextTextObject(int option)
     {
 
         if (taskActive == true)

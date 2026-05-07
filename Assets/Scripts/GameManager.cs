@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this);
             return;

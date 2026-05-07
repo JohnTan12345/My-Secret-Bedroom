@@ -938,6 +938,7 @@ GameObject:
   - component: {fileID: 1445437082}
   - component: {fileID: 1445437081}
   - component: {fileID: 1445437085}
+  - component: {fileID: 1445437086}
   m_Layer: 5
   m_Name: Text UI
   m_TagString: Untagged
@@ -1044,7 +1045,23 @@ MonoBehaviour:
   objectHighlighted: {fileID: 0}
   interactibleName: 
   continueText: Continue
-  texts: []
+  texts:
+  - text: AEAEAEAE
+    jumpTo: 0
+    taskToComplete: {fileID: 0}
+    options:
+    - isAButton: 1
+      text: AEAEAE
+      jumpTo: 1
+      pointsToAward: 0
+  - text: BBBBBBBBB
+    jumpTo: 0
+    taskToComplete: {fileID: 0}
+    options: []
+  - text: CCCCCCCCCCCCCC
+    jumpTo: 0
+    taskToComplete: {fileID: 0}
+    options: []
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
@@ -1055,6 +1072,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onTextsEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1445437086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445437080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da329c653b96b3418aebf1bbcee40fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableText: {fileID: 1445437085}
+  infoText: {fileID: 589584416}
+  optionUI_Parent: {fileID: 1235082476}
+  optionUI_Prefab: {fileID: 3787924999031092534, guid: 90229bced0cd93540b43ebb0624a9391, type: 3}
+  buttonClickedEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &2092139007
