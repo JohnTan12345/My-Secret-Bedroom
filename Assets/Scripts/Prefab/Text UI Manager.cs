@@ -13,6 +13,9 @@ public class TextUIManager : MonoBehaviour
     [SerializeField]
     private GameObject optionUI_Prefab;
 
+    private bool listenerAdded = false;
+
+    [HideInInspector]
     public UnityEvent<int> buttonClickedEvent;
 
     void Awake()
@@ -26,8 +29,6 @@ public class TextUIManager : MonoBehaviour
                 throw new System.Exception("interactableText is not assigned in this script");
             }
         }
-
-        buttonClickedEvent.AddListener(interactableText.SelectOption);
     }
 
     void Start()
@@ -50,27 +51,42 @@ public class TextUIManager : MonoBehaviour
 
         infoText.text = gameText.text;
 
-        if (gameText.options.Count > 0)
+        if (gameText.taskToComplete == null)
         {
-            for (int j = 0; j < gameText.options.Count; j++)
+
+            if (!listenerAdded) 
             {
-                TextOptions option = gameText.options[j];
+                buttonClickedEvent.AddListener(interactableText.SelectOption); listenerAdded = true;
+            }
+            
+
+            if (gameText.options.Count > 0)
+            {
+                for (int j = 0; j < gameText.options.Count; j++)
+                {
+                    TextOptions option = gameText.options[j];
+                    GameObject optionUI_Clone = Instantiate(optionUI_Prefab, optionUI_Parent);
+                    optionUI_Clone.name = $"OptionUI {j}";
+
+                    TextOptionUI textOptionUI = optionUI_Clone.GetComponent<TextOptionUI>();
+                    int optionNum = j;
+                    textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(optionNum) );
+                    textOptionUI.text.text = option.text;
+                }
+            }
+            else
+            {
                 GameObject optionUI_Clone = Instantiate(optionUI_Prefab, optionUI_Parent);
-                optionUI_Clone.name = $"OptionUI {j}";
 
                 TextOptionUI textOptionUI = optionUI_Clone.GetComponent<TextOptionUI>();
-                int optionNum = j;
-                textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(optionNum) );
-                textOptionUI.text.text = option.text;
+                textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(-1) );
+                textOptionUI.text.text = interactableText.continueText;
             }
         }
         else
         {
-            GameObject optionUI_Clone = Instantiate(optionUI_Prefab, optionUI_Parent);
-
-            TextOptionUI textOptionUI = optionUI_Clone.GetComponent<TextOptionUI>();
-            textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(-1) );
-            textOptionUI.text.text = interactableText.continueText;
+            buttonClickedEvent.RemoveListener(interactableText.SelectOption);
+            listenerAdded = false;
         }
     }
 }

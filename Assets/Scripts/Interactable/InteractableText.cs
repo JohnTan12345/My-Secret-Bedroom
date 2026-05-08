@@ -139,6 +139,7 @@ public class InteractableText : MonoBehaviour
     private void OnTaskComplete()
     {
         texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);
+        taskActive = false;
         GetNextTextObject(-1);
     }
 
