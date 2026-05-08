@@ -40,7 +40,7 @@ public class InteractableTask : MonoBehaviour
         if (currentProgress >= MaxProgress)
         {
             onTaskComplete.Invoke();
-            ResetProgress();
+            ResetProgress();    
         }
     }
 

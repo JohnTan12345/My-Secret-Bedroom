@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
     [SerializeField]
-    [Tooltip("You can set an ordered list of interactible texts. Any interactible texts that is not added here will be automatically added with no order")]
-    private List<InteractableText> interactibleTexts = new List<InteractableText>();
+    [Tooltip("You can set an ordered list of interactable texts. Any interactable texts that is not added here will be automatically added with no order")]
+    private List<InteractableText> interactableTexts = new List<InteractableText>();
 
     // Events
     [Header("Events")]
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int amount) { points += amount; onPointsChange.Invoke(); }
     public int GetPoints() => points;
 
+    [Header("Hidden Parameters")]
+    [SerializeField]
+    private int activeInteractableNum = 0;
+
     void Awake()
     {
         if (instance != null && instance != this)
@@ -37,12 +41,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        
+        SetActiveInteractableNum(0);
     }
 
     public void EndGame()
     {
-        
+        // Show thanks and stuff
     }
 
     public void ResetGame()
@@ -53,15 +57,30 @@ public class GameManager : MonoBehaviour
         onPointsChange.Invoke();
     }
 
-    public bool AddInteractibleText(InteractableText interactibleText)
+    void SetActiveInteractableNum(int interactableNum)
     {
-        if (interactibleTexts.Contains(interactibleText))
+        interactableTexts[activeInteractableNum].onTextsEnd.RemoveListener(OnTextsFinish);
+        // Previous highlighted object becomes unhighlighted
+
+        activeInteractableNum = interactableNum;
+        interactableTexts[activeInteractableNum].onTextsEnd.AddListener(OnTextsFinish);
+        // Next object becomes highlighted
+    }
+
+    private void OnTextsFinish()
+    {
+        SetActiveInteractableNum(activeInteractableNum + 1);
+    }
+
+    public bool AddInteractableText(InteractableText interactableText)
+    {
+        if (interactableTexts.Contains(interactableText))
         {
-            Debug.Log($"{interactibleText} is already inside {instance}");
+            Debug.Log($"{interactableText} is already inside {instance}");
             return false;
         }
 
-        interactibleTexts.Add(interactibleText);
+        interactableTexts.Add(interactableText);
         return true;
     }
 }

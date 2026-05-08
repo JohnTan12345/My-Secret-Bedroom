@@ -45,7 +45,7 @@ public class InteractableText : MonoBehaviour
         GameManager.instance.onGameReset.AddListener(ResetTextProgress);
 
         // Adds this script to the game manager for ordered interaction
-        bool success = GameManager.instance.AddInteractibleText(this);
+        bool success = GameManager.instance.AddInteractableText(this);
 
         if (success)
         {
