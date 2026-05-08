@@ -78,7 +78,7 @@ public class InteractableText : MonoBehaviour
         GameText currentText = texts[currentTextElementNumber];
         int nextTextElementNumber = currentTextElementNumber + 1;
 
-        if (currentText.options.Count == -1)
+        if (currentText.options.Count == 0)
         {
             if (currentText.jumpTo > -1)
             {
@@ -86,8 +86,6 @@ public class InteractableText : MonoBehaviour
             }
             else
             {
-                nextTextElementNumber++;
-
                 if (nextTextElementNumber == texts.Count)
                 {
                     Debug.Log("Finished text block");
@@ -118,8 +116,8 @@ public class InteractableText : MonoBehaviour
 
         if (currentTextElementNumber != nextTextElementNumber)
         {
-            onTextChange.Invoke();
             currentTextElementNumber = nextTextElementNumber;
+            onTextChange.Invoke();
 
             if (texts[currentTextElementNumber].taskToComplete != null)
             {

@@ -40,13 +40,12 @@ public class TextUIManager : MonoBehaviour
     {
         GameText gameText = interactableText.GetGameText();
 
-        int i = optionUI_Parent.childCount;
-        while (i > 0)
+        for (int i = optionUI_Parent.childCount; i > 0; i--)
         {
             int childIndex = i - 1;
-            optionUI_Parent.GetChild(childIndex).GetComponent<TextOptionUI>().button.onClick.RemoveAllListeners();
-            Destroy(optionUI_Parent.GetChild(childIndex).gameObject);
-            i--;
+            GameObject optionUI_Child = optionUI_Parent.GetChild(childIndex).gameObject;
+            optionUI_Child.GetComponent<TextOptionUI>().button.onClick.RemoveAllListeners();
+            Destroy(optionUI_Child);
         }
 
         infoText.text = gameText.text;
@@ -56,19 +55,18 @@ public class TextUIManager : MonoBehaviour
             for (int j = 0; j < gameText.options.Count; j++)
             {
                 TextOptions option = gameText.options[j];
-                GameObject optionUI_Clone = Instantiate(optionUI_Prefab);
-                optionUI_Clone.transform.parent = optionUI_Parent;
+                GameObject optionUI_Clone = Instantiate(optionUI_Prefab, optionUI_Parent);
+                optionUI_Clone.name = $"OptionUI {j}";
 
                 TextOptionUI textOptionUI = optionUI_Clone.GetComponent<TextOptionUI>();
-                textOptionUI.optionNum = j;
-                textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(textOptionUI.optionNum) );
+                int optionNum = j;
+                textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(optionNum) );
                 textOptionUI.text.text = option.text;
             }
         }
         else
         {
-            GameObject optionUI_Clone = Instantiate(optionUI_Prefab);
-            optionUI_Clone.transform.parent = optionUI_Parent;
+            GameObject optionUI_Clone = Instantiate(optionUI_Prefab, optionUI_Parent);
 
             TextOptionUI textOptionUI = optionUI_Clone.GetComponent<TextOptionUI>();
             textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(-1) );
