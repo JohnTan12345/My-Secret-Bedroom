@@ -56,6 +56,7 @@ public class InteractableText : MonoBehaviour
     public GameText GetGameText()
     {
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
+        if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);}
         return texts[currentTextElementNumber];
     }
 
@@ -149,6 +150,7 @@ public class InteractableText : MonoBehaviour
 public class GameText
 {
     public string text;
+    [Tooltip("To move on to the next text, set to -1. Else set it to the next text index")]
     public int jumpTo = -1;
     public InteractableTask taskToComplete;
     public List<TextOptions> options;
@@ -159,6 +161,7 @@ public class TextOptions
 {
     public bool isAButton = false;
     public string text;
+    [Tooltip("To move on to the next text, set to -1. Else set it to the next text index")]
     public int jumpTo = -1;
     public int pointsToAward = 0;
 }
