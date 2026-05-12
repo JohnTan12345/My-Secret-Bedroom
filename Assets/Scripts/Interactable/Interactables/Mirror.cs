@@ -13,6 +13,7 @@ public class Mirror : MonoBehaviour
     public GameObject cloth;
     public GameObject textUI;
     private Vector3 clothOriginalPos;
+    private bool taskFinished = false;
     void Start()
     {
         GameManager.instance.onGameReset.AddListener(GameReset);
@@ -25,10 +26,12 @@ public class Mirror : MonoBehaviour
         cloth.transform.position = clothOriginalPos;
         cloth.SetActive(true);
         textUI.SetActive(false);
+        taskFinished = false;
     }
     private void TextFinished() // Make the TextUI disappear
     {
         textUI.SetActive(false);
+        taskFinished = true;
     }
     public void OnClothGrab() // Complete the task after the cloth is grabbed
     {
@@ -37,6 +40,7 @@ public class Mirror : MonoBehaviour
     }
     public void OnPlayerEnterArea() // Make the TextUI appear when the player enters
     {
+        if (taskFinished) {return;}
         textUI.SetActive(true);
         cloth.GetComponent<XRGrabInteractable>().enabled = true;
     }
