@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     // Points
     private int points = 0;
-    public void AddPoints(int amount) { points += amount; onPointsChange.Invoke(); }
-    public int GetPoints() => points;
+    public void AddPoints(int amount) { points += amount; onPointsChange.Invoke(); } // Adds points
+    public int GetPoints() => points; // Returns points
 
     [Header("Hidden Parameters")]
     [SerializeField]
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void StartGame()
+    public void StartGame() // To be implemented
     {
         SetActiveInteractableNum(0);
     }
@@ -72,15 +72,15 @@ public class GameManager : MonoBehaviour
         SetActiveInteractableNum(activeInteractableNum + 1);
     }
 
-    public bool AddInteractableText(InteractableText interactableText)
+    public bool AddInteractableText(InteractableText interactableText) // Adds the interactable to the list for the game to easily order the tasks
     {
-        if (interactableTexts.Contains(interactableText))
+        if (interactableTexts.Contains(interactableText)) // Check if the interactableText is inside the list
         {
             Debug.Log($"{interactableText} is already inside {instance}");
             return false;
         }
 
-        interactableTexts.Add(interactableText);
+        interactableTexts.Add(interactableText); // Add if the interactableText is not inside the list
         return true;
     }
 }

@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: variable mapping for option UI
+*/
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

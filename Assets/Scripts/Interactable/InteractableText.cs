@@ -2,6 +2,7 @@
     Created by: John
     Description: Handles the informative in-game text parts of the game
 */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,9 +30,9 @@ public class InteractableText : MonoBehaviour
     [Header("Events")]
     [Space(5)]
     // Events
-    public UnityEvent onTextsStart;
-    public UnityEvent onTextChange;
-    public UnityEvent onTextsEnd;
+    public UnityEvent onTextsStart; // Fires when the texts starts
+    public UnityEvent onTextChange; // Fires when the current text changes
+    public UnityEvent onTextsEnd; // Fires when there is no more text after the current text
 
     void Awake()
     {
@@ -62,15 +63,17 @@ public class InteractableText : MonoBehaviour
 
 // Text related Functions
 
+    // Selects an option (defaults to -1 if none given)
     public void SelectOption(int option = -1)
     {
         GetNextTextObject(option);
     }
 
+    // Get next text based on option
     private GameText GetNextTextObject(int option)
     {
 
-        if (taskActive == true)
+        if (taskActive == true) // Return the current text if there is a task active
         {
             Debug.LogWarning("There is a task currently active");
             return texts[currentTextElementNumber];
@@ -79,15 +82,15 @@ public class InteractableText : MonoBehaviour
         GameText currentText = texts[currentTextElementNumber];
         int nextTextElementNumber = currentTextElementNumber + 1;
 
-        if (currentText.options.Count == 0)
+        if (currentText.options.Count == 0) // If there are no options
         {
-            if (currentText.jumpTo > -1)
+            if (currentText.jumpTo > -1 && currentText.jumpTo < texts.Count) // Jump to text at that index
             {
                 nextTextElementNumber = currentText.jumpTo;
             }
             else
             {
-                if (nextTextElementNumber == texts.Count)
+                if (nextTextElementNumber >= texts.Count) // Check if next index is more than total text
                 {
                     Debug.Log("Finished text block");
                     onTextsEnd.Invoke();
@@ -95,32 +98,33 @@ public class InteractableText : MonoBehaviour
                 }
             }
         }
-        else if (0 <= option && option < currentText.options.Count)
+        else if (0 <= option && option < currentText.options.Count) // If there are options and the given option is within the range
         {
-            TextOptions chosenOption = currentText.options[option];
+            TextOptions chosenOption = currentText.options[option]; // Get the option object
             
-            if (chosenOption.jumpTo < 0) 
+            if (chosenOption.jumpTo < -1) // Option validator
             {
                 throw new System.Exception($"Invalid text number to jump to\nText Element Number: {currentTextElementNumber}\nOption given: {option}\nOption to jump to: {currentText.options[option].jumpTo}");
             }
-            else
+            else if (chosenOption.jumpTo > -1) // If the option has a specific text to jump to
             {
                 nextTextElementNumber = chosenOption.jumpTo;
             }
 
             GameManager.instance.AddPoints(chosenOption.pointsToAward);
         }
-        else
+        else // If option is over/under the allowed range
         {
             throw new System.Exception($"Invalid option given\nText Element Number: {currentTextElementNumber}\nTotal option amount: {currentText.options.Count}\nOption given: {option}");
         }
 
         if (currentTextElementNumber != nextTextElementNumber)
         {
+            // Fire the event after changing the current text element
             currentTextElementNumber = nextTextElementNumber;
             onTextChange.Invoke();
 
-            if (texts[currentTextElementNumber].taskToComplete != null)
+            if (texts[currentTextElementNumber].taskToComplete != null) // Checks if the current text has a task to complete
             {
                 taskActive = true;
                 texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
@@ -130,14 +134,14 @@ public class InteractableText : MonoBehaviour
         return texts[currentTextElementNumber];
     }
 
-    private void ResetTextProgress()
+    private void ResetTextProgress() // Resets the text
     {
         currentTextElementNumber = 0;
         textStart = false;
         taskActive = false;
     }
 
-    private void OnTaskComplete()
+    private void OnTaskComplete() // Wrapper for when the task is complete
     {
         texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);
         taskActive = false;

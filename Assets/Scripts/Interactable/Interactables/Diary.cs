@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: Dairy Interactable
+*/
+
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +14,7 @@ public class Diary : MonoBehaviour
     [SerializeField]
     private GameObject choiceGroup;
 
+    // Changes the text to what was selected
     public void InsertText(string choiceText)
     {
         text.text = choiceText;
