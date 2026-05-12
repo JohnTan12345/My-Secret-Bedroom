@@ -3,22 +3,36 @@
     Description: Dairy Interactable
 */
 
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Diary : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI text;
+    private List<GameObject> textList = new();
     
     [SerializeField]
     private GameObject choiceGroup;
 
-    // Changes the text to what was selected
-    public void InsertText(string choiceText)
+    void Start()
     {
-        text.text = choiceText;
-        text.gameObject.SetActive(true);
+        GameManager.instance.onGameReset.AddListener(ResetObject);
+    }
+
+    // Resets the object
+    private void ResetObject()
+    {
+        foreach (GameObject text in textList)
+        {
+            text.SetActive(false);
+        }
+        choiceGroup.SetActive(true);
+    }
+
+    // Changes the text to what was selected
+    public void ShowText(int choiceText)
+    {
+        textList[choiceText].SetActive(true);
         choiceGroup.SetActive(false);
     }
 }
