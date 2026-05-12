@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: A wrapper for OnTriggerEnter that fires an event when the player enters the area
+*/
+
 using UnityEngine;
 using UnityEngine.Events;
 
