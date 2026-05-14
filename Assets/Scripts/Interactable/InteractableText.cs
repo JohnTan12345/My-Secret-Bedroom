@@ -26,6 +26,8 @@ public class InteractableText : MonoBehaviour
     private bool textStart = false;
     [SerializeField]
     private bool taskActive = false;
+    [SerializeField]
+    private bool debuggingEnabled = false;
 
     [Header("Events")]
     [Space(5)]
@@ -82,21 +84,13 @@ public class InteractableText : MonoBehaviour
         GameText currentText = texts[currentTextElementNumber];
         int nextTextElementNumber = currentTextElementNumber + 1;
 
-        if (currentText.options.Count == 0) // If there are no options
+        if (currentText.options.Count == 0) // If there are no options and the current text jump to is within 0 and above
         {
-            if (currentText.jumpTo > -1 && currentText.jumpTo < texts.Count) // Jump to text at that index
+            if (currentText.jumpTo > -1)
             {
                 nextTextElementNumber = currentText.jumpTo;
             }
-            else
-            {
-                if (nextTextElementNumber >= texts.Count) // Check if next index is more than total text
-                {
-                    Debug.Log("Finished text block");
-                    onTextsEnd.Invoke();
-                    textStart = false;
-                }
-            }
+            
         }
         else if (0 <= option && option < currentText.options.Count) // If there are options and the given option is within the range
         {
@@ -120,14 +114,28 @@ public class InteractableText : MonoBehaviour
 
         if (currentTextElementNumber != nextTextElementNumber)
         {
-            // Fire the event after changing the current text element
-            currentTextElementNumber = nextTextElementNumber;
-            onTextChange.Invoke();
-
-            if (texts[currentTextElementNumber].taskToComplete != null) // Checks if the current text has a task to complete
+            if (nextTextElementNumber < texts.Count)
             {
-                taskActive = true;
-                texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
+                // Fire the event after changing the current text element
+                currentTextElementNumber = nextTextElementNumber;
+                onTextChange.Invoke();
+
+                if (texts[currentTextElementNumber].taskToComplete != null) // Checks if the current text has a task to complete
+                {
+                    taskActive = true;
+                    texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
+                }
+            }
+            else
+            {
+                // Fire the event when the final text for a branch is reached
+                onTextsEnd.Invoke();
+                textStart = false;
+
+                if (debuggingEnabled)
+                {
+                    Debug.Log($"Texts has ended at text element: {currentTextElementNumber}\nOptions available:{texts[currentTextElementNumber].options.Count > 0}{(texts[currentTextElementNumber].options.Count > 0 ? $"Ended at option {option} jumping to text element {texts[currentTextElementNumber].options[option].jumpTo}":"")}");
+                }
             }
         }
 
