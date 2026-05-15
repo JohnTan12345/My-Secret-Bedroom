@@ -123,6 +123,7 @@ public class InteractableText : MonoBehaviour
                 if (texts[currentTextElementNumber].taskToComplete != null) // Checks if the current text has a task to complete
                 {
                     taskActive = true;
+                    texts[currentTextElementNumber].taskToComplete.onTaskStart.Invoke();
                     texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
                 }
             }
@@ -144,7 +145,10 @@ public class InteractableText : MonoBehaviour
 
     private void ResetTextProgress() // Resets the text
     {
+        if (texts.Count == 0) {return;}
+        if (texts[currentTextElementNumber].taskToComplete != null) {texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);}
         currentTextElementNumber = 0;
+        onTextChange.Invoke();
         textStart = false;
         taskActive = false;
     }
