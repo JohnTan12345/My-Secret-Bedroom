@@ -25,7 +25,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Hidden Parameters")]
     [SerializeField]
+    private bool debuggingEnabled = false;
+    [SerializeField]
     private int activeInteractableNum = 0;
+    [SerializeField]
+    private List<InteractableText> completedText = new();
+    [SerializeField]
+    private List<InteractableText> incompleteText = new();
 
     void Awake()
     {
@@ -41,7 +47,15 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() // To be implemented
     {
+        incompleteText = new(interactableTexts);
+        completedText = new() {};
+
         SetActiveInteractableNum(0);
+        
+        if (debuggingEnabled)
+        {
+            Debug.Log($"Game started");
+        }
     }
 
     public void EndGame()
@@ -57,7 +71,19 @@ public class GameManager : MonoBehaviour
         onPointsChange.Invoke();
     }
 
-    void SetActiveInteractableNum(int interactableNum)
+    private void OnTextsFinish()
+    {
+        InteractableText interactable = interactableTexts[activeInteractableNum];
+        if (!completedText.Contains(interactable))
+        {
+            completedText.Add(interactable);
+            incompleteText.Remove(interactable);
+        }
+
+        SetActiveInteractableNum(activeInteractableNum + 1);
+    }
+
+    private void SetActiveInteractableNum(int interactableNum)
     {
         interactableTexts[activeInteractableNum].onTextsEnd.RemoveListener(OnTextsFinish);
         // Previous highlighted object becomes unhighlighted
@@ -67,16 +93,15 @@ public class GameManager : MonoBehaviour
         // Next object becomes highlighted
     }
 
-    private void OnTextsFinish()
-    {
-        SetActiveInteractableNum(activeInteractableNum + 1);
-    }
-
     public bool AddInteractableText(InteractableText interactableText) // Adds the interactable to the list for the game to easily order the tasks
     {
         if (interactableTexts.Contains(interactableText)) // Check if the interactableText is inside the list
         {
-            Debug.Log($"{interactableText} is already inside {instance}");
+            if (debuggingEnabled)
+            {
+                Debug.Log($"{interactableText} is already inside {instance}");
+            }
+            
             return false;
         }
 
