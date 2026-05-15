@@ -1,4 +1,4 @@
-    /*
+/*
     Created by: Rayner
     Description: WeighingScale functions
 */

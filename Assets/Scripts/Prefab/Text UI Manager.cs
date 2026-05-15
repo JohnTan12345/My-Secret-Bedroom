@@ -42,6 +42,11 @@ public class TextUIManager : MonoBehaviour
         RefreshText();
     }
 
+    void OnEnable()
+    {
+        RefreshText();
+    }
+
     private void RefreshText() // Refreshes the UI everytime the current text changes
     {
         GameText gameText = interactableText.GetGameText();
