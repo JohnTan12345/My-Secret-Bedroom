@@ -44,4 +44,9 @@ public class Mirror : MonoBehaviour
         textUI.SetActive(true);
         cloth.GetComponent<XRGrabInteractable>().enabled = true;
     }
+    public void OnPlayerExitArea() // Make the TextUI appear when the player enters
+    {
+        textUI.SetActive(false);
+        cloth.GetComponent<XRGrabInteractable>().enabled = false;
+    }
 }
