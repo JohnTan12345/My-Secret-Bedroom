@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: Manages the overall game as well as resets
+*/
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;

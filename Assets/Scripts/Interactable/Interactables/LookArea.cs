@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: Area players can look to trigger something
+*/
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;

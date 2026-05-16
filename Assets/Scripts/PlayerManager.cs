@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: Currently manages where players look
+*/
+
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour

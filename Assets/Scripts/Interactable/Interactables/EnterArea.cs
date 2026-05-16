@@ -1,6 +1,6 @@
 /*
     Created by: John
-    Description: A wrapper for OnTriggerEnter that fires an event when the player enters the area
+    Description: Area players can enter to trigger something
 */
 
 using UnityEngine;
