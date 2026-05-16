@@ -27,6 +27,8 @@ public class InteractableText : MonoBehaviour
     [SerializeField]
     private bool taskActive = false;
     [SerializeField]
+    private bool listenerAdded = false;
+    [SerializeField]
     private bool debuggingEnabled = false;
 
     [Header("Events")]
@@ -48,18 +50,17 @@ public class InteractableText : MonoBehaviour
         GameManager.instance.onGameReset.AddListener(ResetTextProgress);
 
         // Adds this script to the game manager for ordered interaction
-        bool success = GameManager.instance.AddInteractableText(this);
-
-        if (success)
-        {
-            Debug.Log("Successfully added interactible text to game manager");
-        }
+        GameManager.instance.AddInteractableText(this);
     }
     
     public GameText GetGameText()
     {
+        if (debuggingEnabled)
+        {
+            Debug.Log("Getting Game Text");
+        }
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
-        if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);}
+        if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; AddOnCompleteListener();}
         return texts[currentTextElementNumber];
     }
 
@@ -124,7 +125,11 @@ public class InteractableText : MonoBehaviour
                 {
                     taskActive = true;
                     texts[currentTextElementNumber].taskToComplete.onTaskStart.Invoke();
-                    texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
+                    AddOnCompleteListener();
+                    if (debuggingEnabled)
+                    {
+                        Debug.Log("Added listener to onTaskComplete");
+                    }
                 }
             }
             else
@@ -143,6 +148,21 @@ public class InteractableText : MonoBehaviour
         return texts[currentTextElementNumber];
     }
 
+    private void AddOnCompleteListener()
+    {
+        if (!listenerAdded)
+        {
+            texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
+            listenerAdded = true;
+        }
+    }
+
+    private void RemoveOnCompleteListener()
+    {
+        texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);
+        listenerAdded = false;
+    }
+
     private void ResetTextProgress() // Resets the text
     {
         if (texts.Count == 0) {return;}
@@ -155,7 +175,8 @@ public class InteractableText : MonoBehaviour
 
     private void OnTaskComplete() // Wrapper for when the task is complete
     {
-        texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);
+        Debug.Log($"{currentTextElementNumber}\n{texts[currentTextElementNumber].taskToComplete}");
+        RemoveOnCompleteListener();
         taskActive = false;
         GetNextTextObject(-1);
     }

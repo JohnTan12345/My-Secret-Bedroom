@@ -31,8 +31,6 @@ public class InteractableTask : MonoBehaviour
         }
 
         StartCoroutine(WaitForGameManagerInstance());
-
-        onTaskStart.AddListener(() => {Debug.Log("Task started");});
     }
 
     private IEnumerator WaitForGameManagerInstance()

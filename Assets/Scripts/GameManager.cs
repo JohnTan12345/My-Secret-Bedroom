@@ -25,13 +25,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Hidden Parameters")]
     [SerializeField]
-    private bool debuggingEnabled = false;
-    [SerializeField]
     private int activeInteractableNum = 0;
     [SerializeField]
     private List<InteractableText> completedText = new();
     [SerializeField]
     private List<InteractableText> incompleteText = new();
+    [SerializeField]
+    private bool debuggingEnabled = false;
 
     void Awake()
     {
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
         // Next object becomes highlighted
     }
 
-    public bool AddInteractableText(InteractableText interactableText) // Adds the interactable to the list for the game to easily order the tasks
+    public void AddInteractableText(InteractableText interactableText) // Adds the interactable to the list for the game to easily order the tasks
     {
         if (interactableTexts.Contains(interactableText)) // Check if the interactableText is inside the list
         {
@@ -102,10 +102,14 @@ public class GameManager : MonoBehaviour
                 Debug.Log($"{interactableText} is already inside {instance}");
             }
             
-            return false;
+            return;
         }
 
         interactableTexts.Add(interactableText); // Add if the interactableText is not inside the list
-        return true;
+
+        if (debuggingEnabled)
+            {
+                Debug.Log($"{interactableText} successfully added to {instance}");
+            }
     }
 }
