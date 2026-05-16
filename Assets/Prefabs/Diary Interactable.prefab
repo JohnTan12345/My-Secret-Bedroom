@@ -130,6 +130,7 @@ MonoBehaviour:
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
+  listenerAdded: 0
   debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:

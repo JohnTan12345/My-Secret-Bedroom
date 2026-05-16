@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6251457810282681909}
   - component: {fileID: 1222343826350179916}
+  - component: {fileID: 536891417079447436}
   m_Layer: 6
   m_Name: Look Area
   m_TagString: Untagged
@@ -265,6 +266,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &536891417079447436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4017517597043418941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8414f31b1f35b8e4f988d995ffc1fd9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPlayerLook:
+    m_PersistentCalls:
+      m_Calls: []
+  playerLooking: 0
+  invokedEvent: 0
 --- !u!1 &5330596753140372694
 GameObject:
   m_ObjectHideFlags: 0

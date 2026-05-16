@@ -22,10 +22,8 @@ public class Mirror : MonoBehaviour
     }
     private void GameReset() // Reset the object when the game reset is triggered
     {
-        cloth.GetComponent<XRGrabInteractable>().enabled = false;
         cloth.transform.position = clothOriginalPos;
         cloth.SetActive(true);
-        textUI.SetActive(false);
         taskFinished = false;
     }
     private void TextFinished() // Make the TextUI disappear

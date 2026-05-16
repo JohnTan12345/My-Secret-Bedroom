@@ -166,7 +166,7 @@ public class InteractableText : MonoBehaviour
     private void ResetTextProgress() // Resets the text
     {
         if (texts.Count == 0) {return;}
-        if (texts[currentTextElementNumber].taskToComplete != null) {texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);}
+        if (texts[currentTextElementNumber].taskToComplete != null) {RemoveOnCompleteListener();}
         currentTextElementNumber = 0;
         onTextChange.Invoke();
         textStart = false;

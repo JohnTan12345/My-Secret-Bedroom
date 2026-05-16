@@ -33,7 +33,7 @@ public class LookArea : MonoBehaviour
             {
                 if (!invokedEvent)
                 {
-                    Debug.Log("Event Invoked");
+                    onPlayerLook.Invoke();
                     invokedEvent = true;
                 }
                 yield return new WaitForEndOfFrame();
