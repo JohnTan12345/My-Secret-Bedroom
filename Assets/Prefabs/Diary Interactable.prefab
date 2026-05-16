@@ -130,6 +130,8 @@ MonoBehaviour:
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
+  listenerAdded: 0
+  debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:
       m_Calls: []
@@ -151,7 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3201b8681eeaa942b30bf9ed51c4fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  textList:
+  - {fileID: 5738857214773449260}
+  - {fileID: 3183373880935000346}
+  - {fileID: 2309803848093751460}
   choiceGroup: {fileID: 6805927024012853746}
 --- !u!1 &2309803848093751460
 GameObject:
@@ -1358,6 +1363,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4338317329432099965

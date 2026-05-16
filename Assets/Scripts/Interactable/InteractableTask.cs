@@ -19,6 +19,7 @@ public class InteractableTask : MonoBehaviour
     // Events
     [Header("Events")]
     [Space(5)]
+    public UnityEvent onTaskStart; // Fires when the task starts
     public UnityEvent onTaskComplete; // Fires when the task is complete
 
     void Awake()
