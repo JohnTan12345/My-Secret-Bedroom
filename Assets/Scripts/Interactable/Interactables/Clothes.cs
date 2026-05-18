@@ -47,7 +47,7 @@ public class ClothesPile : MonoBehaviour
         clothingPile.transform.SetParent(laundryBagTrigger.transform);
 
         // Disable grabbing so player can’t pick it back up
-        clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
+        //clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
 
         interactionDone = true;
         taskFinished = true;
@@ -59,19 +59,16 @@ public class ClothesPile : MonoBehaviour
         }
 
         Debug.Log("Clothing pile successfully dropped into laundry bag and task progress updated.");
+    }
 
+    public void OnRevealUI()
+    {
         // Switch UI panels
         questionUI.SetActive(false);
         if (nextUIPanel != null)
         {
             nextUIPanel.SetActive(true);
-
-            // Start the text sequence on the new panel
-            var textScript = nextUIPanel.GetComponent<InteractableText>();
-            if (textScript != null)
-            {
-                textScript.GetGameText();
-            }
+    
             Debug.Log("Next UI panel activated and text sequence started.");
         }
         Debug.Log("Clothing pile successfully dropped into laundry bag and interaction completed.");
