@@ -38,6 +38,7 @@ public class TextUIManager : MonoBehaviour
 
     void Start()
     {   
+        GameManager.instance.onGameReset.AddListener(RefreshText);
         interactableText.onTextChange.AddListener(RefreshText);
         RefreshText();
     }

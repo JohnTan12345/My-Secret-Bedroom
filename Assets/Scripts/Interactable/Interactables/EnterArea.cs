@@ -1,6 +1,6 @@
 /*
     Created by: John
-    Description: A wrapper for OnTriggerEnter that fires an event when the player enters the area
+    Description: Area players can enter to trigger something
 */
 
 using UnityEngine;
@@ -10,11 +10,20 @@ using UnityEngine.Events;
 public class EnterArea : MonoBehaviour
 {
     public UnityEvent PlayerEnterArea;
+    public UnityEvent PlayerExitArea;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             PlayerEnterArea.Invoke();
+        };
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerExitArea.Invoke();
         };
     }
 }
