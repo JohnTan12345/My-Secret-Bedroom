@@ -769,35 +769,11 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
---- !u!1 &192623469 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8647034966234367531, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}
-  m_PrefabInstance: {fileID: 6989085515388766466}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &192623470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8351614954649844138, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}
   m_PrefabInstance: {fileID: 6989085515388766466}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &192623471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192623469}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b83f77248a12144a4f725fcf11675a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableText: {fileID: 1183362961}
-  interactableTask: {fileID: 1183362960}
-  questionUI: {fileID: 658048380}
-  nextUIPanel: {fileID: 533227451}
-  clothingPile: {fileID: 1430553884}
-  clothingTag: ClothingPile
-  laundryBagTrigger: {fileID: 1542912611}
 --- !u!1001 &214289481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2254,7 +2230,7 @@ MonoBehaviour:
   PlayerEnterArea:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1430553892}
+      - m_Target: {fileID: 1542912613}
         m_TargetAssemblyTypeName: ClothesPile, Assembly-CSharp
         m_MethodName: OnPlayerEnterArea
         m_Mode: 1
@@ -2382,7 +2358,6 @@ GameObject:
   - component: {fileID: 1430553885}
   - component: {fileID: 1430553891}
   - component: {fileID: 1430553890}
-  - component: {fileID: 1430553892}
   m_Layer: 0
   m_Name: TempClothesPile
   m_TagString: ClothingPile
@@ -2635,25 +2610,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1430553892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430553884}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b83f77248a12144a4f725fcf11675a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableText: {fileID: 1183362961}
-  interactableTask: {fileID: 1183362960}
-  questionUI: {fileID: 658048380}
-  nextUIPanel: {fileID: 533227451}
-  clothingPile: {fileID: 1430553884}
-  clothingTag: ClothingPile
-  laundryBagTrigger: {fileID: 1542912611}
 --- !u!1 &1457800935
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1245084995018388394, guid: 88ad0d492f997d94faeb8c76bd8d082d, type: 3}
@@ -3015,7 +2971,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542912610}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b83f77248a12144a4f725fcf11675a, type: 3}
   m_Name: 
@@ -5319,10 +5275,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8351614954649844138, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1542912612}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8647034966234367531, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 192623471}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}
 --- !u!1001 &7409333131902296567
 PrefabInstance:
