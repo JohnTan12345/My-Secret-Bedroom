@@ -83,9 +83,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012d7c089678f0c479ff967110bfc44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectInteractionArea: {fileID: 0}
+  objectLookArea: {fileID: 2561044361774913993}
+  textUILookArea: {fileID: 135482816055079665}
+  textUIObject: {fileID: 0}
   lookingAtObject: 0
   lookingAtUI: 0
-  TextUI: {fileID: 135482816055079665}
+  AreaInteractionEnabled: 0
+  AreaInteractionActive: 0
+  playerInArea: 0
 --- !u!1001 &1686127619001443750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,11 +106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083988802388847373, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
       propertyPath: onPlayerAway.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7083988802388847373, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
       propertyPath: onPlayerLook.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7083988802388847373, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
       propertyPath: onPlayerAway.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -215,6 +221,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
+--- !u!1 &2561044361774913993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3813700499443694703, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
+  m_PrefabInstance: {fileID: 1686127619001443750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7646568968055172848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9041053029922130774, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
@@ -230,11 +241,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 298018263795490424, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: onPlayerAway.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 298018263795490424, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: onPlayerLook.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 298018263795490424, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: onPlayerAway.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

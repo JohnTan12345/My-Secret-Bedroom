@@ -9,6 +9,8 @@ public class GrabableObjects : MonoBehaviour
     [SerializeField]
     private Transform originalPos;
     [SerializeField]
+    private GameObject grabableObject;
+    [SerializeField]
     private Vector3 originalObjPos;
     [SerializeField]
     private Quaternion originalObjRot;
@@ -17,9 +19,15 @@ public class GrabableObjects : MonoBehaviour
 
     void Start()
     {
+
+        if (grabableObject == null)
+        {
+            grabableObject = gameObject;
+        }
+
         GameManager.instance.onGameReset.AddListener(Reset); 
-        originalObjPos = transform.position;
-        originalObjRot = transform.rotation;   
+        originalObjPos = grabableObject.transform.position;
+        originalObjRot = grabableObject.transform.rotation;   
     }
 
     public void OnGrab()
@@ -38,8 +46,8 @@ public class GrabableObjects : MonoBehaviour
         TextUI.position = originalPos.position;
         TextUI.rotation = originalPos.rotation;
         TextUI.SetParent(originalPos);
-        transform.position = originalObjPos;
-        transform.rotation = originalObjRot;
+        grabableObject.transform.position = originalObjPos;
+        grabableObject.transform.rotation = originalObjRot;
 
         grabbed = false;
     }
