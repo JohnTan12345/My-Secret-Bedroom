@@ -52,6 +52,10 @@ public class Calendar : MonoBehaviour
     {
         flipButton.SetActive(true);
     }
+    else
+    {
+        flipButton.SetActive(false);
+    }
 }
 
     private void GameReset()
@@ -65,7 +69,6 @@ public class Calendar : MonoBehaviour
 
     public void OnPlayerEnterArea()
     {
-        flipButton.SetActive(false);
         textUI.SetActive(true);
     }
 

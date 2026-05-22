@@ -54,15 +54,19 @@ Assets/Scripts/
  GameManager.cs
  Interactable/Interactables/
   Calendar.cs
+  Clothes.cs
   Diary.cs
   EnterArea.cs
+  LookArea.cs
   Mirror.cs
   MobilePhone.cs
   PaperAssignment.cs
+  Scale.cs
   TrashBin.cs
  Interactable/
   InteractableTask.cs
   InteractableText.cs
+ PlayerManager.cs
  Prefab/
   Text Option UI.cs
   Text UI Manager.cs
