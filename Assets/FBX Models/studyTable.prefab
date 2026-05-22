@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2749427294803890116}
   - component: {fileID: 834317147629059162}
   - component: {fileID: 7431121387505120264}
-  - component: {fileID: 1336416839797233327}
+  - component: {fileID: 1574475254537197709}
   m_Layer: 0
   m_Name: studyTable
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6186976898818326999}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.3904885, y: 0.53733975, z: -1.8086739}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1336416839797233327
+--- !u!64 &1574475254537197709
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

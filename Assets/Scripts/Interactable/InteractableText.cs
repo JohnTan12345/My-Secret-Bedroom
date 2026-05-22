@@ -17,6 +17,7 @@ public class InteractableText : MonoBehaviour
     public string continueText = "Continue";
     [SerializeField]
     private List<GameText> texts;
+    public int TextsCount {get {return texts.Count;}}
 
     [Header("Hidden Parameters")]
     [SerializeField]

@@ -21,11 +21,16 @@ public class PlayerManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-
+        bool firstColliderCheck = false;
         Debug.DrawRay(PlayerLookObject.transform.position, PlayerLookObject.transform.forward * maxDistance, Color.green);
         if (Physics.Raycast(PlayerLookObject.transform.position, PlayerLookObject.transform.forward, out RaycastHit hitInfo, maxDistance, LayerMask.GetMask("Player Look Area"), QueryTriggerInteraction.Collide))
         {
-            hitInfo.collider.GetComponent<LookArea>().OnLook();
+            if (!firstColliderCheck)
+            {
+                firstColliderCheck = true;
+                hitInfo.collider.GetComponent<LookArea>().OnLook();
+            }
+            
         }
         
     }

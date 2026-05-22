@@ -57,7 +57,7 @@ public class TextUIManager : MonoBehaviour
 
         infoText.text = gameText.text;
 
-        if (gameText.taskToComplete == null) // Check if the current text does not contain a task
+        if (gameText.taskToComplete == null && interactableText.TextsCount > 1) // Check if the current text does not contain a task
         {
 
             if (!listenerAdded) // Add a new listener to the event if it has not been added yet
