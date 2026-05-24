@@ -335,9 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012d7c089678f0c479ff967110bfc44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectInteractionArea: {fileID: 0}
-  grabInteractable: {fileID: 0}
-  disableInteractionAreaOnGrab: 0
+  objectInteractionArea: {fileID: 6881803057108078581}
+  grabInteractable: {fileID: 1308995490847924975}
+  disableInteractionAreaOnGrab: 1
   objectLookArea: {fileID: 1817783047123899473}
   textUILookArea: {fileID: 2282224103677467026}
   textUIObject: {fileID: 0}
@@ -623,6 +623,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
+--- !u!114 &6881803057108078581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
+  m_PrefabInstance: {fileID: 3682278131045697014}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6855acd27224c23439bd628c64909d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7849196588445793017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class LookUIToggle : MonoBehaviour
@@ -35,6 +35,8 @@ public class LookUIToggle : MonoBehaviour
     private bool playerGrabbing = false;
     [SerializeField]
     private bool playerGrabbedOnce = false;
+    [SerializeField]
+    private bool playerLookedInArea = false;
 
     void Start()
     {
@@ -127,7 +129,20 @@ public class LookUIToggle : MonoBehaviour
         bool _textActiveAndLooking = textUIObject.activeSelf && (lookingAtObject || lookingAtUI);
         bool _textNotActiveAndLookingAtObject = !textUIObject.activeSelf && lookingAtObject;
 
-        if (_playerGrabbing && _playerInAreaAndobjectInteractionAreaSet && (_textActiveAndLooking || _textNotActiveAndLookingAtObject))
+        if (areaInteractionActive)
+        {
+            if ((_textActiveAndLooking || _textNotActiveAndLookingAtObject) && _playerInAreaAndobjectInteractionAreaSet || playerLookedInArea && _playerInAreaAndobjectInteractionAreaSet)
+            {
+                playerLookedInArea = true;
+            }
+            else 
+            {
+                playerLookedInArea = false;
+            }
+        }
+        
+
+        if ((_playerGrabbing && _playerInAreaAndobjectInteractionAreaSet && (_textActiveAndLooking || _textNotActiveAndLookingAtObject)) || playerLookedInArea && areaInteractionActive)
         {
             textUIObject.SetActive(true);
         }

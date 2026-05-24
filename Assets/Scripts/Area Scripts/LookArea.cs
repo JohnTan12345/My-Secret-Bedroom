@@ -21,6 +21,14 @@ public class LookArea : MonoBehaviour
     private bool invokedAwayEvent;
     private Coroutine coroutine;
 
+    void OnDisable()
+    {
+        onPlayerAway.Invoke();
+        invokedAwayEvent = true;
+        invokedLookedEvent = false;
+        coroutine = null;
+    }
+
     public void OnLook()
     {
         playerLooking = true;
@@ -34,6 +42,12 @@ public class LookArea : MonoBehaviour
     {
         while (true)
         {
+
+            if (!gameObject.activeSelf)
+            {
+                yield break;
+            }
+
             if (playerLooking)
             {
                 if (!invokedLookedEvent)
