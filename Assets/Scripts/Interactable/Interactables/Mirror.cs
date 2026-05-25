@@ -38,9 +38,11 @@ public class Mirror : MonoBehaviour
     {
         if (taskFinished) {return;}
         cloth.GetComponent<XRGrabInteractable>().enabled = true;
+        interactableTask.HighlightObject(true);
     }
     public void OnPlayerExitArea() // Make the TextUI appear when the player enters
     {
         cloth.GetComponent<XRGrabInteractable>().enabled = false;
+        interactableTask.HighlightObject(false);
     }
 }

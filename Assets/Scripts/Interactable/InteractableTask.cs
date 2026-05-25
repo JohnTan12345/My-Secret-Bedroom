@@ -4,6 +4,7 @@
 */
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,15 +13,23 @@ public class InteractableTask : MonoBehaviour
     public int MaxProgress = 1;
     public GameObject ObjectHighlight;
 
+    [Header("Settings")]
+    [SerializeField]
+    private bool automaticHighlighting = true;
+
     [Header("Hidden Parameters")]
     [SerializeField]
     private int currentProgress = 0;
+    [SerializeField]
+    private bool objectHighlighted = false;
 
     // Events
     [Header("Events")]
     [Space(5)]
     public UnityEvent onTaskStart; // Fires when the task starts
     public UnityEvent onTaskComplete; // Fires when the task is complete
+
+    private List<MeshRenderer> highlightedObjectList = new();
 
     void Awake()
     {   
@@ -31,6 +40,8 @@ public class InteractableTask : MonoBehaviour
         }
 
         StartCoroutine(WaitForGameManagerInstance());
+
+        HighlightObjectSetUp();
     }
 
     private IEnumerator WaitForGameManagerInstance()
@@ -53,5 +64,73 @@ public class InteractableTask : MonoBehaviour
     public void ResetProgress()
     {
         currentProgress = 0; // Resets progress to 0
+    }
+
+    private void HighlightObjectSetUp()
+    {
+
+        if (ObjectHighlight == null)
+        {
+            return;
+        }
+
+        ObjectHighlight.TryGetComponent(out MeshRenderer parentMeshRenderer);
+
+        if (parentMeshRenderer != null)
+        {
+            highlightedObjectList.Add(parentMeshRenderer);
+        }
+
+        if (ObjectHighlight.transform.childCount > 0)
+            {
+                for (int i = 0; i < ObjectHighlight.transform.childCount; i++)
+                {
+                    ObjectHighlight.transform.GetChild(i).TryGetComponent(out MeshRenderer meshRenderer);
+
+                    if (meshRenderer != null)
+                    {
+                        highlightedObjectList.Add(meshRenderer);
+                    }
+                }
+            }
+
+        if (automaticHighlighting)
+        {
+            onTaskStart.AddListener(() => HighlightObject(true));
+            onTaskComplete.AddListener(() => HighlightObject(false));
+        }
+        
+    }
+
+    public void HighlightObject(bool val)
+    {
+        Debug.Log(val);
+        if (ObjectHighlight == null || objectHighlighted == val)
+        {
+            return;
+        }
+
+        if (val)
+        {
+            objectHighlighted = true;
+            foreach (MeshRenderer meshRenderer in highlightedObjectList)
+            {
+                List<Material> materials = new();
+                meshRenderer.GetMaterials(materials);
+                materials.Add(GameManager.instance.HighlightMat);
+                meshRenderer.SetMaterials(materials);
+            }
+        }
+        else
+        {
+            objectHighlighted = false;
+            foreach (MeshRenderer meshRenderer in highlightedObjectList)
+            {
+                List<Material> materials = new();
+                meshRenderer.GetMaterials(materials);
+                materials.RemoveAt(1);
+                meshRenderer.SetMaterials(materials);
+            }
+        }
     }
 }

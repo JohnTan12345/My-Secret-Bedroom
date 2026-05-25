@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxProgress: 1
-  ObjectHighlight: {fileID: 0}
+  ObjectHighlight: {fileID: 257148111641609497}
   currentProgress: 0
   onTaskStart:
     m_PersistentCalls:
@@ -508,6 +508,7 @@ MonoBehaviour:
   playerInArea: 0
   playerGrabbing: 0
   playerGrabbedOnce: 0
+  playerLookedInArea: 0
 --- !u!1 &5274886576430976733
 GameObject:
   m_ObjectHideFlags: 0

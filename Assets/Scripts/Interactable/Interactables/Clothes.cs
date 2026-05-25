@@ -11,8 +11,6 @@ public class ClothesPile : MonoBehaviour
 
     public string clothingTag = "ClothingPile"; 
     public Collider laundryBagTrigger;          
-
-    private bool interactionDone = false;
     private Vector3 pileOriginalPos;
     private bool taskFinished = false;
 
@@ -47,9 +45,8 @@ public class ClothesPile : MonoBehaviour
         clothingPile.transform.SetParent(laundryBagTrigger.transform);
 
         // Disable grabbing so player can’t pick it back up
-        //clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
+        clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
 
-        interactionDone = true;
         taskFinished = true;
 
         // Advance dialogue
@@ -100,13 +97,12 @@ public class ClothesPile : MonoBehaviour
     clothingPile.transform.position = pileOriginalPos;
     clothingPile.transform.rotation = Quaternion.identity;
 
-    //clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
+    clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
     clothingPile.SetActive(true);
 
     questionUI.SetActive(false);
     if (nextUIPanel != null) nextUIPanel.SetActive(false);
 
-    interactionDone = false;
     taskFinished = false;
     }
 
