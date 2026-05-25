@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class GrabableObjects : MonoBehaviour
 {
+    [Header("Text UI Positioning")]
     [SerializeField]
     private Transform TextUI;
     [SerializeField]
     private Transform grabbedPos;
     [SerializeField]
     private Transform originalPos;
+    [Header("Object")]
     [SerializeField]
     private GameObject grabableObject;
     [SerializeField]
@@ -33,19 +35,26 @@ public class GrabableObjects : MonoBehaviour
     public void OnGrab()
     {
         if (grabbed) {return;}
-
-        TextUI.position = grabbedPos.position;
-        TextUI.rotation = grabbedPos.rotation;
-        TextUI.SetParent(grabbedPos);
+        if (TextUI != null)
+        {
+            TextUI.position = grabbedPos.position;
+            TextUI.rotation = grabbedPos.rotation;
+            TextUI.SetParent(grabbedPos);
+        }
+        
 
         grabbed = true;
     }
 
     private void Reset()
     {
-        TextUI.position = originalPos.position;
-        TextUI.rotation = originalPos.rotation;
-        TextUI.SetParent(originalPos);
+        if (TextUI != null)
+        {
+            TextUI.position = originalPos.position;
+            TextUI.rotation = originalPos.rotation;
+            TextUI.SetParent(originalPos);
+        }
+        
         grabableObject.transform.position = originalObjPos;
         grabableObject.transform.rotation = originalObjRot;
 

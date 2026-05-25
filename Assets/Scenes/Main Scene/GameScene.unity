@@ -1147,7 +1147,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1542912613}
         m_TargetAssemblyTypeName: ClothesPile, Assembly-CSharp
-        m_MethodName: OnClothingDropped
+        m_MethodName: OnRevealUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1186,7 +1186,7 @@ MonoBehaviour:
       jumpTo: 2
       pointsToAward: 0
   - text: Help Ash With Their Laundry
-    jumpTo: -1
+    jumpTo: 3
     taskToComplete: {fileID: 1183362960}
     options: []
   - text: Use gentle tones to empathise and lend Ash a listening ear
@@ -1202,11 +1202,7 @@ MonoBehaviour:
       room organised or doing household chores. '
     jumpTo: -1
     taskToComplete: {fileID: 0}
-    options:
-    - isAButton: 0
-      text: Continue
-      jumpTo: -1
-      pointsToAward: 0
+    options: []
   - text: "Small gestures of understanding\u2014like asking how they're doing or
       offering practical help\u2014can provide valuable support."
     jumpTo: -1
@@ -5354,14 +5350,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diary Interactable
       objectReference: {fileID: 0}
-    - target: {fileID: 3381692686133910624, guid: 7a83ce02b8aa9054e9a4d36f9908ae49, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1085724881}
-    - target: {fileID: 7987767316381896853, guid: 7a83ce02b8aa9054e9a4d36f9908ae49, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1085724881}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
