@@ -176,7 +176,10 @@ public class InteractableText : MonoBehaviour
 
     private void OnTaskComplete() // Wrapper for when the task is complete
     {
-        Debug.Log($"{currentTextElementNumber}\n{texts[currentTextElementNumber].taskToComplete}");
+        if (debuggingEnabled)
+        {
+            Debug.Log($"{currentTextElementNumber}\n{texts[currentTextElementNumber].taskToComplete}");
+        }
         RemoveOnCompleteListener();
         taskActive = false;
         GetNextTextObject(-1);

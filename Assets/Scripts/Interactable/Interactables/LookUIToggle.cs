@@ -54,8 +54,8 @@ public class LookUIToggle : MonoBehaviour
         {
             areaInteractionEnabled = true;
             areaInteractionActive = true;
-            objectInteractionArea.PlayerEnterArea.AddListener(() => PlayerInArea(true));
-            objectInteractionArea.PlayerExitArea.AddListener(() => PlayerInArea(false));
+            objectInteractionArea.ObjectEnterArea.AddListener(() => PlayerInArea(true));
+            objectInteractionArea.ObjectExitArea.AddListener(() => PlayerInArea(false));
         }
 
         if (grabInteractable != null)

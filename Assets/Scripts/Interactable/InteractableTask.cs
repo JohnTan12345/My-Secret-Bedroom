@@ -104,7 +104,6 @@ public class InteractableTask : MonoBehaviour
 
     public void HighlightObject(bool val)
     {
-        Debug.Log(val);
         if (ObjectHighlight == null || objectHighlighted == val)
         {
             return;
