@@ -61,7 +61,7 @@ public class InteractableText : MonoBehaviour
             Debug.Log("Getting Game Text");
         }
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
-        if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; AddOnCompleteListener();}
+        if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; AddOnCompleteListener(); texts[currentTextElementNumber].taskToComplete.onTaskStart.Invoke();}
         return texts[currentTextElementNumber];
     }
 
@@ -176,7 +176,10 @@ public class InteractableText : MonoBehaviour
 
     private void OnTaskComplete() // Wrapper for when the task is complete
     {
-        Debug.Log($"{currentTextElementNumber}\n{texts[currentTextElementNumber].taskToComplete}");
+        if (debuggingEnabled)
+        {
+            Debug.Log($"{currentTextElementNumber}\n{texts[currentTextElementNumber].taskToComplete}");
+        }
         RemoveOnCompleteListener();
         taskActive = false;
         GetNextTextObject(-1);

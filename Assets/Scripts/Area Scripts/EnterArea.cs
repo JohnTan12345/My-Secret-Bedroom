@@ -9,21 +9,23 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class EnterArea : MonoBehaviour
 {
-    public UnityEvent PlayerEnterArea;
-    public UnityEvent PlayerExitArea;
+    [SerializeField]
+    private string tag;
+    public UnityEvent ObjectEnterArea;
+    public UnityEvent ObjectExitArea;
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(tag))
         {
-            PlayerEnterArea.Invoke();
+            ObjectEnterArea.Invoke();
         };
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(tag))
         {
-            PlayerExitArea.Invoke();
+            ObjectExitArea.Invoke();
         };
     }
 }

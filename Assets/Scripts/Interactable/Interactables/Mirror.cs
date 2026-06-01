@@ -11,7 +11,6 @@ public class Mirror : MonoBehaviour
     public InteractableText interactableText;
     public InteractableTask interactableTask;
     public GameObject cloth;
-    public GameObject textUI;
     private Vector3 clothOriginalPos;
     private bool taskFinished = false;
     void Start()
@@ -28,7 +27,6 @@ public class Mirror : MonoBehaviour
     }
     private void TextFinished() // Make the TextUI disappear
     {
-        textUI.SetActive(false);
         taskFinished = true;
     }
     public void OnClothGrab() // Complete the task after the cloth is grabbed
@@ -39,12 +37,12 @@ public class Mirror : MonoBehaviour
     public void OnPlayerEnterArea() // Make the TextUI appear when the player enters
     {
         if (taskFinished) {return;}
-        textUI.SetActive(true);
         cloth.GetComponent<XRGrabInteractable>().enabled = true;
+        interactableTask.HighlightObject(true);
     }
     public void OnPlayerExitArea() // Make the TextUI appear when the player enters
     {
-        textUI.SetActive(false);
         cloth.GetComponent<XRGrabInteractable>().enabled = false;
+        interactableTask.HighlightObject(false);
     }
 }

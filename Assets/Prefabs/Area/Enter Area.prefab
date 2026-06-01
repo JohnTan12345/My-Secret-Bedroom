@@ -66,9 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6855acd27224c23439bd628c64909d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerEnterArea:
+  tag: Player
+  ObjectEnterArea:
     m_PersistentCalls:
       m_Calls: []
-  PlayerExitArea:
+  ObjectExitArea:
     m_PersistentCalls:
       m_Calls: []
