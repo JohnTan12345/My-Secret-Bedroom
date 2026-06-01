@@ -97,6 +97,7 @@ MonoBehaviour:
   playerInArea: 0
   playerGrabbing: 0
   playerGrabbedOnce: 0
+  playerLookedInArea: 0
 --- !u!1 &7630798290003727457
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,13 +123,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7630798290003727457}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9805228, z: 0.19640523, w: 0}
-  m_LocalPosition: {x: -0.0022997856, y: 0.011492252, z: -0.12421799}
-  m_LocalScale: {x: 0.022754943, y: 0.020395322, z: 0.020030757}
+  m_LocalRotation: {x: -0, y: -0.9820287, z: 0.18873145, w: 0}
+  m_LocalPosition: {x: -0.0003, y: 0.0109, z: -0.1256}
+  m_LocalScale: {x: 0.022754943, y: 0.021337641, z: 0.020030757}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5596284816696418919}
-  m_LocalEulerAnglesHint: {x: 22.654, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.758, y: -180, z: 0}
 --- !u!212 &5016011508438204586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -412,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 4715143829445767533, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: interactableText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1379360413825420396}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

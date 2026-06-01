@@ -98,6 +98,7 @@ MonoBehaviour:
   playerInArea: 0
   playerGrabbing: 0
   playerGrabbedOnce: 0
+  playerLookedInArea: 0
 --- !u!1 &4409986823790666535
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +457,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 4715143829445767533, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: interactableText
+      value: 
+      objectReference: {fileID: 351379652772831189}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

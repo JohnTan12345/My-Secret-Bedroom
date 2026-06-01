@@ -10,11 +10,12 @@ using UnityEngine.Events;
 public class EnterArea : MonoBehaviour
 {
     [SerializeField]
-    private string tag;
+    private string tag = "Player";
     public UnityEvent ObjectEnterArea;
     public UnityEvent ObjectExitArea;
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(transform.parent);
         if (other.CompareTag(tag))
         {
             ObjectEnterArea.Invoke();
