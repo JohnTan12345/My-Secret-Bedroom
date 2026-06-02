@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableTexts: []
+  HighlightMat: {fileID: 0}
   onGameReset:
     m_PersistentCalls:
       m_Calls: []
@@ -1739,17 +1740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996a26ab9cb13e24badb233277d407b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1732752180 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-  m_PrefabInstance: {fileID: 964358236978258460}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4afa67a1da831f438569ca8c839d334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1965528872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2009,10 +1999,6 @@ PrefabInstance:
       propertyPath: flipButton
       value: 
       objectReference: {fileID: 1167989603}
-    - target: {fileID: 566027788723915682, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: pageAnimator
-      value: 
-      objectReference: {fileID: 964358236978258461}
     - target: {fileID: 793687727448433398, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.817
@@ -2053,47 +2039,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1608225548832677656, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 935a26707c22d5247b8fea60021eaf3d, type: 2}
-    - target: {fileID: 6047879644843524462, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: texts.Array.data[0].text
-      value: Flip to the last time Ash met up with Jay
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047879644843524462, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: texts.Array.data[1].text
-      value: 'For a young person struggling with their mental  health, attending
-        social events, school/work can be difficult. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047879644843524462, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: texts.Array.data[0].taskToComplete
-      value: 
-      objectReference: {fileID: 1732752180}
-    - target: {fileID: 6047879644843524462, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: texts.Array.data[1].taskToComplete
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6764936448904219687, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6764936448904219687, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6764936448904219687, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6764936448904219687, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6764936448904219687, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8610919171230389530, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
       propertyPath: m_Name
       value: calendar and page
@@ -2103,11 +2048,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
---- !u!95 &964358236978258461 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1608225548832677656, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-  m_PrefabInstance: {fileID: 964358236978258460}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
