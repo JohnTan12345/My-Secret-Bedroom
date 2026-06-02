@@ -10,9 +10,12 @@ public class Diary : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> textList = new();
-    
     [SerializeField]
     private GameObject choiceGroup;
+    [SerializeField]
+    private GameObject closedDiary;
+    [SerializeField]
+    private GameObject openDiary;
 
     void Start()
     {
@@ -27,6 +30,8 @@ public class Diary : MonoBehaviour
             text.SetActive(false);
         }
         choiceGroup.SetActive(true);
+        closedDiary.SetActive(true);
+        openDiary.SetActive(false);
     }
 
     // Changes the text to what was selected
@@ -34,5 +39,11 @@ public class Diary : MonoBehaviour
     {
         textList[choiceText].SetActive(true);
         choiceGroup.SetActive(false);
+    }
+
+    public void OpenDiary()
+    {
+        closedDiary.SetActive(false);
+        openDiary.SetActive(true);
     }
 }

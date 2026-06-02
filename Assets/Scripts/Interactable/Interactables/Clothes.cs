@@ -37,6 +37,11 @@ public class Clothes : MonoBehaviour
     {
         if (taskFinished) return;
         textUI.SetActive(true);
+    }
+
+    public void onStartTask()
+    {
+        clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         clothingPile.GetComponent<XRGrabInteractable>().enabled = true;
     }
 
@@ -53,6 +58,8 @@ public class Clothes : MonoBehaviour
         clothingPile.transform.position = newClothesPosition.position;
         clothingPile.transform.rotation = newClothesPosition.rotation;
         clothingPile.transform.SetParent(newClothesPosition);
+
+        clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         // Disable grabbing so player can’t pick it back up
         clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
@@ -72,6 +79,8 @@ public class Clothes : MonoBehaviour
     clothingPile.transform.SetParent(null); // detach from bag
     clothingPile.transform.position = pileOriginalPos;
     clothingPile.transform.rotation = pileOriginalRot;
+
+    clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
     textUI.transform.position = textUIOriginalPos;
     textUI.transform.rotation = textUIOriginalRot;
