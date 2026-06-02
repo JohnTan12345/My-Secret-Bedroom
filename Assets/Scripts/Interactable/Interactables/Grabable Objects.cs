@@ -58,6 +58,9 @@ public class GrabableObjects : MonoBehaviour
         grabableObject.transform.position = originalObjPos;
         grabableObject.transform.rotation = originalObjRot;
 
+        grabableObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        grabableObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
         grabbed = false;
     }
 }

@@ -21,6 +21,8 @@ public class InteractableTask : MonoBehaviour
     [SerializeField]
     private int currentProgress = 0;
     [SerializeField]
+    private bool highlightingEnabled = false;
+    [SerializeField]
     private bool objectHighlighted = false;
 
     // Events
@@ -40,8 +42,6 @@ public class InteractableTask : MonoBehaviour
         }
 
         StartCoroutine(WaitForGameManagerInstance());
-
-        HighlightObjectSetUp();
     }
 
     private IEnumerator WaitForGameManagerInstance()
@@ -49,6 +49,8 @@ public class InteractableTask : MonoBehaviour
         // Wait for the game manager to load before subscribing to onGameReset
         yield return new WaitUntil(() => GameManager.instance != null);
         GameManager.instance.onGameReset.AddListener(ResetProgress);
+
+        HighlightObjectSetUp();
     }
 
     public void AddProgress(int amount)
@@ -69,11 +71,12 @@ public class InteractableTask : MonoBehaviour
     private void HighlightObjectSetUp()
     {
 
-        if (ObjectHighlight == null)
+        if (ObjectHighlight == null || GameManager.instance.HighlightMat == null)
         {
             return;
         }
 
+        highlightingEnabled = true;
         ObjectHighlight.TryGetComponent(out MeshRenderer parentMeshRenderer);
 
         if (parentMeshRenderer != null)
@@ -104,7 +107,7 @@ public class InteractableTask : MonoBehaviour
 
     public void HighlightObject(bool val)
     {
-        if (ObjectHighlight == null || objectHighlighted == val)
+        if (!highlightingEnabled || objectHighlighted == val)
         {
             return;
         }
