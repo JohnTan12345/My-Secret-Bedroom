@@ -1684,6 +1684,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4887368581929161467, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887368581929161467, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d9090087da55004ebbfa09461d00e4b, type: 2}
     - target: {fileID: 5238055427839631010, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
       propertyPath: m_IsActive
       value: 0
