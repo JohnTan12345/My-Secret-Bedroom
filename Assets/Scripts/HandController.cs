@@ -12,8 +12,6 @@ public class HandController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(gripAnimationAction.action.ReadValue<float>());
-        Debug.Log(pinchAnimationAction.action.ReadValue<float>());
         float triggerValue = pinchAnimationAction.action.ReadValue<float>();
         handAnimator.SetFloat("Trigger", triggerValue);
 

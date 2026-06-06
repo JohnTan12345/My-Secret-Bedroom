@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+
 
 public class Calendar : MonoBehaviour
 {
 
     
+    public XRSimpleInteractable calendarInteractable;
     public Animator pageAnimator;
-
-    public GameObject flipButton;
 
     private int currentPage = 0;
 
@@ -24,7 +25,7 @@ public class Calendar : MonoBehaviour
 
     public Texture2D[] calendarTextures;
     
-
+    private bool isFlipping = false;
     private Renderer pageRenderer;
 
     private bool taskFinished = false;
@@ -33,7 +34,6 @@ public class Calendar : MonoBehaviour
     {
         GameManager.instance.onGameReset.AddListener(GameReset);
         interactableText.onTextsEnd.AddListener(TextFinished);
-        interactableText.onTextChange.AddListener(CheckCurrentText);
         pageRenderer = page.GetComponent<Renderer>();
         pageRenderer.material.mainTexture = calendarTextures[currentPage];
     }
@@ -44,19 +44,7 @@ public class Calendar : MonoBehaviour
         
     }
 
-    private void CheckCurrentText()
-{
-    GameText currentText = interactableText.GetGameText();
-
-    if (currentText.taskToComplete == interactableTask)
-    {
-        flipButton.SetActive(true);
-    }
-    else
-    {
-        flipButton.SetActive(false);
-    }
-}
+   
 
     private void GameReset()
     {
@@ -79,8 +67,13 @@ public class Calendar : MonoBehaviour
         Debug.Log("Text and task Finished");
     }
 
-    private IEnumerator FlipPageRoutine()
+   private IEnumerator FlipPageRoutine()
 {
+    if (isFlipping)
+        yield break;
+
+    isFlipping = true;
+
     pageAnimator.Play("pageflipanimation", 0, 0f);
 
     yield return new WaitForSeconds(0.15f);
@@ -90,18 +83,30 @@ public class Calendar : MonoBehaviour
     if (currentPage >= calendarTextures.Length)
     {
         currentPage = calendarTextures.Length - 1;
+        isFlipping = false;
         yield break;
     }
 
     pageRenderer.material.mainTexture = calendarTextures[currentPage];
 
     interactableTask.AddProgress(1);
+
+    // Disable interaction after reaching the last page
+    if (currentPage == calendarTextures.Length - 1)
+    {
+        calendarInteractable.enabled = false;
+        Debug.Log("Calendar interaction disabled.");
+    }
+
+    yield return new WaitForSeconds(0.3f);
+
+    isFlipping = false;
 }
 
     public void OnPageFlip()
-{
-    StartCoroutine(FlipPageRoutine());
-}
+    {
+        StartCoroutine(FlipPageRoutine());
+    }
 
     
 
