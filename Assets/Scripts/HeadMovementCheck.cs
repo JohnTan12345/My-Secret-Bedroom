@@ -12,8 +12,6 @@ public class HeadMovementCheck : MonoBehaviour
     [SerializeField]
     private int maxCheck = 3;
     [SerializeField]
-    private float detectionDuration = 0.5f;
-    [SerializeField]
     private Transform head;
 
     public UnityEvent<DetectionResult> onDetectionFinish;
@@ -32,11 +30,14 @@ public class HeadMovementCheck : MonoBehaviour
         {
             shakeAngleThreshold = System.Math.Abs(shakeAngleThreshold); 
         }
+    }
 
+    public void StartHeadDetection()
+    {
         StartCoroutine(HeadMovementDetection());
     }
 
-    public IEnumerator HeadMovementDetection()
+    private IEnumerator HeadMovementDetection()
     {
         DetectionResult result = new();
 
@@ -49,16 +50,20 @@ public class HeadMovementCheck : MonoBehaviour
 
         while (true)
         {
+
+            float referenceX = headRotation.eulerAngles.x < 180 ? headRotation.eulerAngles.x + 180 : headRotation.eulerAngles.x - 180;
+            float referenceY = headRotation.eulerAngles.y < 180 ? headRotation.eulerAngles.y + 180 : headRotation.eulerAngles.y - 180;
+
             float headX = head.eulerAngles.x < 180 ? head.eulerAngles.x + 180 : head.eulerAngles.x - 180;
-            float headXThresholdMin = headRotation.eulerAngles.x - nodAngleThreshold + 180;
-            float headXThresholdMax = headRotation.eulerAngles.x + nodAngleThreshold + 180;
+            float headXThresholdMin = referenceX - nodAngleThreshold;
+            float headXThresholdMax = referenceX + nodAngleThreshold;
 
             float headY = head.eulerAngles.y < 180 ? head.eulerAngles.y + 180 : head.eulerAngles.y - 180;
-            float headYThresholdMin = headRotation.eulerAngles.y - shakeAngleThreshold + 180;
-            float headYThresholdMax = headRotation.eulerAngles.y + shakeAngleThreshold + 180;
-
+            float headYThresholdMin = referenceY - shakeAngleThreshold;
+            float headYThresholdMax = referenceY + shakeAngleThreshold;
 
             Debug.Log($"head angle: x: {headX}, y: {headY}; thresholds: x: [ min: {headXThresholdMin}, max: {headXThresholdMax} ], y: [ min: {headYThresholdMin}, max: {headYThresholdMax} ]");
+            Debug.Log($"Reference Point: x: {referenceX}, y: {referenceY}");
             Debug.Log($"detection: [ up: {headX < headXThresholdMin}, down: {headX > headXThresholdMax}, left: {headY < headYThresholdMin}, right: {headY > headYThresholdMax}]");
 
             // Nod detection
@@ -91,6 +96,13 @@ public class HeadMovementCheck : MonoBehaviour
                 nodCount = 0;
                 faceChecks["right"] = true;
                 faceChecks["left"] = false; 
+            }
+
+            if (nodCount >= maxCheck || shakeCount >= maxCheck)
+            {
+                result.nodding = nodCount >= maxCheck;
+                result.shaking = shakeCount >= maxCheck;
+                break;
             }
 
             Debug.Log($"Counters: Nod Count: {nodCount}, Shake Count: {shakeCount}, Checks: [Left: {faceChecks["left"]}, Right: {faceChecks["right"]}, Up: {faceChecks["up"]}, Down: {faceChecks["down"]}]");

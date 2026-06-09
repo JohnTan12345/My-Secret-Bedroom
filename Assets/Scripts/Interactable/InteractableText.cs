@@ -28,7 +28,11 @@ public class InteractableText : MonoBehaviour
     [SerializeField]
     private bool taskActive = false;
     [SerializeField]
-    private bool listenerAdded = false;
+    private bool HeadMovementDetectionActive = false;
+    [SerializeField]
+    private bool taskListenerAdded = false;
+    [SerializeField]
+    private bool headDetectionListenerAdded = false;
     [SerializeField]
     private bool debuggingEnabled = false;
 
@@ -62,6 +66,8 @@ public class InteractableText : MonoBehaviour
         }
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
         if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; AddOnCompleteListener(); texts[currentTextElementNumber].taskToComplete.onTaskStart.Invoke();}
+        if (!headDetectionListenerAdded && texts[currentTextElementNumber].headMovementOption) {HeadMovementDetectionActive = true; GameManager.instance.headMovementCheckScript.StartHeadDetection(); AddHeadDetectionCompleteListener();}
+
         return texts[currentTextElementNumber];
     }
 
@@ -132,6 +138,30 @@ public class InteractableText : MonoBehaviour
                         Debug.Log("Added listener to onTaskComplete");
                     }
                 }
+                else if (texts[currentTextElementNumber].headMovementOption)
+                {
+                    HeadMovementDetectionActive = true;
+                    try
+                    {
+                        if (!headDetectionListenerAdded)
+                        {
+                            GameManager.instance.headMovementCheckScript.StartHeadDetection();
+                            AddHeadDetectionCompleteListener();
+                        }
+                        
+                    }
+                    catch (System.NullReferenceException)
+                    {
+                        if (GameManager.instance == null)
+                        {
+                            throw new System.NullReferenceException("Game Manager not found in scene");
+                        }
+                        else if (GameManager.instance.headMovementCheckScript == null)
+                        {
+                            throw new System.NullReferenceException("Head movement check script not assigned in Game Manager");
+                        }
+                    }
+                }
             }
             else
             {
@@ -151,19 +181,47 @@ public class InteractableText : MonoBehaviour
 
     private void AddOnCompleteListener()
     {
-        if (!listenerAdded)
+        if (!taskListenerAdded)
         {
             texts[currentTextElementNumber].taskToComplete.onTaskComplete.AddListener(OnTaskComplete);
-            listenerAdded = true;
+            taskListenerAdded = true;
         }
     }
 
     private void RemoveOnCompleteListener()
     {
         texts[currentTextElementNumber].taskToComplete.onTaskComplete.RemoveListener(OnTaskComplete);
-        listenerAdded = false;
+        taskListenerAdded = false;
     }
 
+    private void AddHeadDetectionCompleteListener()
+    {
+        if (!headDetectionListenerAdded)
+        {
+            GameManager.instance.headMovementCheckScript.onDetectionFinish.AddListener(DetectionResultHandler);
+            headDetectionListenerAdded = true;
+        }
+    }
+
+    private void RemoveHeadDetectionCompleteListener()
+    {
+        GameManager.instance.headMovementCheckScript.onDetectionFinish.RemoveListener(DetectionResultHandler);
+        headDetectionListenerAdded = false;
+    }
+
+    private void DetectionResultHandler(DetectionResult result)
+    {
+        RemoveHeadDetectionCompleteListener();
+
+        if (result.nodding)
+        {
+            GetNextTextObject(0);
+        }
+        else if (result.shaking)
+        {
+            GetNextTextObject(1);
+        }
+    }
     private void ResetTextProgress() // Resets the text
     {
         if (texts.Count == 0) {return;}
@@ -194,13 +252,14 @@ public class GameText
     [Tooltip("To move on to the next text, set to -1. Else set it to the next text index")]
     public int jumpTo = -1;
     public InteractableTask taskToComplete;
+    [Tooltip("If this is true, the first option will be a nod to continue, second option will be a shake")]
+    public bool headMovementOption = false;
     public List<TextOptions> options;
 }
 
 [System.Serializable]
 public class TextOptions
 {
-    public bool isAButton = false;
     public string text;
     [Tooltip("To move on to the next text, set to -1. Else set it to the next text index")]
     public int jumpTo = -1;
