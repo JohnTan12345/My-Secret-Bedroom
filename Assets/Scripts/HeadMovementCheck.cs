@@ -17,6 +17,7 @@ public class HeadMovementCheck : MonoBehaviour
     public UnityEvent<DetectionResult> onDetectionFinish;
 
     private Quaternion headRotation;
+    private bool checkActive = false;
 
     // 
     void Awake()
@@ -30,6 +31,11 @@ public class HeadMovementCheck : MonoBehaviour
         {
             shakeAngleThreshold = System.Math.Abs(shakeAngleThreshold); 
         }
+    }
+
+    void Start()
+    {
+        GameManager.instance.onGameReset.AddListener(() => StopDetection("Game Resetted"));
     }
 
     public void StartHeadDetection()
@@ -47,8 +53,8 @@ public class HeadMovementCheck : MonoBehaviour
 
         int nodCount = 0;
         int shakeCount = 0;
-
-        while (true)
+        checkActive = true;
+        while (checkActive)
         {
 
             float referenceX = headRotation.eulerAngles.x < 180 ? headRotation.eulerAngles.x + 180 : headRotation.eulerAngles.x - 180;
@@ -102,6 +108,7 @@ public class HeadMovementCheck : MonoBehaviour
             {
                 result.nodding = nodCount >= maxCheck;
                 result.shaking = shakeCount >= maxCheck;
+                checkActive = false;
                 break;
             }
 
@@ -110,6 +117,12 @@ public class HeadMovementCheck : MonoBehaviour
         }
 
         onDetectionFinish.Invoke(result);
+    }
+
+    private void StopDetection(string msg)
+    {
+        Debug.LogWarning($"Stopped due to the following reason: {msg}");
+        checkActive = false;
     }
 }
 
