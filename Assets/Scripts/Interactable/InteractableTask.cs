@@ -24,14 +24,14 @@ public class InteractableTask : MonoBehaviour
     private bool highlightingEnabled = false;
     [SerializeField]
     private bool objectHighlighted = false;
+    [SerializeField]
+    private List<MeshRenderer> highlightedObjectList = new();
 
     // Events
     [Header("Events")]
     [Space(5)]
     public UnityEvent onTaskStart; // Fires when the task starts
     public UnityEvent onTaskComplete; // Fires when the task is complete
-
-    private List<MeshRenderer> highlightedObjectList = new();
 
     void Awake()
     {   

@@ -143,6 +143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: ObjectHighlight
+      value: 
+      objectReference: {fileID: 960804805}
     - target: {fileID: 793687727448433398, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.039
@@ -209,8 +213,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2642509377251851197, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4887368581929161467, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887368581929161467, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d9090087da55004ebbfa09461d00e4b, type: 2}
     - target: {fileID: 5238055427839631010, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1404,6 +1416,11 @@ RectTransform:
   m_AnchoredPosition: {x: 7.758, y: 4.614}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &960804805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2642509377251851197, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+  m_PrefabInstance: {fileID: 53087307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &982443460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2399,7 +2416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableTexts: []
-  HighlightMat: {fileID: 0}
+  HighlightMat: {fileID: 2100000, guid: 5d9090087da55004ebbfa09461d00e4b, type: 2}
   onGameReset:
     m_PersistentCalls:
       m_Calls: []
@@ -5522,15 +5539,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5733502536988805262, guid: 78f3f2d0d64aaeb469da05d05ac940d5, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6124668310555725259, guid: 78f3f2d0d64aaeb469da05d05ac940d5, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442769923977939434, guid: 78f3f2d0d64aaeb469da05d05ac940d5, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
