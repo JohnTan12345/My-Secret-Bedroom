@@ -166,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5335526896329758902, guid: 88ad0d492f997d94faeb8c76bd8d082d, type: 3}
       propertyPath: m_fontSize
-      value: 52
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 5335526896329758902, guid: 88ad0d492f997d94faeb8c76bd8d082d, type: 3}
       propertyPath: m_fontAsset
@@ -178,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5335526896329758902, guid: 88ad0d492f997d94faeb8c76bd8d082d, type: 3}
       propertyPath: m_fontSizeBase
-      value: 52
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 5335526896329758902, guid: 88ad0d492f997d94faeb8c76bd8d082d, type: 3}
       propertyPath: m_sharedMaterial
