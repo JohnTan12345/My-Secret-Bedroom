@@ -147,6 +147,34 @@ PrefabInstance:
       propertyPath: ObjectHighlight
       value: 
       objectReference: {fileID: 960804805}
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: onTaskComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: onTaskComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: onTaskComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 37150008}
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: onTaskComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: onTaskComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TaskFinished
+      objectReference: {fileID: 0}
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: onTaskComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Calendar, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 16943013977989216, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
+      propertyPath: onTaskComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 793687727448433398, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.039
@@ -2417,6 +2445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableTexts: []
   HighlightMat: {fileID: 2100000, guid: 5d9090087da55004ebbfa09461d00e4b, type: 2}
+  headMovementCheckScript: {fileID: 0}
   onGameReset:
     m_PersistentCalls:
       m_Calls: []
