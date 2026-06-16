@@ -38,12 +38,6 @@ public class Calendar : MonoBehaviour
         pageRenderer.material.mainTexture = calendarTextures[currentPage];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
    
 
     private void GameReset()
@@ -53,18 +47,34 @@ public class Calendar : MonoBehaviour
         currentPage = 0;
         taskFinished = false;
         pageRenderer.material.mainTexture = calendarTextures[currentPage];
+        calendarInteractable.enabled = false;
     }
 
     public void OnPlayerEnterArea()
     {
         textUI.SetActive(true);
+        if (!taskFinished)
+        {
+            calendarInteractable.enabled = true;
+        }
+    }
+
+    public void OnPlayerExitArea()
+    {
+        textUI.SetActive(true);
+        calendarInteractable.enabled = false;
     }
 
     public void TextFinished()
     {
         textUI.SetActive(false);
-        taskFinished = true;
         Debug.Log("Text and task Finished");
+    }
+
+    public void TaskFinished()
+    {
+        taskFinished = true;
+        calendarInteractable.enabled = false;
     }
 
    private IEnumerator FlipPageRoutine()
@@ -90,13 +100,6 @@ public class Calendar : MonoBehaviour
     pageRenderer.material.mainTexture = calendarTextures[currentPage];
 
     interactableTask.AddProgress(1);
-
-    // Disable interaction after reaching the last page
-    if (currentPage == calendarTextures.Length - 1)
-    {
-        calendarInteractable.enabled = false;
-        Debug.Log("Calendar interaction disabled.");
-    }
 
     yield return new WaitForSeconds(0.3f);
 
