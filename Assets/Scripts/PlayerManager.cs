@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     }
     void FixedUpdate()
     {
+        // Shoot a ray that checks for "LookArea"s
         bool firstColliderCheck = false;
         Debug.DrawRay(PlayerLookObject.transform.position, PlayerLookObject.transform.forward * maxDistance, Color.green);
         if (Physics.Raycast(PlayerLookObject.transform.position, PlayerLookObject.transform.forward, out RaycastHit hitInfo, maxDistance, LayerMask.GetMask("Player Look Area"), QueryTriggerInteraction.Collide))
@@ -32,6 +33,6 @@ public class PlayerManager : MonoBehaviour
             }
             
         }
-        
+
     }
 }

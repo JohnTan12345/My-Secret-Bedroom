@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("You can set an ordered list of interactable texts. Any interactable texts that is not added here will be automatically added with no order")]
     private List<InteractableText> interactableTexts = new List<InteractableText>();
     public Material HighlightMat;
+    public HeadMovementCheck headMovementCheckScript;
 
     // Events
     [Header("Events")]

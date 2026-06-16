@@ -77,8 +77,15 @@ public class TextUIManager : MonoBehaviour
 
                     TextOptionUI textOptionUI = optionUI_Clone.GetComponent<TextOptionUI>();
                     int optionNum = j;
-                    textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(optionNum) );
-                    textOptionUI.text.text = option.text;
+                    if (gameText.headMovementOption)
+                    {
+                        textOptionUI.button.interactable = false;
+                    }
+                    else
+                    {
+                        textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(optionNum) );
+                    }
+                    textOptionUI.text.text = gameText.headMovementOption ? option.text + $" ({(j % 2 == 0  ? "nod":"shake")})": option.text;
                 }
             }
             else
