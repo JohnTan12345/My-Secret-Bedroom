@@ -15,7 +15,6 @@ public class EnterArea : MonoBehaviour
     public UnityEvent ObjectExitArea;
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(transform.parent);
         if (other.CompareTag(tag))
         {
             ObjectEnterArea.Invoke();

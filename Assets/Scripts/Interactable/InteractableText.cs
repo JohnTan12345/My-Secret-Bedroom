@@ -28,8 +28,6 @@ public class InteractableText : MonoBehaviour
     [SerializeField]
     private bool taskActive = false;
     [SerializeField]
-    private bool HeadMovementDetectionActive = false;
-    [SerializeField]
     private bool taskListenerAdded = false;
     [SerializeField]
     private bool headDetectionListenerAdded = false;
@@ -66,7 +64,7 @@ public class InteractableText : MonoBehaviour
         }
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
         if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; AddOnCompleteListener(); texts[currentTextElementNumber].taskToComplete.onTaskStart.Invoke();}
-        if (!headDetectionListenerAdded && texts[currentTextElementNumber].headMovementOption) {HeadMovementDetectionActive = true; GameManager.instance.headMovementCheckScript.StartHeadDetection(); AddHeadDetectionCompleteListener();}
+        if (!headDetectionListenerAdded && texts[currentTextElementNumber].headMovementOption) {GameManager.instance.headMovementCheckScript.StartHeadDetection(); AddHeadDetectionCompleteListener();}
 
         return texts[currentTextElementNumber];
     }
@@ -140,7 +138,6 @@ public class InteractableText : MonoBehaviour
                 }
                 else if (texts[currentTextElementNumber].headMovementOption)
                 {
-                    HeadMovementDetectionActive = true;
                     try
                     {
                         if (!headDetectionListenerAdded)
@@ -226,8 +223,9 @@ public class InteractableText : MonoBehaviour
     {
         if (texts.Count == 0) {return;}
         if (texts[currentTextElementNumber].taskToComplete != null) {RemoveOnCompleteListener();}
+        if (headDetectionListenerAdded) {RemoveHeadDetectionCompleteListener();}
         currentTextElementNumber = 0;
-        onTextChange.Invoke();
+        //onTextChange.Invoke();
         textStart = false;
         taskActive = false;
     }

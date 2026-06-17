@@ -19,6 +19,10 @@ public class HeadMovementCheck : MonoBehaviour
     private Quaternion headRotation;
     private bool checkActive = false;
 
+    [SerializeField]
+    private bool debuggingEnabled = false;
+    [SerializeField]
+    private bool advancedDebuggingEnabled = false;
     // 
     void Awake()
     {
@@ -40,6 +44,10 @@ public class HeadMovementCheck : MonoBehaviour
 
     public void StartHeadDetection()
     {
+        if (debuggingEnabled)
+        {
+            Debug.Log("Head detection started");
+        }
         StartCoroutine(HeadMovementDetection());
     }
 
@@ -67,10 +75,6 @@ public class HeadMovementCheck : MonoBehaviour
             float headY = head.eulerAngles.y < 180 ? head.eulerAngles.y + 180 : head.eulerAngles.y - 180;
             float headYThresholdMin = referenceY - shakeAngleThreshold;
             float headYThresholdMax = referenceY + shakeAngleThreshold;
-
-            Debug.Log($"head angle: x: {headX}, y: {headY}; thresholds: x: [ min: {headXThresholdMin}, max: {headXThresholdMax} ], y: [ min: {headYThresholdMin}, max: {headYThresholdMax} ]");
-            Debug.Log($"Reference Point: x: {referenceX}, y: {referenceY}");
-            Debug.Log($"detection: [ up: {headX < headXThresholdMin}, down: {headX > headXThresholdMax}, left: {headY < headYThresholdMin}, right: {headY > headYThresholdMax}]");
 
             // Nod detection
             if (headX < headXThresholdMin && !faceChecks["up"])
@@ -111,9 +115,20 @@ public class HeadMovementCheck : MonoBehaviour
                 checkActive = false;
                 break;
             }
-
-            Debug.Log($"Counters: Nod Count: {nodCount}, Shake Count: {shakeCount}, Checks: [Left: {faceChecks["left"]}, Right: {faceChecks["right"]}, Up: {faceChecks["up"]}, Down: {faceChecks["down"]}]");
+    
+            if (debuggingEnabled && advancedDebuggingEnabled)
+            {
+                Debug.Log($"head angle: x: {headX}, y: {headY}; thresholds: x: [ min: {headXThresholdMin}, max: {headXThresholdMax} ], y: [ min: {headYThresholdMin}, max: {headYThresholdMax} ]");
+                Debug.Log($"Reference Point: x: {referenceX}, y: {referenceY}");
+                Debug.Log($"detection: [ up: {headX < headXThresholdMin}, down: {headX > headXThresholdMax}, left: {headY < headYThresholdMin}, right: {headY > headYThresholdMax}]");
+                Debug.Log($"Counters: Nod Count: {nodCount}, Shake Count: {shakeCount}, Checks: [Left: {faceChecks["left"]}, Right: {faceChecks["right"]}, Up: {faceChecks["up"]}, Down: {faceChecks["down"]}]");
+            }
             yield return new WaitForFixedUpdate();
+        }
+
+        if (debuggingEnabled)
+        {
+            Debug.Log("Head detection ended");
         }
 
         onDetectionFinish.Invoke(result);

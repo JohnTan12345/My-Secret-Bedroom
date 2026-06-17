@@ -17,11 +17,22 @@ public class TextUIManager : MonoBehaviour
     private Transform optionUI_Parent;
     [SerializeField]
     private GameObject optionUI_Prefab;
+    [SerializeField]
+    private GameObject referenceGameObjectForActiveCheck;
 
     private bool listenerAdded = false;
 
     [HideInInspector]
     public UnityEvent<int> buttonClickedEvent;
+
+    [Header("Hidden Parameters")]
+    [SerializeField]
+    private bool startOnReset = false;
+    [SerializeField]
+    private bool textStarted = false;
+
+    [SerializeField]
+    private bool debuggingEnabled = false;
 
     void Awake()
     {
@@ -38,13 +49,34 @@ public class TextUIManager : MonoBehaviour
 
     void Start()
     {   
-        GameManager.instance.onGameReset.AddListener(RefreshText);
+        GameManager.instance.onGameReset.AddListener(Reset);
         interactableText.onTextChange.AddListener(RefreshText);
-        RefreshText();
+    }
+
+    void OnEnable()
+    {
+        if (!textStarted)
+        {
+            textStarted = true;
+            RefreshText();
+        }
+    }
+
+    private void Reset()
+    {
+        if (debuggingEnabled)
+        {
+            Debug.Log($"Resetting Text UI for {interactableText.gameObject.name}");
+        }
+        textStarted = false;
     }
 
     private void RefreshText() // Refreshes the UI everytime the current text changes
     {
+        if (debuggingEnabled)
+        {
+            Debug.Log($"Refreshing Text UI for {interactableText.gameObject.name}");
+        }
         GameText gameText = interactableText.GetGameText();
 
         for (int i = optionUI_Parent.childCount; i > 0; i--) // Remove the option UI
