@@ -132,11 +132,14 @@ MonoBehaviour:
       health issues.
     jumpTo: 0
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options: []
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  listenerAdded: 0
+  HeadMovementDetectionActive: 0
+  taskListenerAdded: 0
+  headDetectionListenerAdded: 0
   debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:
@@ -504,31 +507,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.492
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.065
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.041
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99227726
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.12403984
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -536,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 14.251
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -544,27 +547,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1205
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 4715143829445767533, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: interactableText
@@ -572,31 +575,35 @@ PrefabInstance:
       objectReference: {fileID: 7389339030531734685}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 905
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 5945129901931792666, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_Name
       value: Look Area Text UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945129901931792666, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -664,6 +671,10 @@ PrefabInstance:
     - target: {fileID: 1876768320724539163, guid: 52e93f4e65ee3e54482169966c1a167d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589663641717899870, guid: 52e93f4e65ee3e54482169966c1a167d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5467805002647334576, guid: 52e93f4e65ee3e54482169966c1a167d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

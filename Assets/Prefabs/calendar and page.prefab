@@ -309,7 +309,6 @@ MonoBehaviour:
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  HeadMovementDetectionActive: 0
   taskListenerAdded: 0
   headDetectionListenerAdded: 0
   debuggingEnabled: 0
@@ -347,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxProgress: 3
-  ObjectHighlight: {fileID: 0}
+  ObjectHighlight: {fileID: 2642509377251851197}
   automaticHighlighting: 1
   currentProgress: 0
   highlightingEnabled: 0
@@ -358,7 +357,19 @@ MonoBehaviour:
       m_Calls: []
   onTaskComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 566027788723915682}
+        m_TargetAssemblyTypeName: Calendar, Assembly-CSharp
+        m_MethodName: TaskFinished
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8775357052109248344
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,19 +439,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 141.70245
+      value: 220.60239
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 315.03293
+      value: 318.36633
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 141.70245
+      value: 220.60239
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -114.3
+      value: -139.5
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -448,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -276
+      value: -315.7
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalRotation.w

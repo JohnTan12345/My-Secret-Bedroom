@@ -136,16 +136,20 @@ MonoBehaviour:
       significant distress having to look at their own physical appearance
     jumpTo: -1
     taskToComplete: {fileID: 740542438709235258}
+    headMovementOption: 0
     options: []
   - text: When a person is struggling with their body image, they might expereince
       significant distress having to look at their own physical appearance
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options: []
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  listenerAdded: 0
+  HeadMovementDetectionActive: 0
+  taskListenerAdded: 0
+  headDetectionListenerAdded: 0
   debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:
@@ -199,7 +203,9 @@ MonoBehaviour:
   ObjectHighlight: {fileID: 4457638214324469834}
   automaticHighlighting: 1
   currentProgress: 0
+  highlightingEnabled: 0
   objectHighlighted: 0
+  highlightedObjectList: []
   onTaskStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1010,6 +1016,10 @@ PrefabInstance:
     - target: {fileID: 5553834557200511567, guid: 95f48d1ebcd2f664c9f3f10d29e46d9b, type: 3}
       propertyPath: m_Name
       value: Mirror
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553834557200511567, guid: 95f48d1ebcd2f664c9f3f10d29e46d9b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9126935244336437991, guid: 95f48d1ebcd2f664c9f3f10d29e46d9b, type: 3}
       propertyPath: m_LocalPosition.x

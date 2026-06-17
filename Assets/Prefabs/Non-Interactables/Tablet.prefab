@@ -449,24 +449,26 @@ MonoBehaviour:
       completing their work due to a drop in motivation levels and energy levels. '
     jumpTo: 0
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options:
-    - isAButton: 0
-      text: Continue
+    - text: Continue
       jumpTo: 1
       pointsToAward: 0
   - text: 'Instead of criticising them for their unfinished work, approach them with
       concern. '
     jumpTo: 0
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options:
-    - isAButton: 0
-      text: Continue
+    - text: Continue
       jumpTo: 1
       pointsToAward: 0
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  listenerAdded: 0
+  HeadMovementDetectionActive: 0
+  taskListenerAdded: 0
+  headDetectionListenerAdded: 0
   debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:
@@ -785,35 +787,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.67799723
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.557649
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.0008138466
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99431914
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.10644009
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 4.656614e-10
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.0000000018626456
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 12.22
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -821,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1951714039622729251, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.508
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2017788370663116893, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_IsActive
@@ -829,27 +831,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1205
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4715143829445767533, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: interactableText
@@ -857,27 +859,27 @@ PrefabInstance:
       objectReference: {fileID: 5809814036371112953}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 905
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5945129901931792666, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_Name
