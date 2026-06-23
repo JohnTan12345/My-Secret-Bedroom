@@ -62,6 +62,11 @@ public class TextUIManager : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        interactableText.StopHeadDetection("Text UI Disabled");
+    }
+
     private void Reset()
     {
         if (debuggingEnabled)

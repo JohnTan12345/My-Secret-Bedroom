@@ -64,9 +64,24 @@ public class InteractableText : MonoBehaviour
         }
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
         if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; AddOnCompleteListener(); texts[currentTextElementNumber].taskToComplete.onTaskStart.Invoke();}
-        if (!headDetectionListenerAdded && texts[currentTextElementNumber].headMovementOption) {GameManager.instance.headMovementCheckScript.StartHeadDetection(); AddHeadDetectionCompleteListener();}
+        if (!headDetectionListenerAdded && texts[currentTextElementNumber].headMovementOption) {GameManager.instance.headMovementCheckScript.StartHeadDetection(); SetHeadDetectionCompleteListener(true);}
 
         return texts[currentTextElementNumber];
+    }
+
+    public void StopHeadDetection(string msg)
+    {
+        if (!headDetectionListenerAdded)
+        {
+            if (debuggingEnabled)
+            {
+                Debug.LogWarning("No active head detection found");
+            }
+            return;
+        }
+
+        SetHeadDetectionCompleteListener(true);
+        GameManager.instance.headMovementCheckScript.StopDetection(msg);
     }
 
 // Text related Functions
@@ -143,7 +158,7 @@ public class InteractableText : MonoBehaviour
                         if (!headDetectionListenerAdded)
                         {
                             GameManager.instance.headMovementCheckScript.StartHeadDetection();
-                            AddHeadDetectionCompleteListener();
+                            SetHeadDetectionCompleteListener(true);
                         }
                         
                     }
@@ -176,6 +191,8 @@ public class InteractableText : MonoBehaviour
         return texts[currentTextElementNumber];
     }
 
+// Listener adding / removing
+    // Task completion listener
     private void AddOnCompleteListener()
     {
         if (!taskListenerAdded)
@@ -191,24 +208,25 @@ public class InteractableText : MonoBehaviour
         taskListenerAdded = false;
     }
 
-    private void AddHeadDetectionCompleteListener()
+    // Head detection complete listener
+    private void SetHeadDetectionCompleteListener(bool val)
     {
-        if (!headDetectionListenerAdded)
+        if (val && !headDetectionListenerAdded)
         {
             GameManager.instance.headMovementCheckScript.onDetectionFinish.AddListener(DetectionResultHandler);
             headDetectionListenerAdded = true;
         }
+        else if (!val)
+        {
+            GameManager.instance.headMovementCheckScript.onDetectionFinish.RemoveListener(DetectionResultHandler);
+            headDetectionListenerAdded = false;
+        }
     }
 
-    private void RemoveHeadDetectionCompleteListener()
-    {
-        GameManager.instance.headMovementCheckScript.onDetectionFinish.RemoveListener(DetectionResultHandler);
-        headDetectionListenerAdded = false;
-    }
-
+// Handles the result from head detection
     private void DetectionResultHandler(DetectionResult result)
     {
-        RemoveHeadDetectionCompleteListener();
+        SetHeadDetectionCompleteListener(false);
 
         if (result.nodding)
         {
@@ -223,7 +241,7 @@ public class InteractableText : MonoBehaviour
     {
         if (texts.Count == 0) {return;}
         if (texts[currentTextElementNumber].taskToComplete != null) {RemoveOnCompleteListener();}
-        if (headDetectionListenerAdded) {RemoveHeadDetectionCompleteListener();}
+        if (headDetectionListenerAdded) {SetHeadDetectionCompleteListener(false);}
         currentTextElementNumber = 0;
         //onTextChange.Invoke();
         textStart = false;
