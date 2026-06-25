@@ -363,7 +363,6 @@ MonoBehaviour:
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  HeadMovementDetectionActive: 0
   taskListenerAdded: 0
   headDetectionListenerAdded: 0
   debuggingEnabled: 0
@@ -458,6 +457,8 @@ MonoBehaviour:
   onDetectionFinish:
     m_PersistentCalls:
       m_Calls: []
+  debuggingEnabled: 1
+  advancedDebuggingEnabled: 1
 --- !u!1 &1249617917
 GameObject:
   m_ObjectHideFlags: 0

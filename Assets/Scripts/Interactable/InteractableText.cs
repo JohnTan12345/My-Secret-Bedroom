@@ -174,13 +174,23 @@ public class InteractableText : MonoBehaviour
                         }
                     }
                 }
+
+                if ((texts[currentTextElementNumber].jumpTo != -1 ? texts[currentTextElementNumber].jumpTo : currentTextElementNumber + 1) >= texts.Count - 1 && !headDetectionListenerAdded && !taskActive)
+                {
+                    // Fire the event when the final text for a branch is reached
+                    onTextsEnd.Invoke();
+                    textStart = false;
+                    if (debuggingEnabled)
+                    {
+                        Debug.Log($"Texts has ended at text element: {currentTextElementNumber}\nOptions available:{texts[currentTextElementNumber].options.Count > 0}{(texts[currentTextElementNumber].options.Count > 0 ? $"Ended at option {option} jumping to text element {texts[currentTextElementNumber].options[option].jumpTo}":"")}");
+                    }
+                }
             }
-            else
+            else // In case the text ends with a task / head detection
             {
                 // Fire the event when the final text for a branch is reached
                 onTextsEnd.Invoke();
                 textStart = false;
-
                 if (debuggingEnabled)
                 {
                     Debug.Log($"Texts has ended at text element: {currentTextElementNumber}\nOptions available:{texts[currentTextElementNumber].options.Count > 0}{(texts[currentTextElementNumber].options.Count > 0 ? $"Ended at option {option} jumping to text element {texts[currentTextElementNumber].options[option].jumpTo}":"")}");
@@ -236,13 +246,12 @@ public class InteractableText : MonoBehaviour
             GetNextTextObject(1);
         }
     }
-    private void ResetTextProgress() // Resets the text
+    public void ResetTextProgress() // Resets the text
     {
         if (texts.Count == 0) {return;}
         if (texts[currentTextElementNumber].taskToComplete != null) {SetTaskCompleteListener(false);}
         if (headDetectionListenerAdded) {SetHeadDetectionCompleteListener(false);}
         currentTextElementNumber = 0;
-        //onTextChange.Invoke();
         textStart = false;
         taskActive = false;
     }

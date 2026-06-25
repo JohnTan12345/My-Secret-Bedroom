@@ -30,10 +30,10 @@ public class TextUIManager : MonoBehaviour
     private bool startOnReset = false;
     [SerializeField]
     private bool textStarted = false;
-
+    [SerializeField]
+    private bool canLoopBack = true;
     [SerializeField]
     private bool debuggingEnabled = false;
-
     void Awake()
     {
         if (interactableText == null)
@@ -51,6 +51,7 @@ public class TextUIManager : MonoBehaviour
     {   
         GameManager.instance.onGameReset.AddListener(Reset);
         interactableText.onTextChange.AddListener(RefreshText);
+        interactableText.onTextsEnd.AddListener(Loopback);
     }
 
     void OnEnable()
@@ -74,6 +75,15 @@ public class TextUIManager : MonoBehaviour
             Debug.Log($"Resetting Text UI for {interactableText.gameObject.name}");
         }
         textStarted = false;
+    }
+
+    private void Loopback()
+    {
+        if (debuggingEnabled)
+        {
+            Debug.Log("Looping");
+        }
+        interactableText.ResetTextProgress();
     }
 
     private void RefreshText() // Refreshes the UI everytime the current text changes
@@ -139,6 +149,8 @@ public class TextUIManager : MonoBehaviour
         {
             buttonClickedEvent.RemoveListener(interactableText.SelectOption);
             listenerAdded = false;
+            canLoopBack = false;
+            interactableText.onTextsEnd.RemoveListener(Loopback);
         }
     }
 }
