@@ -61,6 +61,7 @@ public class TextUIManager : MonoBehaviour
             textStarted = true;
             RefreshText();
         }
+        interactableText.StartHeadDetection();
     }
 
     void OnDisable()
@@ -84,6 +85,8 @@ public class TextUIManager : MonoBehaviour
             Debug.Log("Looping");
         }
         interactableText.ResetTextProgress();
+        textStarted = false;
+        RefreshText();
     }
 
     private void RefreshText() // Refreshes the UI everytime the current text changes

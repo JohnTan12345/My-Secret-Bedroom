@@ -64,7 +64,7 @@ public class InteractableText : MonoBehaviour
         }
         if (!textStart) {onTextsStart.Invoke(); currentTextElementNumber = 0; textStart = true;}
         if (!taskActive && texts[currentTextElementNumber].taskToComplete != null) {taskActive = true; SetTaskCompleteListener(true); texts[currentTextElementNumber].taskToComplete.onTaskStart.Invoke();}
-        if (!headDetectionListenerAdded && texts[currentTextElementNumber].headMovementOption) {GameManager.instance.headMovementCheckScript.StartHeadDetection(); SetHeadDetectionCompleteListener(true);}
+        if (!headDetectionListenerAdded && texts[currentTextElementNumber].headMovementOption) {SetHeadDetectionCompleteListener(true);}
 
         return texts[currentTextElementNumber];
     }
@@ -80,8 +80,28 @@ public class InteractableText : MonoBehaviour
             return;
         }
 
-        SetHeadDetectionCompleteListener(false);
-        GameManager.instance.headMovementCheckScript.StopDetection(msg);
+        SetHeadDetectionCompleteListener(false, msg);
+    }
+
+    public void StartHeadDetection()
+    {
+        if (headDetectionListenerAdded)
+        {
+            if (debuggingEnabled)
+            {
+                Debug.LogWarning("There is an active head detection");
+            }
+            return;
+        }
+        else if (!texts[currentTextElementNumber].headMovementOption)
+        {
+            if (debuggingEnabled)
+            {
+                Debug.LogWarning("Current element has head detection disabled");
+            }
+            return;
+        }
+        SetHeadDetectionCompleteListener(true);
     }
 
 // Text related Functions
@@ -157,7 +177,6 @@ public class InteractableText : MonoBehaviour
                     {
                         if (!headDetectionListenerAdded)
                         {
-                            GameManager.instance.headMovementCheckScript.StartHeadDetection();
                             SetHeadDetectionCompleteListener(true);
                         }
                         
@@ -175,16 +194,7 @@ public class InteractableText : MonoBehaviour
                     }
                 }
 
-                if ((texts[currentTextElementNumber].jumpTo != -1 ? texts[currentTextElementNumber].jumpTo : currentTextElementNumber + 1) >= texts.Count - 1 && !headDetectionListenerAdded && !taskActive)
-                {
-                    // Fire the event when the final text for a branch is reached
-                    onTextsEnd.Invoke();
-                    textStart = false;
-                    if (debuggingEnabled)
-                    {
-                        Debug.Log($"Texts has ended at text element: {currentTextElementNumber}\nOptions available:{texts[currentTextElementNumber].options.Count > 0}{(texts[currentTextElementNumber].options.Count > 0 ? $"Ended at option {option} jumping to text element {texts[currentTextElementNumber].options[option].jumpTo}":"")}");
-                    }
-                }
+                
             }
             else // In case the text ends with a task / head detection
             {
@@ -193,7 +203,9 @@ public class InteractableText : MonoBehaviour
                 textStart = false;
                 if (debuggingEnabled)
                 {
-                    Debug.Log($"Texts has ended at text element: {currentTextElementNumber}\nOptions available:{texts[currentTextElementNumber].options.Count > 0}{(texts[currentTextElementNumber].options.Count > 0 ? $"Ended at option {option} jumping to text element {texts[currentTextElementNumber].options[option].jumpTo}":"")}");
+                    Debug.Log($"Texts has ended at text element: {currentTextElementNumber}");
+                    Debug.Log($"Options available: {texts[currentTextElementNumber].options.Count > 0}");
+                    //Debug.Log($"{(texts[currentTextElementNumber].options.Count > 0 ? $"Ended at option {option} jumping to text element {texts[currentTextElementNumber].options[option].jumpTo}":"")}");
                 }
             }
         }
@@ -218,15 +230,17 @@ public class InteractableText : MonoBehaviour
     }
 
     // Head detection complete listener
-    private void SetHeadDetectionCompleteListener(bool val)
+    private void SetHeadDetectionCompleteListener(bool val, string msg = "stop called")
     {
         if (val && !headDetectionListenerAdded)
         {
+            GameManager.instance.headMovementCheckScript.StartHeadDetection();
             GameManager.instance.headMovementCheckScript.onDetectionFinish.AddListener(DetectionResultHandler);
             headDetectionListenerAdded = true;
         }
         else if (!val)
         {
+            GameManager.instance.headMovementCheckScript.StopDetection(msg);
             GameManager.instance.headMovementCheckScript.onDetectionFinish.RemoveListener(DetectionResultHandler);
             headDetectionListenerAdded = false;
         }
@@ -235,7 +249,7 @@ public class InteractableText : MonoBehaviour
 // Handles the result from head detection
     private void DetectionResultHandler(DetectionResult result)
     {
-        SetHeadDetectionCompleteListener(false);
+        SetHeadDetectionCompleteListener(false, "finished");
 
         if (result.nodding)
         {
@@ -250,7 +264,7 @@ public class InteractableText : MonoBehaviour
     {
         if (texts.Count == 0) {return;}
         if (texts[currentTextElementNumber].taskToComplete != null) {SetTaskCompleteListener(false);}
-        if (headDetectionListenerAdded) {SetHeadDetectionCompleteListener(false);}
+        if (headDetectionListenerAdded) {SetHeadDetectionCompleteListener(false, "Game reset");}
         currentTextElementNumber = 0;
         textStart = false;
         taskActive = false;
