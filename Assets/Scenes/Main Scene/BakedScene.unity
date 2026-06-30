@@ -2347,6 +2347,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8184215861057428545, guid: 1c9395276f6343243b10fd6e82f1448e, type: 3}
+      propertyPath: debuggingEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184215861057428545, guid: 1c9395276f6343243b10fd6e82f1448e, type: 3}
       propertyPath: texts.Array.data[0].headMovementOption
       value: 1
       objectReference: {fileID: 0}
