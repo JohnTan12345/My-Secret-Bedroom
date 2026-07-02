@@ -58,13 +58,12 @@ MonoBehaviour:
       is struggling with how they feel about their body or themselves?
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options:
-    - isAButton: 0
-      text: Yes
+    - text: Yes
       jumpTo: -1
       pointsToAward: 0
-    - isAButton: 0
-      text: No
+    - text: No
       jumpTo: -1
       pointsToAward: 0
   - text: When a young person is struggling with feelings of low mood, they might
@@ -73,11 +72,14 @@ MonoBehaviour:
       they like to restrict their calories.
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options: []
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  listenerAdded: 0
+  HeadMovementDetectionActive: 0
+  taskListenerAdded: 0
+  headDetectionListenerAdded: 0
   debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:
@@ -711,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5945129901931792666, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -752,6 +754,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1f001165534f52143a5cd923e5a6bd82, type: 2}
+    - target: {fileID: 3914564885645040962, guid: 1e571d7e135e63442b79374b91c12520, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6834724741110362331, guid: 1e571d7e135e63442b79374b91c12520, type: 3}
       propertyPath: m_Name
       value: filled_bin

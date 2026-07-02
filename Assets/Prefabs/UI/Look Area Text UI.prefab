@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5487776563070636698, guid: 88ad0d492f997d94faeb8c76bd8d082d, type: 3}
+      propertyPath: referenceGameObjectForActiveCheck
+      value: 
+      objectReference: {fileID: 5945129901931792666}
     - target: {fileID: 7217899806333299645, guid: 88ad0d492f997d94faeb8c76bd8d082d, type: 3}
       propertyPath: m_fontSize
       value: 52
@@ -353,5 +357,10 @@ PrefabInstance:
 --- !u!4 &1951714039622729251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9041053029922130774, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
+  m_PrefabInstance: {fileID: 7380735960476071285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5945129901931792666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3813700499443694703, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
   m_PrefabInstance: {fileID: 7380735960476071285}
   m_PrefabAsset: {fileID: 0}

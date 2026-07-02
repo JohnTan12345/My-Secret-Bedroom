@@ -36,6 +36,7 @@ Transform:
   - {fileID: 1649460679487719201}
   - {fileID: 430116132785308153}
   - {fileID: 5813770799745885032}
+  - {fileID: 7551731150717669004}
   m_Father: {fileID: 2597312872758695460}
   m_LocalEulerAnglesHint: {x: 0, y: 159.006, z: 0}
 --- !u!65 &901092364584504336
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 7551731150717669004}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -227,6 +228,37 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!1 &3073271305124234490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7551731150717669004}
+  m_Layer: 0
+  m_Name: Attachment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7551731150717669004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073271305124234490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3992239678512846189}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &3641287222020322030
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +421,7 @@ MonoBehaviour:
       look like the young person is \u201Clazy\u201D or is \u201Canti-social\u201D."
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options: []
   - text: "However, it\u2019s important to look beneath the surface \u2013 When young
       people are experiencing mental health struggles, they might not have the physical
@@ -396,11 +429,14 @@ MonoBehaviour:
       distress by sleeping more and rejecting social activities."
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options: []
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  listenerAdded: 0
+  HeadMovementDetectionActive: 0
+  taskListenerAdded: 0
+  headDetectionListenerAdded: 0
   debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:

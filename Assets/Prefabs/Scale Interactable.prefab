@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408147514601984096}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.994, y: 4.063, z: 7.402}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
@@ -56,28 +56,31 @@ MonoBehaviour:
   - text: 'Is it healthy to weigh yourself every 15 minutes? '
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options:
-    - isAButton: 0
-      text: Yes
+    - text: Yes
       jumpTo: 1
       pointsToAward: 0
-    - isAButton: 0
-      text: No
+    - text: No
       jumpTo: 1
       pointsToAward: 0
   - text: When a young person is struggling with their body image, they might become
       obsessed with their weight and how they look.
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options: []
   - text: This can sometimes lead to frequent monitoring of weight.
     jumpTo: -1
     taskToComplete: {fileID: 0}
+    headMovementOption: 0
     options: []
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  listenerAdded: 0
+  HeadMovementDetectionActive: 0
+  taskListenerAdded: 0
+  headDetectionListenerAdded: 0
   debuggingEnabled: 0
   onTextsStart:
     m_PersistentCalls:
@@ -195,6 +198,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7141401773431181630}
     m_Modifications:
+    - target: {fileID: 224489079956228779, guid: ebea31b7ef15bd448af0780ad6b13718, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6809562652847042841, guid: ebea31b7ef15bd448af0780ad6b13718, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -275,15 +282,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9041053029922130774, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
       propertyPath: m_LocalScale.x
-      value: 55.56691
+      value: 80.61647
       objectReference: {fileID: 0}
     - target: {fileID: 9041053029922130774, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.5348325
+      value: 6.5791345
       objectReference: {fileID: 0}
     - target: {fileID: 9041053029922130774, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
       propertyPath: m_LocalScale.z
-      value: 51.225716
+      value: 74.31827
       objectReference: {fileID: 0}
     - target: {fileID: 9041053029922130774, guid: 918258bf2a2191d4ea70eb07164d5312, type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,13 +407,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1205
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057284337604960145, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 4715143829445767533, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: interactableText
       value: 
       objectReference: {fileID: 4146899786886895715}
+    - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 905
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244511399789409342, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 5945129901931792666, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
       propertyPath: m_Name
       value: Look Area Text UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945129901931792666, guid: 6b50d6bc6ce411c4d85c7e1314af1163, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

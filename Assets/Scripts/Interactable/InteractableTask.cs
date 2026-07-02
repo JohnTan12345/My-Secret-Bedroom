@@ -66,6 +66,7 @@ public class InteractableTask : MonoBehaviour
     public void ResetProgress()
     {
         currentProgress = 0; // Resets progress to 0
+        HighlightObject(false);
     }
 
     private void HighlightObjectSetUp()
