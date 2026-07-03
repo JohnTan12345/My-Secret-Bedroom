@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableTexts: []
   HighlightMat: {fileID: 0}
+  headMovementCheckScript: {fileID: 0}
   onGameReset:
     m_PersistentCalls:
       m_Calls: []
