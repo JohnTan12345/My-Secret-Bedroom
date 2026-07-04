@@ -76,6 +76,11 @@ public class TextUIManager : MonoBehaviour
             Debug.Log($"Resetting Text UI for {interactableText.gameObject.name}");
         }
         textStarted = false;
+        if (!canLoopBack)
+        {
+            interactableText.onTextsEnd.AddListener(Loopback);
+            canLoopBack = true;
+        }
     }
 
     private void Loopback()
