@@ -12,9 +12,11 @@ public class Clothes : MonoBehaviour
     [SerializeField]
     private GameObject clothingPile; // reference to the pile model
     [SerializeField]
-    private Transform newClothesPosition;
-    [SerializeField]
     private Transform newTextUIPositon;
+    [SerializeField]
+    private GameObject clothesBasket;
+    [SerializeField]
+    private GameObject filledClothesBasket;
 
     private Vector3 pileOriginalPos;
     private Quaternion pileOriginalRot;
@@ -54,10 +56,10 @@ public class Clothes : MonoBehaviour
             interactableTask.AddProgress(1);
         }
 
-        // Move pile into the bag’s position
-        clothingPile.transform.position = newClothesPosition.position;
-        clothingPile.transform.rotation = newClothesPosition.rotation;
-        clothingPile.transform.SetParent(newClothesPosition);
+        // fill up basket
+        clothingPile.SetActive(false);
+        clothesBasket.SetActive(false);
+        filledClothesBasket.SetActive(true);
 
         clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
@@ -76,21 +78,24 @@ public class Clothes : MonoBehaviour
 
     public void GameReset()
     {
-    clothingPile.transform.SetParent(null); // detach from bag
-    clothingPile.transform.position = pileOriginalPos;
-    clothingPile.transform.rotation = pileOriginalRot;
+        clothingPile.SetActive(true);
+        clothingPile.transform.position = pileOriginalPos;
+        clothingPile.transform.rotation = pileOriginalRot;
 
-    clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-    textUI.transform.position = textUIOriginalPos;
-    textUI.transform.rotation = textUIOriginalRot;
+        textUI.transform.position = textUIOriginalPos;
+        textUI.transform.rotation = textUIOriginalRot;
 
-    clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
-    clothingPile.SetActive(true);
+        clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
+        clothingPile.SetActive(true);
 
-    textUI.SetActive(false);
+        textUI.SetActive(false);
 
-    taskFinished = false;
+        taskFinished = false;
+
+        filledClothesBasket.SetActive(false);
+        clothesBasket.SetActive(true);
     }
 
 }
