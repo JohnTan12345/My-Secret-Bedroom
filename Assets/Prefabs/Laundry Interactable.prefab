@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxProgress: 1
-  ObjectHighlight: {fileID: 0}
+  ObjectHighlight: {fileID: 195167263095519561}
   automaticHighlighting: 1
   currentProgress: 0
   highlightingEnabled: 0
@@ -397,6 +397,11 @@ PrefabInstance:
       addedObject: {fileID: 418310094319293166}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}
+--- !u!1 &195167263095519561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4159741393555318382, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}
+  m_PrefabInstance: {fileID: 4255621639163453223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1278453412493120513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3076798364294335270, guid: 199a02fca60d8c64b8184c0c4ccd9287, type: 3}

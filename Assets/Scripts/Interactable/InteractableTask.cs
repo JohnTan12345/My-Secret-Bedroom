@@ -89,6 +89,10 @@ public class InteractableTask : MonoBehaviour
             {
                 for (int i = 0; i < ObjectHighlight.transform.childCount; i++)
                 {
+                    if (!ObjectHighlight.transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        continue;
+                    }
                     ObjectHighlight.transform.GetChild(i).TryGetComponent(out MeshRenderer meshRenderer);
 
                     if (meshRenderer != null)
