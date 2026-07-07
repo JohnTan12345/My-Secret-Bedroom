@@ -89,6 +89,10 @@ public class TextUIManager : MonoBehaviour
         {
             Debug.Log("Looping");
         }
+        if (!canLoopBack)
+        {
+            return;
+        }
         interactableText.ResetTextProgress();
         textStarted = false;
         RefreshText();
