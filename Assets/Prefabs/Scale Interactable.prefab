@@ -78,7 +78,6 @@ MonoBehaviour:
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  HeadMovementDetectionActive: 0
   taskListenerAdded: 0
   headDetectionListenerAdded: 0
   debuggingEnabled: 0
@@ -144,8 +143,8 @@ Transform:
   m_GameObject: {fileID: 5459063497667911044}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.9, y: 11.70001, z: 163.2}
-  m_LocalScale: {x: 120.66903, y: 325.73395, z: 105.05713}
+  m_LocalPosition: {x: 5.9, y: 11.70001, z: 166.9}
+  m_LocalScale: {x: 120.66903, y: 325.73395, z: 97.196754}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7141401773431181630}

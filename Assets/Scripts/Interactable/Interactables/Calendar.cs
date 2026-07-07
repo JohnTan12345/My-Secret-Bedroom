@@ -56,13 +56,15 @@ public class Calendar : MonoBehaviour
         if (!taskFinished)
         {
             calendarInteractable.enabled = true;
+            interactableTask.HighlightObject(true);
         }
     }
 
     public void OnPlayerExitArea()
     {
-        textUI.SetActive(true);
+        textUI.SetActive(false);
         calendarInteractable.enabled = false;
+        interactableTask.HighlightObject(false);
     }
 
     public void TextFinished()
