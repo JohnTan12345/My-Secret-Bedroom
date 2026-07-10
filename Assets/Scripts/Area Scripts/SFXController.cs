@@ -4,10 +4,10 @@
 */
 using UnityEngine;
 
-public class CorridorSFXController : MonoBehaviour
+public class SFXController : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource corridorSFX;
+    private AudioSource areaSFX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +24,7 @@ public class CorridorSFXController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            corridorSFX.Play();
+            areaSFX.Play();
         }
     }
 
@@ -32,7 +32,7 @@ public class CorridorSFXController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            corridorSFX.Stop();
+            areaSFX.Stop();
         }
     }
 }
