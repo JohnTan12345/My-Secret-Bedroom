@@ -1,6 +1,6 @@
 /*
     Created by: Xander
-    Description: Controls when corridor SFX are played and stopped
+    Description: Controls when SFX are played and stopped
 */
 using UnityEngine;
 
