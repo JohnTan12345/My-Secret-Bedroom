@@ -12,8 +12,11 @@ public class GameManager : MonoBehaviour
     public Material highlightMaterial;
 
     // Game Settings
-    public bool Teleport {get; private set;} = false;
-    public bool Seated {get; private set;} = false;
+    [Header("Player Stats")]
+    [SerializeField]
+    public bool Movement = false;
+    [SerializeField]
+    public bool Position = false;
 
     // Player Stats
     [Header("Player Stats")]

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class MainMenuController : MonoBehaviour
     private GameObject settings;
     [SerializeField]
     private GameObject credits;
+
+    [Header("Settings Sliders")]
+    [SerializeField]
+    private Slider movementSlider;
+    [SerializeField]
+    private Slider positionSlider;
 
     [Header("Debugging")]
     [SerializeField]
@@ -22,6 +29,9 @@ public class MainMenuController : MonoBehaviour
             settings.SetActive(false);
             credits.SetActive(false);
         }
+
+        movementSlider.onValueChanged.AddListener(ChangeMovementType);
+        positionSlider.onValueChanged.AddListener(ChangePositionType);
     }
 
     public void StartGame()
@@ -47,13 +57,28 @@ public class MainMenuController : MonoBehaviour
     }
 
     // Settings Changes
-    public void ChangeMovementType()
+    public void ChangeMovementType(float val)
     {
-        // Change Movement Type
+        if (val == 0)
+        {
+            GameManager.instance.Movement = false;
+        }
+        else
+        {
+            GameManager.instance.Movement = true;
+        }
+        
     }
 
-    public void ChangeSeatedMode()
+    public void ChangePositionType(float val)
     {
-        // Change seated mode
+        if (val == 0)
+        {
+            GameManager.instance.Position = false;
+        }
+        else
+        {
+            GameManager.instance.Position = true;
+        }
     }
 }
