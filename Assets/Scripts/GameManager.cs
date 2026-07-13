@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this);
+
+        SceneManager.sceneLoaded += (Scene _, LoadSceneMode _) => ApplySettings();
     }
     public void StartGame()
     {
@@ -67,5 +70,11 @@ public class GameManager : MonoBehaviour
         onGameReset.Invoke();
 
         AddPoints(-points); // Resets the points to 0
+    }
+
+    public void ApplySettings()
+    {
+        XROriginMapping.instance.TeleportLocomotion.SetActive(!Movement);
+        XROriginMapping.instance.MoveLocomotion.SetActive(Movement);
     }
 }

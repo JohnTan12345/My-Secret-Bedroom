@@ -67,7 +67,6 @@ public class MainMenuController : MonoBehaviour
         {
             GameManager.instance.Movement = true;
         }
-        
     }
 
     public void ChangePositionType(float val)
