@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: Detects the rotation of the head and returns a value.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +10,7 @@ using UnityEngine.Events;
 
 public class HeadMovementCheck : MonoBehaviour
 {
+    public static HeadMovementCheck instance;
     [SerializeField]
     private int nodAngleThreshold;
     [SerializeField]
@@ -25,12 +31,19 @@ public class HeadMovementCheck : MonoBehaviour
     // 
     void Awake()
     {
-       if (head == null)
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+
+        instance = this;
+
+       if (head == null) // If head is not given
         {
             head = transform;
         }
 
-        if (shakeAngleThreshold < 0)
+        if (shakeAngleThreshold < 0) // Account for negative value
         {
             shakeAngleThreshold = System.Math.Abs(shakeAngleThreshold); 
         }
