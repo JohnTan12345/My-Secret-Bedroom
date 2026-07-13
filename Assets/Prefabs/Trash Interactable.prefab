@@ -58,7 +58,7 @@ MonoBehaviour:
       is struggling with how they feel about their body or themselves?
     jumpTo: -1
     taskToComplete: {fileID: 0}
-    headMovementOption: 0
+    headMovementOption: 1
     options:
     - text: Yes
       jumpTo: -1
