@@ -10,12 +10,12 @@ using UnityEngine.Events;
 public class EnterArea : MonoBehaviour
 {
     [SerializeField]
-    private string tag = "Player";
+    private string focusedTag = "Player";
     public UnityEvent ObjectEnterArea;
     public UnityEvent ObjectExitArea;
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(tag))
+        if (other.CompareTag(focusedTag))
         {
             ObjectEnterArea.Invoke();
         };
@@ -23,7 +23,7 @@ public class EnterArea : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(tag))
+        if (other.CompareTag(focusedTag))
         {
             ObjectExitArea.Invoke();
         };
