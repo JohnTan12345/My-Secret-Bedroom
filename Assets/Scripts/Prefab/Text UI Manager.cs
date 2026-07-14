@@ -47,6 +47,7 @@ public class TextUIManager : MonoBehaviour
 
     void Start()
     {   
+        // Add listeners to relevant events
         GameManager.instance.onGameReset.AddListener(Reset);
         interactableText.onTextChange.AddListener(RefreshText);
         interactableText.onTextsEnd.AddListener(Loopback);
@@ -59,11 +60,13 @@ public class TextUIManager : MonoBehaviour
             textStarted = true;
             RefreshText();
         }
+        // Start head detection in case the first text needs it
         interactableText.StartHeadDetection();
     }
 
     void OnDisable()
     {
+        // Stop the detection when the UI is disabled
         interactableText.StopHeadDetection("Text UI Disabled");
     }
 
@@ -74,6 +77,8 @@ public class TextUIManager : MonoBehaviour
             Debug.Log($"Resetting Text UI for {interactableText.gameObject.name}");
         }
         textStarted = false;
+
+        // Reset the interactable with tasks not being able to loopback if resetted.
         if (!canLoopBack)
         {
             interactableText.onTextsEnd.AddListener(Loopback);
@@ -91,6 +96,7 @@ public class TextUIManager : MonoBehaviour
         {
             return;
         }
+        // Resets the text progress to the first text
         interactableText.ResetTextProgress();
         textStarted = false;
         RefreshText();
@@ -134,14 +140,18 @@ public class TextUIManager : MonoBehaviour
 
                     TextOptionUI textOptionUI = optionUI_Clone.GetComponent<TextOptionUI>();
                     int optionNum = j;
+
+                    // Disable the buttons if text uses the head movement as an answer
                     if (gameText.headMovementOption)
                     {
                         textOptionUI.button.interactable = false;
                     }
-                    else
+                    else // Map an option to the button
                     {
                         textOptionUI.button.onClick.AddListener( () => buttonClickedEvent.Invoke(optionNum) );
                     }
+
+                    // Add the "nod" and "shake" instruction if text uses the head movement as an answer
                     textOptionUI.text.text = gameText.headMovementOption ? option.text + $" ({(j % 2 == 0  ? "nod":"shake")})": option.text;
                 }
             }
