@@ -51,9 +51,6 @@ public class InteractableText : MonoBehaviour
         // Wait for the game manager to load before adding this script
         yield return new WaitUntil(() => GameManager.instance != null);
         GameManager.instance.onGameReset.AddListener(ResetTextProgress);
-
-        // Adds this script to the game manager for ordered interaction
-        GameManager.instance.AddInteractableText(this);
     }
     
     public GameText GetGameText()
@@ -187,10 +184,6 @@ public class InteractableText : MonoBehaviour
                         {
                             throw new System.NullReferenceException("Game Manager not found in scene");
                         }
-                        else if (GameManager.instance.headMovementCheckScript == null)
-                        {
-                            throw new System.NullReferenceException("Head movement check script not assigned in Game Manager");
-                        }
                     }
                 }
 
@@ -234,14 +227,14 @@ public class InteractableText : MonoBehaviour
     {
         if (val && !headDetectionListenerAdded)
         {
-            GameManager.instance.headMovementCheckScript.StartHeadDetection();
-            GameManager.instance.headMovementCheckScript.onDetectionFinish.AddListener(DetectionResultHandler);
+            HeadMovementCheck.instance.StartHeadDetection();
+            HeadMovementCheck.instance.onDetectionFinish.AddListener(DetectionResultHandler);
             headDetectionListenerAdded = true;
         }
         else if (!val)
         {
-            GameManager.instance.headMovementCheckScript.StopDetection(msg);
-            GameManager.instance.headMovementCheckScript.onDetectionFinish.RemoveListener(DetectionResultHandler);
+            HeadMovementCheck.instance.StopDetection(msg);
+            HeadMovementCheck.instance.onDetectionFinish.RemoveListener(DetectionResultHandler);
             headDetectionListenerAdded = false;
         }
     }

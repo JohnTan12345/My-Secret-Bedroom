@@ -72,7 +72,7 @@ public class InteractableTask : MonoBehaviour
     private void HighlightObjectSetUp()
     {
 
-        if (ObjectHighlight == null || GameManager.instance.HighlightMat == null)
+        if (ObjectHighlight == null || GameManager.instance.highlightMaterial == null)
         {
             return;
         }
@@ -124,7 +124,7 @@ public class InteractableTask : MonoBehaviour
             {
                 List<Material> materials = new();
                 meshRenderer.GetMaterials(materials);
-                materials.Add(GameManager.instance.HighlightMat);
+                materials.Add(GameManager.instance.highlightMaterial);
                 meshRenderer.SetMaterials(materials);
             }
         }

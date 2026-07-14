@@ -3,24 +3,21 @@
     Description: Manages the overall game as well as resets
 */
 
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance {get; private set;}
-    [SerializeField]
-    [Tooltip("You can set an ordered list of interactable texts. Any interactable texts that is not added here will be automatically added with no order")]
-    private List<InteractableText> interactableTexts = new List<InteractableText>();
-    public Material HighlightMat;
-    public HeadMovementCheck headMovementCheckScript;
+    public static GameManager instance;
+    public Material highlightMaterial;
 
-    // Events
-    [Header("Events")]
-    [Space(5)]
-    public UnityEvent onGameReset;
-    public UnityEvent onPointsChange;
+    // Game Settings
+    [Header("Player Settings")]
+    [SerializeField]
+    public bool Movement = false;
+    [SerializeField]
+    public bool Position = false;
 
     // Player Stats
     [Header("Player Stats")]
@@ -30,18 +27,22 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int amount) { points += amount; onPointsChange.Invoke(); } // Adds points
     public int GetPoints() => points; // Returns points
 
+    // Events
+    [Header("Events")]
+    [Space(5)]
+    public UnityEvent onGameReset;
+    public UnityEvent onPointsChange;
+
     [Header("Hidden Parameters")]
     [SerializeField]
-    private int activeInteractableNum = 0;
-    [SerializeField]
-    private List<InteractableText> completedText = new();
-    [SerializeField]
-    private List<InteractableText> incompleteText = new();
+    private Vector3 sittingPosOffset;
     [SerializeField]
     private bool debuggingEnabled = false;
-
+    
     void Awake()
     {
+        AddPoints(-points); // Resets the points to 0
+
         if (instance != null && instance != this)
         {
             Destroy(this);
@@ -50,73 +51,45 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this);
+
+        SceneManager.sceneLoaded += (Scene _, LoadSceneMode _) => ApplySettings();
     }
-
-    public void StartGame() // To be implemented
+    public void StartGame()
     {
-        incompleteText = new(interactableTexts);
-        completedText = new() {};
-
-        SetActiveInteractableNum(0);
-        
         if (debuggingEnabled)
         {
-            Debug.Log($"Game started");
+            Debug.Log("Game Started");
         }
     }
 
     public void EndGame()
     {
-        // Show thanks and stuff
+        
     }
 
     public void ResetGame()
     {
         onGameReset.Invoke();
 
-        points = 0;
-        onPointsChange.Invoke();
+        AddPoints(-points); // Resets the points to 0
     }
 
-    private void OnTextsFinish()
+    public void ApplySettings(bool changeMovementSetting = true)
     {
-        InteractableText interactable = interactableTexts[activeInteractableNum];
-        if (!completedText.Contains(interactable))
+        if (changeMovementSetting)
         {
-            completedText.Add(interactable);
-            incompleteText.Remove(interactable);
+            XROriginMapping.instance.TeleportLocomotion.SetActive(!Movement);
+            XROriginMapping.instance.MoveLocomotion.SetActive(Movement);
         }
-
-        SetActiveInteractableNum(activeInteractableNum + 1);
-    }
-
-    private void SetActiveInteractableNum(int interactableNum)
-    {
-        interactableTexts[activeInteractableNum].onTextsEnd.RemoveListener(OnTextsFinish);
-        // Previous highlighted object becomes unhighlighted
-
-        activeInteractableNum = interactableNum;
-        interactableTexts[activeInteractableNum].onTextsEnd.AddListener(OnTextsFinish);
-        // Next object becomes highlighted
-    }
-
-    public void AddInteractableText(InteractableText interactableText) // Adds the interactable to the list for the game to easily order the tasks
-    {
-        if (interactableTexts.Contains(interactableText)) // Check if the interactableText is inside the list
+        
+        if (Position)
         {
-            if (debuggingEnabled)
-            {
-                Debug.Log($"{interactableText} is already inside {instance}");
-            }
-            
-            return;
+            XROriginMapping.instance.CameraOffset.transform.position += sittingPosOffset;
         }
-
-        interactableTexts.Add(interactableText); // Add if the interactableText is not inside the list
-
-        if (debuggingEnabled)
-            {
-                Debug.Log($"{interactableText} successfully added to {instance}");
-            }
+        else
+        {
+            XROriginMapping.instance.CameraOffset.transform.position -= sittingPosOffset;
+        }
+        
     }
 }

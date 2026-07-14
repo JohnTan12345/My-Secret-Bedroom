@@ -27,8 +27,6 @@ public class TextUIManager : MonoBehaviour
 
     [Header("Hidden Parameters")]
     [SerializeField]
-    private bool startOnReset = false;
-    [SerializeField]
     private bool textStarted = false;
     [SerializeField]
     private bool canLoopBack = true;
