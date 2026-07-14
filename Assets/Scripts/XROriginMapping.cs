@@ -6,6 +6,7 @@ public class XROriginMapping : MonoBehaviour
 
     public GameObject MoveLocomotion;
     public GameObject TeleportLocomotion;
+    public GameObject CameraOffset;
 
     void Awake()
     {

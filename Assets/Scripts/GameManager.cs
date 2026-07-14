@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Material highlightMaterial;
 
     // Game Settings
-    [Header("Player Stats")]
+    [Header("Player Settings")]
     [SerializeField]
     public bool Movement = false;
     [SerializeField]
@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent onPointsChange;
 
     [Header("Hidden Parameters")]
+    [SerializeField]
+    private Vector3 sittingPosOffset;
     [SerializeField]
     private bool debuggingEnabled = false;
     
@@ -72,9 +74,22 @@ public class GameManager : MonoBehaviour
         AddPoints(-points); // Resets the points to 0
     }
 
-    public void ApplySettings()
+    public void ApplySettings(bool changeMovementSetting = true)
     {
-        XROriginMapping.instance.TeleportLocomotion.SetActive(!Movement);
-        XROriginMapping.instance.MoveLocomotion.SetActive(Movement);
+        if (changeMovementSetting)
+        {
+            XROriginMapping.instance.TeleportLocomotion.SetActive(!Movement);
+            XROriginMapping.instance.MoveLocomotion.SetActive(Movement);
+        }
+        
+        if (Position)
+        {
+            XROriginMapping.instance.CameraOffset.transform.position += sittingPosOffset;
+        }
+        else
+        {
+            XROriginMapping.instance.CameraOffset.transform.position -= sittingPosOffset;
+        }
+        
     }
 }

@@ -1154,6 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveLocomotion: {fileID: 58445280694286476}
   TeleportLocomotion: {fileID: 2190828208922718286}
+  CameraOffset: {fileID: 1680501586}
 --- !u!1 &1787516059220952802
 GameObject:
   m_ObjectHideFlags: 0

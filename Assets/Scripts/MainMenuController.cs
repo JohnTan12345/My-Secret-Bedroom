@@ -79,5 +79,6 @@ public class MainMenuController : MonoBehaviour
         {
             GameManager.instance.Position = true;
         }
+        GameManager.instance.ApplySettings();
     }
 }
