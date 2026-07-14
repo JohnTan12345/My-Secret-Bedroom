@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5465db64310b45a4ab19e2e25169df54, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfe63ec60f533b348880b84a237c7589, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -147,7 +147,6 @@ MonoBehaviour:
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  HeadMovementDetectionActive: 0
   taskListenerAdded: 0
   headDetectionListenerAdded: 0
   debuggingEnabled: 0
