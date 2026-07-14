@@ -71,20 +71,31 @@ public class InteractableTask : MonoBehaviour
 
     private void HighlightObjectSetUp()
     {
-
+        // Check if theres an object to be highlighted or the highlight material is assigned
         if (ObjectHighlight == null || GameManager.instance.highlightMaterial == null)
         {
+            if (ObjectHighlight == null)
+            {
+                Debug.LogWarning("No objects given to highlight");
+            }
+            if (GameManager.instance.highlightMaterial == null)
+            {
+                Debug.LogError("Highlight material is not assigned in GameManager");
+            }
+
             return;
         }
 
         highlightingEnabled = true;
         ObjectHighlight.TryGetComponent(out MeshRenderer parentMeshRenderer);
 
+        // Add highlighted object's mesh renderer into highlight list
         if (parentMeshRenderer != null)
         {
             highlightedObjectList.Add(parentMeshRenderer);
         }
 
+        // Add all children's mesh renderer into highlight list
         if (ObjectHighlight.transform.childCount > 0)
             {
                 for (int i = 0; i < ObjectHighlight.transform.childCount; i++)
@@ -102,6 +113,7 @@ public class InteractableTask : MonoBehaviour
                 }
             }
 
+        // Automatically highlight object when the task start / unhighlight object when the task end
         if (automaticHighlighting)
         {
             onTaskStart.AddListener(() => HighlightObject(true));
@@ -112,6 +124,7 @@ public class InteractableTask : MonoBehaviour
 
     public void HighlightObject(bool val)
     {
+        // If highlighting is disabled or given value is the same
         if (!highlightingEnabled || objectHighlighted == val)
         {
             return;
@@ -119,6 +132,7 @@ public class InteractableTask : MonoBehaviour
 
         if (val)
         {
+            // Highlights the object and its children
             objectHighlighted = true;
             foreach (MeshRenderer meshRenderer in highlightedObjectList)
             {
@@ -130,6 +144,7 @@ public class InteractableTask : MonoBehaviour
         }
         else
         {
+            // Unhighlights the object and its children
             objectHighlighted = false;
             foreach (MeshRenderer meshRenderer in highlightedObjectList)
             {

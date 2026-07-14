@@ -170,21 +170,12 @@ public class InteractableText : MonoBehaviour
                 }
                 else if (texts[currentTextElementNumber].headMovementOption)
                 {
-                    try
+                    // Start head detection
+                    if (!headDetectionListenerAdded)
                     {
-                        if (!headDetectionListenerAdded)
-                        {
-                            SetHeadDetectionCompleteListener(true);
-                        }
-                        
+                        SetHeadDetectionCompleteListener(true);
                     }
-                    catch (System.NullReferenceException)
-                    {
-                        if (GameManager.instance == null)
-                        {
-                            throw new System.NullReferenceException("Game Manager not found in scene");
-                        }
-                    }
+
                 }
 
                 
@@ -244,6 +235,7 @@ public class InteractableText : MonoBehaviour
     {
         SetHeadDetectionCompleteListener(false, "finished");
 
+        // Handle the result from head detection
         if (result.nodding)
         {
             GetNextTextObject(0);
