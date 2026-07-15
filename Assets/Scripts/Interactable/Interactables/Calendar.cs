@@ -1,3 +1,8 @@
+/*
+    Created by: Xander
+    Description: Calendar animations and functions
+*/
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -5,8 +10,6 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Calendar : MonoBehaviour
 {
-
-    
     public XRSimpleInteractable calendarInteractable;
     public Animator pageAnimator;
 
@@ -29,7 +32,8 @@ public class Calendar : MonoBehaviour
     private Renderer pageRenderer;
 
     private bool taskFinished = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    // Assign variables and event listeners
     void Start()
     {
         GameManager.instance.onGameReset.AddListener(GameReset);
@@ -38,8 +42,7 @@ public class Calendar : MonoBehaviour
         pageRenderer.material.mainTexture = calendarTextures[currentPage];
     }
 
-   
-
+    // Reset the interactable to original position
     private void GameReset()
     {
         textUI.SetActive(false);
@@ -50,6 +53,7 @@ public class Calendar : MonoBehaviour
         calendarInteractable.enabled = false;
     }
 
+    // Start the task and highlight the calendar when player enters
     public void OnPlayerEnterArea()
     {
         textUI.SetActive(true);
@@ -60,6 +64,7 @@ public class Calendar : MonoBehaviour
         }
     }
 
+    // Unhighlight the calendar and disable the text UI when player leaves
     public void OnPlayerExitArea()
     {
         textUI.SetActive(false);
@@ -67,53 +72,56 @@ public class Calendar : MonoBehaviour
         interactableTask.HighlightObject(false);
     }
 
+    // Disable the text UI when the text is done
     public void TextFinished()
     {
         textUI.SetActive(false);
         Debug.Log("Text and task Finished");
     }
 
+    // Make the calendar non interactable when task is done
     public void TaskFinished()
     {
         taskFinished = true;
         calendarInteractable.enabled = false;
     }
 
+    // Page flip animation
    private IEnumerator FlipPageRoutine()
-{
-    if (isFlipping)
-        yield break;
-
-    isFlipping = true;
-
-    pageAnimator.Play("pageflipanimation", 0, 0f);
-
-    yield return new WaitForSeconds(0.15f);
-
-    currentPage++;
-
-    if (currentPage >= calendarTextures.Length)
     {
-        currentPage = calendarTextures.Length - 1;
+        if (isFlipping) // Check if page is in the middle of animation
+            yield break;
+            
+        isFlipping = true;
+
+        pageAnimator.Play("pageflipanimation", 0, 0f); // Play animation
+
+        yield return new WaitForSeconds(0.15f); // Wait for animation to finish
+
+        currentPage++;
+        
+        // Check if its the last page
+        if (currentPage >= calendarTextures.Length)
+        {
+            currentPage = calendarTextures.Length - 1;
+            isFlipping = false;
+            yield break;
+        }
+
+        // Change texture and add task progress after page flip
+        pageRenderer.material.mainTexture = calendarTextures[currentPage];
+
+        interactableTask.AddProgress(1);
+
+        yield return new WaitForSeconds(0.3f);
+
         isFlipping = false;
-        yield break;
     }
 
-    pageRenderer.material.mainTexture = calendarTextures[currentPage];
-
-    interactableTask.AddProgress(1);
-
-    yield return new WaitForSeconds(0.3f);
-
-    isFlipping = false;
-}
-
+    // When the calendar is interacted
     public void OnPageFlip()
     {
         StartCoroutine(FlipPageRoutine());
     }
-
-    
-
 
 }
