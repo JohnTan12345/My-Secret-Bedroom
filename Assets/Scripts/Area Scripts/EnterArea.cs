@@ -13,6 +13,8 @@ public class EnterArea : MonoBehaviour
     private string focusedTag = "Player";
     public UnityEvent ObjectEnterArea;
     public UnityEvent ObjectExitArea;
+
+    // Check if object of the focused tag enters the area
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(focusedTag))
@@ -21,6 +23,7 @@ public class EnterArea : MonoBehaviour
         };
     }
 
+    // Check if object of the focused tag leaves the area
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(focusedTag))

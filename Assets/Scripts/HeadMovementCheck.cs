@@ -24,11 +24,13 @@ public class HeadMovementCheck : MonoBehaviour
 
     private bool checkActive = false;
 
+    [Header("Hidden Parameters")]
     [SerializeField]
     private bool debuggingEnabled = false;
     [SerializeField]
     private bool advancedDebuggingEnabled = false;
-    // 
+
+
     void Awake()
     {
         if (instance != null && instance != this)
@@ -51,7 +53,8 @@ public class HeadMovementCheck : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.onGameReset.AddListener(() => StopDetection("Game Resetted"));
+        GameManager.instance.onGameReset.AddListener(() => StopDetection("Game Resetted")); // Stop detection if the game resetted
+
     }
 
     public void StartHeadDetection()
@@ -60,7 +63,7 @@ public class HeadMovementCheck : MonoBehaviour
         {
             Debug.Log("Head detection started");
         }
-        StartCoroutine(HeadMovementDetection());
+        StartCoroutine(HeadMovementDetection()); // Start the head detection
     }
 
     private IEnumerator HeadMovementDetection()
@@ -68,10 +71,14 @@ public class HeadMovementCheck : MonoBehaviour
         checkActive = true;
 
         DetectionResult result = new();
-        Dictionary<string, bool> faceChecks = new() { { "left", false }, {"right", false}, {"up", false}, {"down", false} };
+        Dictionary<string, bool> faceChecks = new(4) { { "left", false }, {"right", false}, {"up", false}, {"down", false} };
 
+        // Variable setup before starting the check
         int nodCount = 0;
         int shakeCount = 0;
+
+        float prevX = head.eulerAngles.x;
+        float prevY = head.eulerAngles.y;
 
         float headXThresholdMin = 180 - nodAngleThreshold;
         float headXThresholdMax = 180 + nodAngleThreshold;
@@ -79,20 +86,21 @@ public class HeadMovementCheck : MonoBehaviour
         float headYThresholdMin = 180 - shakeAngleThreshold;
         float headYThresholdMax = 180 + shakeAngleThreshold;
 
-        float prevX = head.eulerAngles.x;
-        float prevY = head.eulerAngles.y;
-
+        // Current head position
         float referenceX = 180;
         float referenceY = 180;
 
         while (checkActive)
         {
+            // Stores the original position before overflow/underflow check
             float originalX = head.eulerAngles.x;
             float originalY = head.eulerAngles.y;
-
+            
+            // Stores final position after overflow/underflow check
             float finalX = originalX;
             float finalY = originalY;
 
+            // Check if the new X went over 360 or went under 0
             if (Mathf.Abs(prevX - originalX) > 300f)
             {
                 if (originalX < 180) // if x overflows 360
@@ -105,6 +113,7 @@ public class HeadMovementCheck : MonoBehaviour
                 }
             }
 
+            // Check if the new Y went over 360 or went under 0
             if (Mathf.Abs(prevY - originalY) > 300f)
             {
                 if (originalY < 180) // if y overflows 360
@@ -117,21 +126,23 @@ public class HeadMovementCheck : MonoBehaviour
                 }
             }
 
+            // Add the change to the reference
             referenceX += prevX - finalX;
             referenceY += prevY - finalY;
 
+            // Set the new pevious
             prevX = originalX;
             prevY = originalY;
 
-            // Nod detection
-            if (referenceX < headXThresholdMin && !faceChecks["up"])
+            // Nod detection based on reference position
+            if (referenceX < headXThresholdMin && !faceChecks["up"]) // // Check if head is facing up from reference
             {
                 nodCount++;
                 shakeCount = 0;
                 faceChecks["up"] = true;
                 faceChecks["down"] = false;
             }
-            else if (referenceX > headXThresholdMax && !faceChecks["down"])
+            else if (referenceX > headXThresholdMax && !faceChecks["down"]) // Check if head is facing down from reference
             {
                 nodCount++;
                 shakeCount = 0;
@@ -139,15 +150,15 @@ public class HeadMovementCheck : MonoBehaviour
                 faceChecks["up"] = false;
             }
 
-            // Shake detection
-            if (referenceY < headYThresholdMin && !faceChecks["left"])
+            // Shake detection based on reference position
+            if (referenceY < headYThresholdMin && !faceChecks["left"]) // Check if head is facing left from reference
             {
                 shakeCount++;
                 nodCount = 0;
                 faceChecks["left"] = true;
                 faceChecks["right"] = false;
             }
-            else if (referenceY > headYThresholdMax && !faceChecks["right"])
+            else if (referenceY > headYThresholdMax && !faceChecks["right"]) // Check if head is facing right from reference
             {
                 shakeCount++;
                 nodCount = 0;
@@ -155,14 +166,16 @@ public class HeadMovementCheck : MonoBehaviour
                 faceChecks["left"] = false; 
             }
 
+            // Once the check reaches the threshold
             if (nodCount >= maxCheck || shakeCount >= maxCheck)
             {
                 result.nodding = nodCount >= maxCheck;
                 result.shaking = shakeCount >= maxCheck;
                 checkActive = false;
-                break;
+                break; // Stop the check
             }
-    
+
+            // Debugging
             if (debuggingEnabled && advancedDebuggingEnabled)
             {
                 Debug.Log($"head angle: x: {originalX}, y: {originalY}; thresholds: x: [ min: {headXThresholdMin}, max: {headXThresholdMax} ], y: [ min: {headYThresholdMin}, max: {headYThresholdMax} ]");
@@ -181,6 +194,7 @@ public class HeadMovementCheck : MonoBehaviour
         onDetectionFinish.Invoke(result);
     }
 
+    // Stop detection with a reason
     public void StopDetection(string msg)
     {
         Debug.LogWarning($"Stopped due to the following reason: {msg}");

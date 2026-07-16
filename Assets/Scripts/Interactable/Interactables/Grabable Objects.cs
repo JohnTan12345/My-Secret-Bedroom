@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: Moves the text UI from one spot to another
+*/
+
 using UnityEngine;
 
 public class GrabableObjects : MonoBehaviour
@@ -19,9 +24,10 @@ public class GrabableObjects : MonoBehaviour
 
     private bool grabbed = false;
 
+    // Variable setup
     void Start()
     {
-
+        // Set grabable object to current object if none is given
         if (grabableObject == null)
         {
             grabableObject = gameObject;
@@ -32,6 +38,7 @@ public class GrabableObjects : MonoBehaviour
         originalObjRot = grabableObject.transform.rotation;   
     }
 
+    // Moves the text UI to new position that follows the object
     public void OnGrab()
     {
         if (grabbed) {return;}
@@ -46,6 +53,7 @@ public class GrabableObjects : MonoBehaviour
         grabbed = true;
     }
 
+    // Resets the text UI to original position and set the grabable object's velocity to 0
     private void Reset()
     {
         if (TextUI != null)

@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
         Debug.DrawRay(PlayerLookObject.transform.position, PlayerLookObject.transform.forward * maxDistance, Color.green);
         if (Physics.Raycast(PlayerLookObject.transform.position, PlayerLookObject.transform.forward, out RaycastHit hitInfo, maxDistance, LayerMask.GetMask("Player Look Area"), QueryTriggerInteraction.Collide))
         {
+            // If the ray hits a Look Area
             if (!firstColliderCheck)
             {
                 firstColliderCheck = true;

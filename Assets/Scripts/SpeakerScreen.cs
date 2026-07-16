@@ -1,3 +1,9 @@
+/*
+    Created by: Lucas
+    Modified by: John
+    Description: Bluetooth speaker screen switching
+*/
+
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -10,13 +16,19 @@ public class SpeakerScreen : MonoBehaviour
 
     private int currentIndex = 0;
 
-    void Start()
+    void OnEnable()
     {
         if (spriteList.Count > 0)
         {
             screenImage.sprite = spriteList[currentIndex];
+            // Switch the sprites repeatedly 
             InvokeRepeating("NextSprite", changeInterval, changeInterval);
         }
+    }
+
+    void OnDisable() // Just in case of memory leaks
+    {
+        CancelInvoke();
     }
 
     void NextSprite()
@@ -25,6 +37,7 @@ public class SpeakerScreen : MonoBehaviour
         if (currentIndex >= spriteList.Count)
             currentIndex = 0; // loop back
 
+        // Change the screen based on the current index
         screenImage.sprite = spriteList[currentIndex];
     }
 }

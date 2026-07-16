@@ -1,5 +1,9 @@
+/*
+    Created by: John
+    Description: Toggles the text UI based on whether the player is looking at the UI / interactable or not.
+*/
+
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class LookUIToggle : MonoBehaviour
@@ -38,18 +42,22 @@ public class LookUIToggle : MonoBehaviour
     [SerializeField]
     private bool playerLookedInArea = false;
 
+    // Variable setup and adding listeners
     void Start()
     {
         GameManager.instance.onGameReset.AddListener(ResetValues);
 
+        // Assign look area for the object
         LookArea _objectLookArea = objectLookArea.GetComponent<LookArea>();
         _objectLookArea.onPlayerLook.AddListener(() => LookingAtObject(true));
         _objectLookArea.onPlayerAway.AddListener(() => LookingAtObject(false));
 
+        // Assign look area for the text UI
         LookArea _textUILookArea = textUILookArea.GetComponent<LookArea>();
         _textUILookArea.onPlayerLook.AddListener(() => LookingAtUI(true));
         _textUILookArea.onPlayerAway.AddListener(() => LookingAtUI(false));
 
+        // If the object should only be interactable within an area the first time
         if (objectInteractionArea != null)
         {
             areaInteractionEnabled = true;
@@ -58,18 +66,21 @@ public class LookUIToggle : MonoBehaviour
             objectInteractionArea.ObjectExitArea.AddListener(() => PlayerInArea(false));
         }
 
+        // If a grab XR interactable script is assigned
         if (grabInteractable != null)
         {
             grabInteractable.selectEntered.AddListener((SelectEnterEventArgs) => PlayerGrabbing(true));
             grabInteractable.selectExited.AddListener((SelectExitEventArgs) => PlayerGrabbing(false));
         }
 
+        // Assign the text UI gameObject to the Look Area if theres no given gameObject (UI)
         if (textUIObject == null)
         {
             textUIObject = textUILookArea;
         }
     }
 
+    // Update the UI according to whether the player is looing at the interactable object
     public void LookingAtObject(bool val)
     {
         if (val == lookingAtObject)
@@ -81,6 +92,7 @@ public class LookUIToggle : MonoBehaviour
         UpdateUI();
     }
 
+    // Update the UI according to whether the player is looing at the text UI
     public void LookingAtUI(bool val)
     {
         if (val == lookingAtUI)
@@ -92,6 +104,7 @@ public class LookUIToggle : MonoBehaviour
         UpdateUI();
     }
 
+    // Update the UI according to whether the player is within the interaction area
     public void PlayerInArea(bool val)
     {
         if (val == playerInArea)
@@ -103,6 +116,7 @@ public class LookUIToggle : MonoBehaviour
         UpdateUI();
     }
 
+    // Enable/Disable the enter area object
     public void SetActiveAreaInteraction(bool val)
     {
         if (areaInteractionEnabled)
@@ -111,6 +125,7 @@ public class LookUIToggle : MonoBehaviour
         }
     }
 
+    // Disable interaction area while being grabbed (if set). Also remembers that the player grabbed it the first time
     private void PlayerGrabbing(bool val)
     {
         if (disableInteractionAreaOnGrab)
@@ -121,6 +136,7 @@ public class LookUIToggle : MonoBehaviour
         playerGrabbing = val;
     }
 
+    // Enables/Disables the UI by checking if the player is looking at the UI/GameObject/Still within interaction area
     private void UpdateUI()
     {
         bool _playerInAreaAndobjectInteractionAreaSet = areaInteractionActive && playerInArea || !areaInteractionActive;
@@ -129,6 +145,7 @@ public class LookUIToggle : MonoBehaviour
         bool _textActiveAndLooking = textUIObject.activeSelf && (lookingAtObject || lookingAtUI);
         bool _textNotActiveAndLookingAtObject = !textUIObject.activeSelf && lookingAtObject;
 
+        // Check if the player is within the interaction area and is looking
         if (areaInteractionActive)
         {
             if ((_textActiveAndLooking || _textNotActiveAndLookingAtObject) && _playerInAreaAndobjectInteractionAreaSet || playerLookedInArea && _playerInAreaAndobjectInteractionAreaSet)
@@ -141,17 +158,18 @@ public class LookUIToggle : MonoBehaviour
             }
         }
         
-
+        // Enable the UI if the player is within interaction area (if set), looking at the object and grabbing it (if grabbed at least once). Else disable the UI
         if ((_playerGrabbing && _playerInAreaAndobjectInteractionAreaSet && (_textActiveAndLooking || _textNotActiveAndLookingAtObject)) || playerLookedInArea && areaInteractionActive)
         {
             textUIObject.SetActive(true);
         }
         else
         {
-            textUIObject.SetActive (false);
+            textUIObject.SetActive(false);
         }
     }
 
+    // Resets values to original
     private void ResetValues()
     {
         if (areaInteractionEnabled)

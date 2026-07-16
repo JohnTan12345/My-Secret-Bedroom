@@ -1,10 +1,9 @@
 /*
     Created by: Rayner
-    Description: WeighingScale functions
+    Description: Weighing scale interactable functions
 */
 
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Scale : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class Scale : MonoBehaviour
     public InteractableText interactableText;
     public GameObject questionUI;
     private bool interactionDone = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         GameManager.instance.onGameReset.AddListener(GameReset);
@@ -34,7 +33,7 @@ public class Scale : MonoBehaviour
         questionUI.SetActive(true);
     }
 
-    public void GameReset()
+    public void GameReset() // Disables the UI and reset variables to original
     {
         questionUI.SetActive(false);
         interactionDone = false;

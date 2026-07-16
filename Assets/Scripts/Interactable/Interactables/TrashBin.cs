@@ -1,5 +1,9 @@
+/*
+    Created by: Lucas
+    Description: Trash bin interactable functions
+*/
+
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class TrashBin : MonoBehaviour
 {
