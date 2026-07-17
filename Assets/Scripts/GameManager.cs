@@ -1,6 +1,6 @@
 /*
     Created by: John
-    Description: Manages the overall game as well as resets
+    Description: Manages when the game starts, ends, resets as well as the settings for the player
 */
 
 using UnityEngine;
@@ -41,8 +41,7 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     {
-        AddPoints(-points); // Resets the points to 0
-
+        // Set the instance to this for easier referencing
         if (instance != null && instance != this)
         {
             Destroy(this);
@@ -52,8 +51,11 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this);
 
+        // Apply player settings after scene loads
         SceneManager.sceneLoaded += (Scene _, LoadSceneMode _) => ApplySettings();
     }
+
+    // Starts the game
     public void StartGame()
     {
         if (debuggingEnabled)
@@ -62,11 +64,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Ends the game
     public void EndGame()
     {
         
     }
 
+    // Restarts the game
     public void ResetGame()
     {
         onGameReset.Invoke();
@@ -74,15 +78,16 @@ public class GameManager : MonoBehaviour
         AddPoints(-points); // Resets the points to 0
     }
 
+    // Applies the settings player sets in the main menu
     public void ApplySettings(bool changeMovementSetting = true)
     {
-        if (changeMovementSetting)
+        if (changeMovementSetting) // Movement setting application
         {
             XROriginMapping.instance.TeleportLocomotion.SetActive(!Movement);
             XROriginMapping.instance.MoveLocomotion.SetActive(Movement);
         }
         
-        if (Position)
+        if (Position) // Position setting application
         {
             XROriginMapping.instance.CameraOffset.transform.position += sittingPosOffset;
         }

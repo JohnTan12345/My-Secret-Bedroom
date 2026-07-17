@@ -1,3 +1,9 @@
+/*
+    Created by: Rayner
+    Modified by: John
+    Description: Clothes pile interactivity and the basket visual
+*/
+
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -71,31 +77,37 @@ public class Clothes : MonoBehaviour
 
     public void MoveUI()
     {
-        // Switch UI panels
+        // Move the UI to above the basket
         textUI.transform.position = newTextUIPositon.position;
         textUI.transform.rotation = newTextUIPositon.rotation;
     }
 
+    // Reset all the position of the items
     public void GameReset()
     {
+        // Put the pile back to original position
         clothingPile.SetActive(true);
         clothingPile.transform.position = pileOriginalPos;
         clothingPile.transform.rotation = pileOriginalRot;
 
+        // Freezes the clothes pile
         clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
+        // Put the textUI back to original position
         textUI.transform.position = textUIOriginalPos;
         textUI.transform.rotation = textUIOriginalRot;
 
+        // Make the pile not interactable
         clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
         clothingPile.SetActive(true);
 
+        // Disable text UI
         textUI.SetActive(false);
 
         taskFinished = false;
 
+        // Resets the clothes basket back to empty
         filledClothesBasket.SetActive(false);
         clothesBasket.SetActive(true);
     }
-
 }

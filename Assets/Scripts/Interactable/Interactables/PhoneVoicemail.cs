@@ -1,8 +1,9 @@
-using UnityEngine;
 /*
     Created by: Xander
     Description: Controls when the phone voicemail plays and pauses, as well as the button states
 */
+
+using UnityEngine;
 
 public class PhoneVoicemail : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class PhoneVoicemail : MonoBehaviour
         }
     }
 
-    public void PlayVoicemail()
+    public void PlayVoicemail() // Plays the voicemail, update relevant buttons
     {
         voicemailAudio.Play();
 
@@ -37,7 +38,7 @@ public class PhoneVoicemail : MonoBehaviour
         pauseButton.SetActive(true);
     }
 
-    public void PauseVoicemail()
+    public void PauseVoicemail() // Pauses the voicemail, update relevant buttons
     {
         voicemailAudio.Pause();
 

@@ -1,11 +1,16 @@
+/*
+    Created by: Lucas
+    Modified by: John
+    Description: Mobile phone interactable functions
+*/
+
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class MobilePhone : MonoBehaviour
 {
     public InteractableText interactableText;
     public GameObject textUI;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         GameManager.instance.onGameReset.AddListener(GameReset);

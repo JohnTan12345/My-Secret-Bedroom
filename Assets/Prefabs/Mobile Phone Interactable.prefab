@@ -286,7 +286,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.0008, y: 0.0019, z: 0.002}
-  m_LocalScale: {x: 0.015365841, y: 0.015764808, z: 0.014896554}
+  m_LocalScale: {x: 0.008425705, y: 0.009634663, z: 0.014896554}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3992239678512846189}
@@ -335,7 +335,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 85f7e017d1b8fb741b032fa03f65557f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce766d7b1f77ff145abf96ca1cd5643d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -434,7 +434,6 @@ MonoBehaviour:
   currentTextElementNumber: 0
   textStart: 0
   taskActive: 0
-  HeadMovementDetectionActive: 0
   taskListenerAdded: 0
   headDetectionListenerAdded: 0
   debuggingEnabled: 0

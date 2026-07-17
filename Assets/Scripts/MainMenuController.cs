@@ -1,3 +1,8 @@
+/*
+    Created by: John
+    Description: Manages the main menu UI
+*/
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +26,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     private bool resetMenus = true;
 
-    void Awake()
+    void Awake() // Resets the UI to only show main menu
     {
         if (resetMenus)
         {
@@ -30,16 +35,19 @@ public class MainMenuController : MonoBehaviour
             credits.SetActive(false);
         }
 
+        // Add event listeners to setting changes
         movementSlider.onValueChanged.AddListener(ChangeMovementType);
         positionSlider.onValueChanged.AddListener(ChangePositionType);
     }
 
+    // Starts the game
     public void StartGame()
     {
         GameManager.instance.StartGame();
     }
 
     // Menu interactions
+    // Change the menu to the given menu
     public void ChangeMenu(GameObject menu)
     {
         main.SetActive(false);
@@ -49,6 +57,7 @@ public class MainMenuController : MonoBehaviour
         menu.SetActive(true);
     }
 
+    // Return to main menu
     public void ReturnToMain()
     {
         main.SetActive(true);
