@@ -3,6 +3,7 @@
     Description: Manages when the game starts, ends, resets as well as the settings for the player
 */
 
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -53,10 +54,15 @@ public class GameManager : MonoBehaviour
 
         // Apply player settings after scene loads
         SceneManager.sceneLoaded += (Scene _, LoadSceneMode _) => ApplySettings();
+
+        if (debuggingEnabled)
+        {
+            Debug.Log("AE");
+        }
     }
 
     // Starts the game
-    public async void StartGame()
+    public async Task StartGame()
     {
         if (debuggingEnabled)
         {
@@ -72,7 +78,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Ends the game
-    public async void EndGame()
+    public async Task EndGame()
     {
         await SceneManager.LoadSceneAsync("MainMenu");
     }
