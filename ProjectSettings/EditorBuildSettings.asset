@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Scene/BakedScene.unity
-    guid: 9738bbefde64fe341b5ca286b95fd72f
+    path: Assets/Scenes/Main Scenes/MainMenu.unity
+    guid: 743784bfda1eace48838f7bce1c63465
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/Game.unity
+    guid: f533a97ed75d67946862681644dc276b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

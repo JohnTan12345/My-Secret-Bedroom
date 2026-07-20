@@ -56,8 +56,15 @@ public class GameManager : MonoBehaviour
     }
 
     // Starts the game
-    public void StartGame()
+    public async void StartGame()
     {
+        if (debuggingEnabled)
+        {
+            Debug.Log("Starting Game");
+        }
+
+        await SceneManager.LoadSceneAsync("Game");
+
         if (debuggingEnabled)
         {
             Debug.Log("Game Started");
@@ -65,9 +72,9 @@ public class GameManager : MonoBehaviour
     }
 
     // Ends the game
-    public void EndGame()
+    public async void EndGame()
     {
-        
+        await SceneManager.LoadSceneAsync("MainMenu");
     }
 
     // Restarts the game
