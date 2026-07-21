@@ -85,9 +85,9 @@ GameObject:
   m_Component:
   - component: {fileID: 872984205648563806}
   - component: {fileID: 2169686166791778647}
-  - component: {fileID: 6520412941082561386}
   - component: {fileID: 740542438709235258}
   - component: {fileID: 7086594044633055120}
+  - component: {fileID: 2691325585274707668}
   m_Layer: 0
   m_Name: Mirror Interactable
   m_TagString: Untagged
@@ -171,21 +171,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6520412941082561386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5191181033747863726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2565bec5b808afc4d9ea0045c5dd55ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableText: {fileID: 2169686166791778647}
-  interactableTask: {fileID: 740542438709235258}
-  cloth: {fileID: 4457638214324469834}
 --- !u!114 &740542438709235258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +222,22 @@ MonoBehaviour:
   playerGrabbing: 0
   playerGrabbedOnce: 0
   playerLookedInArea: 0
+--- !u!114 &2691325585274707668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191181033747863726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5838313843eaac240ad92fd16ca8184c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textUI: {fileID: 4945087153117263819}
+  interactableText: {fileID: 2169686166791778647}
+  enterArea: {fileID: 6776253490046749674}
+  cloth: {fileID: 4457638214324469834}
 --- !u!1 &7208339874269895891
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,8 +619,8 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6520412941082561386}
-        m_TargetAssemblyTypeName: Mirror, Assembly-CSharp
+      - m_Target: {fileID: 2691325585274707668}
+        m_TargetAssemblyTypeName: MirrorDerived, Assembly-CSharp
         m_MethodName: OnClothGrab
         m_Mode: 1
         m_Arguments:
@@ -824,22 +825,6 @@ PrefabInstance:
       propertyPath: PlayerEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6520412941082561386}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: PlayerExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6520412941082561386}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6520412941082561386}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: PlayerEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6520412941082561386}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
