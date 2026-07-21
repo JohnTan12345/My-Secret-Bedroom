@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1212983198866707325}
   - component: {fileID: 8517666441557268596}
   - component: {fileID: 4587393436131762933}
-  - component: {fileID: 4456288827221446181}
+  - component: {fileID: 3977383630357493255}
   m_Layer: 0
   m_Name: Laundry Interactable
   m_TagString: Untagged
@@ -137,8 +137,8 @@ MonoBehaviour:
   onTaskStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4456288827221446181}
-        m_TargetAssemblyTypeName: Clothes, Assembly-CSharp
+      - m_Target: {fileID: 3977383630357493255}
+        m_TargetAssemblyTypeName: Clothes2, Assembly-CSharp
         m_MethodName: onStartTask
         m_Mode: 1
         m_Arguments:
@@ -152,8 +152,8 @@ MonoBehaviour:
   onTaskComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4456288827221446181}
-        m_TargetAssemblyTypeName: ClothesPile, Assembly-CSharp
+      - m_Target: {fileID: 3977383630357493255}
+        m_TargetAssemblyTypeName: Clothes2, Assembly-CSharp
         m_MethodName: MoveUI
         m_Mode: 1
         m_Arguments:
@@ -164,7 +164,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4456288827221446181
+--- !u!114 &3977383630357493255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,12 +173,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 635589336777258431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b83f77248a12144a4f725fcf11675a, type: 3}
+  m_Script: {fileID: 11500000, guid: a4eb461db6d93a04ebd115c912450cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableText: {fileID: 8517666441557268596}
-  interactableTask: {fileID: 4587393436131762933}
   textUI: {fileID: 6125477380518366109}
+  interactableText: {fileID: 8517666441557268596}
+  enterArea: {fileID: 1372709749663131509}
   clothingPile: {fileID: 520855752588204727}
   newTextUIPositon: {fileID: 6121336362814337616}
   clothesBasket: {fileID: 6767882573609481345}
@@ -280,12 +280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6855acd27224c23439bd628c64909d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tag: ClothingPile
+  focusedTag: ClothingPile
   ObjectEnterArea:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4456288827221446181}
-        m_TargetAssemblyTypeName: Clothes, Assembly-CSharp
+      - m_Target: {fileID: 3977383630357493255}
+        m_TargetAssemblyTypeName: Clothes2, Assembly-CSharp
         m_MethodName: OnClothingDropped
         m_Mode: 1
         m_Arguments:
@@ -963,11 +963,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.1740308
+      value: 6.4635963
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.039
+      value: -1.433
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -975,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.068
+      value: 0.261
       objectReference: {fileID: 0}
     - target: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1007,16 +1007,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4456288827221446181}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1038,6 +1034,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
+--- !u!114 &1372709749663131509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
+  m_PrefabInstance: {fileID: 9194062520822148470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6855acd27224c23439bd628c64909d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2332928241280078457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
