@@ -1,5 +1,7 @@
 /*
-    Created by: Xander
+    Template created by: John
+
+    Script Created by: Xander
     Description: Calendar animations and functions
 */
 
@@ -7,25 +9,17 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-
-public class Calendar : MonoBehaviour
+public class Calendar: BaseGameInteractables
 {
+    [Header("Interactable Variables")]
     public XRSimpleInteractable calendarInteractable;
     public Animator pageAnimator;
-
+    public Transform pagePivot;
+    public GameObject page;
     private int currentPage = 0;
 
     private Quaternion originalRotation;
-
-    public InteractableText interactableText;
-    public InteractableTask interactableTask;
-
-    public Transform pagePivot;
-
-    public GameObject page;
-
-    public GameObject textUI;
-
+    
     public Texture2D[] calendarTextures;
     
     private bool isFlipping = false;
@@ -33,17 +27,17 @@ public class Calendar : MonoBehaviour
 
     private bool taskFinished = false;
 
-    // Assign variables and event listeners
-    void Start()
+    // DO NOT REMOVE THE base.function() OF ANY PROTECTED OVERRIDE LINE WITH IT!
+    // THEY ARE THERE TO INITIALIZE THE SCRIPT
+    protected override void Awake() // Initialization
     {
-        GameManager.instance.onGameReset.AddListener(GameReset);
-        interactableText.onTextsEnd.AddListener(TextFinished);
+        base.Awake();
+
         pageRenderer = page.GetComponent<Renderer>();
         pageRenderer.material.mainTexture = calendarTextures[currentPage];
     }
 
-    // Reset the interactable to original position
-    private void GameReset()
+    protected override void ResetInteractable() // Reset the interactable to original position
     {
         textUI.SetActive(false);
         pagePivot.rotation = originalRotation;
@@ -53,33 +47,23 @@ public class Calendar : MonoBehaviour
         calendarInteractable.enabled = false;
     }
 
-    // Start the task and highlight the calendar when player enters
-    public void OnPlayerEnterArea()
+    protected override void OnPlayerEnterArea() // Start the task and highlight the calendar when player enters
     {
-        textUI.SetActive(true);
+        base.OnPlayerEnterArea();
+
         if (!taskFinished)
         {
             calendarInteractable.enabled = true;
-            interactableTask.HighlightObject(true);
         }
     }
-
-    // Unhighlight the calendar and disable the text UI when player leaves
-    public void OnPlayerExitArea()
+    protected override void OnPlayerExitArea()
     {
-        textUI.SetActive(false);
+        base.OnPlayerExitArea();
+
         calendarInteractable.enabled = false;
-        interactableTask.HighlightObject(false);
     }
 
-    // Disable the text UI when the text is done
-    public void TextFinished()
-    {
-        textUI.SetActive(false);
-        Debug.Log("Text and task Finished");
-    }
-
-    // Make the calendar non interactable when task is done
+        // Make the calendar non interactable when task is done
     public void TaskFinished()
     {
         taskFinished = true;
@@ -123,5 +107,23 @@ public class Calendar : MonoBehaviour
     {
         StartCoroutine(FlipPageRoutine());
     }
-
 }
+
+// Optional functions
+
+// Use this template for it:
+
+/*
+protected override void function()
+{
+    base.function();
+
+    // Your code here
+}
+*/
+
+// Replace function() with any optional function below
+
+// TextEnded()
+// OnPlayerEnterArea()
+// OnPlayerExitArea()
