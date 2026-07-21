@@ -45,7 +45,7 @@ public class Mirror: BaseGameInteractables
         cloth.SetActive(false);
     }
 
-    protected override void OnPlayerEnterArea() // Make the TextUI appear when the player enters
+    protected override void OnPlayerEnterArea() // Make the cloth interactable when the player enters
     {
         base.OnPlayerEnterArea();
 
@@ -53,7 +53,7 @@ public class Mirror: BaseGameInteractables
         cloth.GetComponent<XRGrabInteractable>().enabled = true;
     }
 
-    protected override void OnPlayerExitArea() // Make the TextUI disappear when the player exits
+    protected override void OnPlayerExitArea() // Make the cloth non-interactable when the player exits
     {
         base.OnPlayerExitArea();
 
