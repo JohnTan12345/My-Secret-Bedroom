@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 1.03
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: f15c336556dd74f40aaca655f7767970, type: 2}
@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 810edbacf4943a144b09b9b65590fdaa, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: c912152d66a34be4f963af716c342a3e, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -130,6 +130,10 @@ PrefabInstance:
     - target: {fileID: 55912299934798806, guid: ef902a73dc4326444a2297176761abfd, type: 3}
       propertyPath: m_Name
       value: wardrobeUW
+      objectReference: {fileID: 0}
+    - target: {fileID: 55912299934798806, guid: ef902a73dc4326444a2297176761abfd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5924592545185983820, guid: ef902a73dc4326444a2297176761abfd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -450,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &824438480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,13 +489,13 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -524,7 +528,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1215,6 +1219,14 @@ PrefabInstance:
     - target: {fileID: 1110431767611587965, guid: 82186df9678384e4684abda38cbdd528, type: 3}
       propertyPath: m_Name
       value: GameMenuExt
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110431767611587965, guid: 82186df9678384e4684abda38cbdd528, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845106086510591354, guid: 82186df9678384e4684abda38cbdd528, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6221130635717356591, guid: 82186df9678384e4684abda38cbdd528, type: 3}
       propertyPath: m_LocalPosition.x
