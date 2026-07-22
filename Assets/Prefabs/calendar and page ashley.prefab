@@ -136,7 +136,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6294004403221784527}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Calendar, Assembly-CSharp
         m_MethodName: OnPageFlip
         m_Mode: 1
@@ -259,7 +259,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1990752067006386015}
-  - component: {fileID: 6294004403221784527}
   - component: {fileID: 4894116574024460941}
   - component: {fileID: 2089922206298407004}
   - component: {fileID: 7081182205785548661}
@@ -290,30 +289,6 @@ Transform:
   - {fileID: 6761544774466770706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &6294004403221784527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558262357693420078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d486e0ea59371154eb94673da451d2d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  calendarInteractable: {fileID: 2513737163052393497}
-  pageAnimator: {fileID: 1428436117666802572}
-  interactableText: {fileID: 2089922206298407004}
-  interactableTask: {fileID: 7081182205785548661}
-  pagePivot: {fileID: 1499152066311033535}
-  page: {fileID: 1998258652892295556}
-  textUI: {fileID: 1743525257339597760}
-  calendarTextures:
-  - {fileID: 2800000, guid: d40f3c641f50e5f4f8b7f68753cb990a, type: 3}
-  - {fileID: 2800000, guid: db8a41382f145b5418d666a480beaad5, type: 3}
-  - {fileID: 2800000, guid: 506cd269d57f70b45963982cead0b2a3, type: 3}
-  - {fileID: 2800000, guid: 59e80fec7ded5ae489eef843bc637a00, type: 3}
 --- !u!65 &4894116574024460941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -377,7 +352,7 @@ MonoBehaviour:
   onTextsEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6294004403221784527}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Calendar, Assembly-CSharp
         m_MethodName: TextFinished
         m_Mode: 1
@@ -414,7 +389,7 @@ MonoBehaviour:
   onTaskComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6294004403221784527}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Calendar, Assembly-CSharp
         m_MethodName: TaskFinished
         m_Mode: 1
@@ -510,10 +485,6 @@ PrefabInstance:
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1743525257339597760}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6294004403221784527}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -924,14 +895,6 @@ PrefabInstance:
       propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6294004403221784527}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6294004403221784527}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

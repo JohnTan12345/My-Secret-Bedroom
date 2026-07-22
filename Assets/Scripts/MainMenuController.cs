@@ -3,6 +3,7 @@
     Description: Manages the main menu UI
 */
 
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,9 +42,9 @@ public class MainMenuController : MonoBehaviour
     }
 
     // Starts the game
-    public void StartGame()
+    public async Task StartGame()
     {
-        GameManager.instance.StartGame();
+        await GameManager.instance.StartGame();
     }
 
     // Menu interactions

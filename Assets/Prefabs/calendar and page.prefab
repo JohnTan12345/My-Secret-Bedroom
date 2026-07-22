@@ -136,8 +136,8 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 566027788723915682}
-        m_TargetAssemblyTypeName: Calendar, Assembly-CSharp
+      - m_Target: {fileID: 4607829641823400492}
+        m_TargetAssemblyTypeName: Calendar2, Assembly-CSharp
         m_MethodName: OnPageFlip
         m_Mode: 1
         m_Arguments:
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 793687727448433398}
-  - component: {fileID: 566027788723915682}
+  - component: {fileID: 4607829641823400492}
   - component: {fileID: 5260357643787411884}
   - component: {fileID: 6047879644843524462}
   - component: {fileID: 16943013977989216}
@@ -234,7 +234,7 @@ Transform:
   - {fileID: 1152399058276545707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &566027788723915682
+--- !u!114 &4607829641823400492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,16 +243,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8610919171230389530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d486e0ea59371154eb94673da451d2d7, type: 3}
+  m_Script: {fileID: 11500000, guid: f6cae7f5a6a31ba42829a8bb0e2e6d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textUI: {fileID: 5238055427839631010}
+  interactableText: {fileID: 6047879644843524462}
+  enterArea: {fileID: 4364767631044657575}
   calendarInteractable: {fileID: 2713304988891789162}
   pageAnimator: {fileID: 1608225548832677656}
-  interactableText: {fileID: 6047879644843524462}
-  interactableTask: {fileID: 16943013977989216}
   pagePivot: {fileID: 6764936448904219687}
   page: {fileID: 6687006957526161320}
-  textUI: {fileID: 5238055427839631010}
   calendarTextures:
   - {fileID: 2800000, guid: d40f3c641f50e5f4f8b7f68753cb990a, type: 3}
   - {fileID: 2800000, guid: db8a41382f145b5418d666a480beaad5, type: 3}
@@ -320,19 +320,7 @@ MonoBehaviour:
       m_Calls: []
   onTextsEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 566027788723915682}
-        m_TargetAssemblyTypeName: Calendar, Assembly-CSharp
-        m_MethodName: TextFinished
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &16943013977989216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,8 +346,8 @@ MonoBehaviour:
   onTaskComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 566027788723915682}
-        m_TargetAssemblyTypeName: Calendar, Assembly-CSharp
+      - m_Target: {fileID: 4607829641823400492}
+        m_TargetAssemblyTypeName: Calendar2, Assembly-CSharp
         m_MethodName: TaskFinished
         m_Mode: 1
         m_Arguments:
@@ -491,11 +479,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -505,14 +493,6 @@ PrefabInstance:
       propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 566027788723915682}
-    - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
-      propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 566027788723915682}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -555,6 +535,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6915249493205057295, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
   m_PrefabInstance: {fileID: 5767354176023464868}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4364767631044657575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
+  m_PrefabInstance: {fileID: 5767354176023464868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6855acd27224c23439bd628c64909d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6482405667696897288
 PrefabInstance:
   m_ObjectHideFlags: 0
