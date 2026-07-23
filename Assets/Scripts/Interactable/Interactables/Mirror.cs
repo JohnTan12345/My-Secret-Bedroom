@@ -1,48 +1,81 @@
 /*
-    Created by: John
+    Template created by: John
+
+    Script Created by: John
     Description: Mirror functions
 */
 
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class Mirror : MonoBehaviour
+public class Mirror: BaseGameInteractables
 {
-    public InteractableText interactableText;
-    public InteractableTask interactableTask;
+    [Header("Interactable Variables")]
     public GameObject cloth;
     private Vector3 clothOriginalPos;
     private bool taskFinished = false;
-    void Start()
+
+
+    // DO NOT REMOVE THE base.function() OF ANY PROTECTED OVERRIDE LINE WITH IT!
+    // THEY ARE THERE TO INITIALIZE THE SCRIPT
+    protected override void Awake() // Initialization
     {
-        GameManager.instance.onGameReset.AddListener(GameReset);
-        interactableText.onTextsEnd.AddListener(TextFinished);
+        base.Awake();
+
         clothOriginalPos = cloth.transform.position;
     }
-    private void GameReset() // Reset the object when the game reset is triggered
+
+    protected override void ResetInteractable() // Game Reset
     {
         cloth.transform.position = clothOriginalPos;
         cloth.SetActive(true);
         taskFinished = false;
     }
-    private void TextFinished() // Make the TextUI disappear
+
+    protected override void TextEnded() // Make the TextUI disappear
     {
+        base.TextEnded();
+
         taskFinished = true;
     }
+
     public void OnClothGrab() // Complete the task after the cloth is grabbed
     {
         interactableTask.AddProgress(1);
         cloth.SetActive(false);
     }
-    public void OnPlayerEnterArea() // Make the TextUI appear when the player enters
+
+    protected override void OnPlayerEnterArea() // Make the cloth interactable when the player enters
     {
+        base.OnPlayerEnterArea();
+
         if (taskFinished) {return;}
         cloth.GetComponent<XRGrabInteractable>().enabled = true;
-        interactableTask.HighlightObject(true);
     }
-    public void OnPlayerExitArea() // Make the TextUI appear when the player enters
+
+    protected override void OnPlayerExitArea() // Make the cloth non-interactable when the player exits
     {
+        base.OnPlayerExitArea();
+
         cloth.GetComponent<XRGrabInteractable>().enabled = false;
-        interactableTask.HighlightObject(false);
     }
 }
+
+// Optional functions
+
+// Use this template for it:
+
+/*
+protected override void function()
+{
+    base.function();
+
+    // Your code here
+}
+*/
+
+// Replace function() with any optional function below
+
+// TextEnded()
+// OnPlayerEnterArea()
+// OnPlayerExitArea()

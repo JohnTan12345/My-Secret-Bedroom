@@ -1,0 +1,56 @@
+/*
+    Template created by: John
+
+    Script Created by:
+    Description:
+*/
+
+using UnityEngine;
+
+public class #SCRIPTNAME#: BaseGameInteractables
+{
+    [Header("Interactable Variables")]
+
+
+    // DO NOT REMOVE THE base.function() OF ANY PROTECTED OVERRIDE LINE WITH IT!
+    // THEY ARE THERE TO INITIALIZE THE SCRIPT
+    protected override void Awake() // Initialization
+    {
+        base.Awake();
+
+        // Your code here
+    }
+
+    protected override void OnDestroy() // Cleanup
+    {
+        base.OnDestroy();
+
+        // Your code here
+    }
+
+    protected override void ResetInteractable() // Game Reset
+    {
+        // Your code here
+    }
+
+    
+}
+
+// Optional functions
+
+// Use this template for it:
+
+/*
+protected override void function()
+{
+    base.function();
+
+    // Your code here
+}
+*/
+
+// Replace function() with any optional function below
+
+// TextEnded()
+// OnPlayerEnterArea()
+// OnPlayerExitArea()

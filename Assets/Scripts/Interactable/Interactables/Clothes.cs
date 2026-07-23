@@ -1,20 +1,16 @@
 /*
-    Created by: Rayner
-    Modified by: John
+    Template created by: John
+
+    Script Created by: Rayner
     Description: Clothes pile interactivity and the basket visual
 */
 
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class Clothes : MonoBehaviour
+public class Clothes: BaseGameInteractables
 {
-    [SerializeField]
-    private InteractableText interactableText;
-    [SerializeField]
-    private InteractableTask interactableTask;
-    [SerializeField]
-    private GameObject textUI;
+    [Header("Interactable Variables")]
     [SerializeField]
     private GameObject clothingPile; // reference to the pile model
     [SerializeField]
@@ -31,9 +27,12 @@ public class Clothes : MonoBehaviour
     
     private bool taskFinished = false;
 
-    void Start()
+    // DO NOT REMOVE THE base.function() OF ANY PROTECTED OVERRIDE LINE WITH IT!
+    // THEY ARE THERE TO INITIALIZE THE SCRIPT
+    protected override void Awake() // Initialization
     {
-        GameManager.instance.onGameReset.AddListener(GameReset);
+        base.Awake();
+
         textUIOriginalPos = textUI.transform.position;
         textUIOriginalRot = textUI.transform.rotation;
         pileOriginalPos = clothingPile.transform.position;
@@ -41,10 +40,40 @@ public class Clothes : MonoBehaviour
         textUI.SetActive(false);
     }
 
-    public void OnPlayerEnterArea()
+    protected override void OnPlayerEnterArea()
     {
+        base.OnPlayerEnterArea();
+
         if (taskFinished) return;
         textUI.SetActive(true);
+    }
+
+    protected override void ResetInteractable() // Game Reset
+    {
+        // Put the pile back to original position
+        clothingPile.SetActive(true);
+        clothingPile.transform.position = pileOriginalPos;
+        clothingPile.transform.rotation = pileOriginalRot;
+
+        // Freezes the clothes pile
+        clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+        // Put the textUI back to original position
+        textUI.transform.position = textUIOriginalPos;
+        textUI.transform.rotation = textUIOriginalRot;
+
+        // Make the pile not interactable
+        clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
+        clothingPile.SetActive(true);
+
+        // Disable text UI
+        textUI.SetActive(false);
+
+        taskFinished = false;
+
+        // Resets the clothes basket back to empty
+        filledClothesBasket.SetActive(false);
+        clothesBasket.SetActive(true);
     }
 
     public void onStartTask()
@@ -81,33 +110,23 @@ public class Clothes : MonoBehaviour
         textUI.transform.position = newTextUIPositon.position;
         textUI.transform.rotation = newTextUIPositon.rotation;
     }
-
-    // Reset all the position of the items
-    public void GameReset()
-    {
-        // Put the pile back to original position
-        clothingPile.SetActive(true);
-        clothingPile.transform.position = pileOriginalPos;
-        clothingPile.transform.rotation = pileOriginalRot;
-
-        // Freezes the clothes pile
-        clothingPile.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-        // Put the textUI back to original position
-        textUI.transform.position = textUIOriginalPos;
-        textUI.transform.rotation = textUIOriginalRot;
-
-        // Make the pile not interactable
-        clothingPile.GetComponent<XRGrabInteractable>().enabled = false;
-        clothingPile.SetActive(true);
-
-        // Disable text UI
-        textUI.SetActive(false);
-
-        taskFinished = false;
-
-        // Resets the clothes basket back to empty
-        filledClothesBasket.SetActive(false);
-        clothesBasket.SetActive(true);
-    }
 }
+
+// Optional functions
+
+// Use this template for it:
+
+/*
+protected override void function()
+{
+    base.function();
+
+    // Your code here
+}
+*/
+
+// Replace function() with any optional function below
+
+// TextEnded()
+// OnPlayerEnterArea()
+// OnPlayerExitArea()
