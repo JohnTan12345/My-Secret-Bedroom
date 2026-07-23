@@ -4,6 +4,7 @@
 */
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhoneVoicemail : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class PhoneVoicemail : MonoBehaviour
 
     public GameObject playButton;
     public GameObject pauseButton;
+    public Slider voicemailProgressUI;
 
     void Start()
     {
         playButton.SetActive(true);
         pauseButton.SetActive(false);
+
+        voicemailProgressUI.maxValue = voicemailAudio.clip.length;
+        GameManager.instance.onGameReset.AddListener(ResetVoicemail);
     }
 
     void Update()
@@ -27,6 +32,10 @@ public class PhoneVoicemail : MonoBehaviour
         {
             playButton.SetActive(true);
             pauseButton.SetActive(false);
+        }
+        else
+        {
+            voicemailProgressUI.value = voicemailAudio.time;
         }
     }
 
@@ -42,6 +51,13 @@ public class PhoneVoicemail : MonoBehaviour
     {
         voicemailAudio.Pause();
 
+        playButton.SetActive(true);
+        pauseButton.SetActive(false);
+    }
+
+    private void ResetVoicemail()
+    {
+        voicemailAudio.time = 0;
         playButton.SetActive(true);
         pauseButton.SetActive(false);
     }
