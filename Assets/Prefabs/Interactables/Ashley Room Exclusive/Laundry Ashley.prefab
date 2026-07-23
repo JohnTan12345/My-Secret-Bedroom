@@ -113,7 +113,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &5968662646559635665
 MonoBehaviour:
@@ -450,7 +450,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 635589336777258431, guid: 0bbc1abfc371c5743b88b761b0a1bb22, type: 3}
       propertyPath: m_Name
-      value: Laundry Ashlet
+      value: Laundry Ashley
       objectReference: {fileID: 0}
     - target: {fileID: 1212983198866707325, guid: 0bbc1abfc371c5743b88b761b0a1bb22, type: 3}
       propertyPath: m_LocalPosition.x
