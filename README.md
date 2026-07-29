@@ -84,7 +84,11 @@ Demo:
 - Lucas Tan - Assistant 3D Artist
 - Rayner Chua - UI/UX Designer
 ## Credits
-W.I.P
+- Janelle for voice acting Chris
+- Rachel Sandy - Little Yellow Petals: [Game Menu] - https://www.epidemicsound.com/music/tracks/7dc1e5f0-54b5-46ac-b70d-f138a2a92c11/
+- Rachel Sandy - Ashes: [Ashley Bluetooth] - https://www.epidemicsound.com/music/tracks/0cdcf2bc-e97e-4953-9e0d-0771194cdb15/
+- Rikard From - Dragonfly: [Corridor BGM] - https://www.epidemicsound.com/music/tracks/ffd78ba6-5dae-4916-b1b6-bf81d833690b/
+- Gavin Luke - Moonlight reflections: [Ash Bluetooth] - https://www.epidemicsound.com/music/tracks/1ec494de-7342-4403-9b86-8ceceadb8f44/
 
 Copilot and ChatGPT were used partially to write the following scripts:
 - Calendar.cs
