@@ -42,9 +42,9 @@ public class MainMenuController : MonoBehaviour
     }
 
     // Starts the game
-    public async Task StartGame()
+    public void StartGame()
     {
-        await GameManager.instance.StartGame();
+        GameManager.instance.StartGame();
     }
 
     // Menu interactions
