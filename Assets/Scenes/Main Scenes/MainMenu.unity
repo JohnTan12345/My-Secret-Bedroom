@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.9339623, g: 0.725195, b: 0.374466, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.033
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5540bb9f20da1154dbe455ba702b6939, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: f3789acd64308f545b1a26f8503b452e, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -935,18 +935,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4299854902045754902, guid: 8ca54bbcfdb0c1645b22a11fb19c7501, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299854902045754902, guid: 8ca54bbcfdb0c1645b22a11fb19c7501, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.035
-      objectReference: {fileID: 0}
-    - target: {fileID: 4818935598549219374, guid: 8ca54bbcfdb0c1645b22a11fb19c7501, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6475544580117441734, guid: 8ca54bbcfdb0c1645b22a11fb19c7501, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -974,10 +962,6 @@ PrefabInstance:
     - target: {fileID: 6737293202265738678, guid: 8ca54bbcfdb0c1645b22a11fb19c7501, type: 3}
       propertyPath: m_Name
       value: Main Menu Tablet
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288063462073016967, guid: 8ca54bbcfdb0c1645b22a11fb19c7501, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
