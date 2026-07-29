@@ -237,7 +237,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
---- !u!1 &546987502
+--- !u!1 &736114625
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,23 +245,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 546987505}
-  - component: {fileID: 546987504}
-  - component: {fileID: 546987503}
+  - component: {fileID: 736114628}
+  - component: {fileID: 736114627}
+  - component: {fileID: 736114626}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 127
   m_IsActive: 1
---- !u!154 &546987503
+--- !u!154 &736114626
 TerrainCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546987502}
+  m_GameObject: {fileID: 736114625}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -275,13 +275,13 @@ TerrainCollider:
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: d3b21059e30c2d342a976ffea06e0412, type: 2}
   m_EnableTreeColliders: 1
---- !u!218 &546987504
+--- !u!218 &736114627
 Terrain:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546987502}
+  m_GameObject: {fileID: 736114625}
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: d3b21059e30c2d342a976ffea06e0412, type: 2}
@@ -315,13 +315,13 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
---- !u!4 &546987505
+--- !u!4 &736114628
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546987502}
+  m_GameObject: {fileID: 736114625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.9, y: 0, z: -12.5}
@@ -1535,7 +1535,6 @@ SceneRoots:
   - {fileID: 756192408}
   - {fileID: 2092139010}
   - {fileID: 824438482}
-  - {fileID: 546987505}
   - {fileID: 1525695781}
   - {fileID: 768207843}
   - {fileID: 1943570404}
@@ -1550,3 +1549,4 @@ SceneRoots:
   - {fileID: 1029269631}
   - {fileID: 1445125574}
   - {fileID: 1725852227}
+  - {fileID: 736114628}
