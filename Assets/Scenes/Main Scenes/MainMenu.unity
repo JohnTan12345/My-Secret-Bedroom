@@ -1500,6 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMaterial: {fileID: 2100000, guid: 5d9090087da55004ebbfa09461d00e4b, type: 2}
+  OriginalXRPosition: {x: 1.204, y: 0, z: 7.952}
   Movement: 0
   Position: 0
   points: 0
