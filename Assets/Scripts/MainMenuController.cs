@@ -41,9 +41,16 @@ public class MainMenuController : MonoBehaviour
         positionSlider.onValueChanged.AddListener(ChangePositionType);
     }
 
+    void Start()
+    {
+        movementSlider.value = GameManager.instance.Movement?1:0;
+        positionSlider.value = GameManager.instance.Position?1:0;
+    }
+
     // Starts the game
     public void StartGame()
     {
+        Debug.Log("Starting Game");
         GameManager.instance.StartGame();
     }
 
@@ -81,14 +88,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ChangePositionType(float val)
     {
-        if (val == 0)
-        {
-            GameManager.instance.Position = false;
-        }
-        else
-        {
-            GameManager.instance.Position = true;
-        }
-        GameManager.instance.ApplySettings();
+        GameManager.instance.Position = val != 0;
+        StartCoroutine(GameManager.instance.ApplySettings(false));
     }
 }

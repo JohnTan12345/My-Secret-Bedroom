@@ -3,6 +3,7 @@
     Description: Manages when the game starts, ends, resets as well as the settings for the player
 */
 
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
     private Vector3 sittingPosOffset;
     [SerializeField]
     private bool debuggingEnabled = false;
+    [SerializeField]
+    private bool mainMenuFirstLoad = true;
+    [SerializeField]
+    private bool cameraPositionFirstApplied = false;
     
     void Awake()
     {
@@ -51,9 +56,6 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this);
-
-        // Apply player settings after scene loads
-        SceneManager.sceneLoaded += (Scene _, LoadSceneMode _) => ApplySettings();
 
         if (debuggingEnabled)
         {
@@ -68,8 +70,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Starting Game");
         }
-
+        mainMenuFirstLoad = false;
         await SceneManager.LoadSceneAsync("Game");
+        OnSceneLoad();
 
         if (debuggingEnabled)
         {
@@ -80,7 +83,12 @@ public class GameManager : MonoBehaviour
     // Ends the game
     public async Task EndGame()
     {
+        Debug.Log("Ending Game");
+        mainMenuFirstLoad = true;
         await SceneManager.LoadSceneAsync("MainMenu");
+
+        XROriginMapping.instance.MoveLocomotion.SetActive(false);
+        XROriginMapping.instance.TeleportLocomotion.SetActive(false);
     }
 
     // Restarts the game
@@ -91,9 +99,17 @@ public class GameManager : MonoBehaviour
         AddPoints(-points); // Resets the points to 0
     }
 
-    // Applies the settings player sets in the main menu
-    public void ApplySettings(bool changeMovementSetting = true)
+    private void OnSceneLoad()
     {
+        cameraPositionFirstApplied = false;
+        StartCoroutine(ApplySettings());
+    }
+    
+    // Applies the settings player sets in the main menu
+    public IEnumerator ApplySettings(bool changeMovementSetting = true)
+    {
+        yield return new WaitForEndOfFrame();
+
         if (changeMovementSetting) // Movement setting application
         {
             XROriginMapping.instance.TeleportLocomotion.SetActive(!Movement);
@@ -102,11 +118,12 @@ public class GameManager : MonoBehaviour
         
         if (Position) // Position setting application
         {
-            XROriginMapping.instance.CameraOffset.transform.position += sittingPosOffset;
+            cameraPositionFirstApplied = true;
+            XROriginMapping.instance.CameraOffset.transform.localPosition += sittingPosOffset;
         }
-        else
+        else if (cameraPositionFirstApplied)
         {
-            XROriginMapping.instance.CameraOffset.transform.position -= sittingPosOffset;
+            XROriginMapping.instance.CameraOffset.transform.localPosition -= sittingPosOffset;
         }
         
     }

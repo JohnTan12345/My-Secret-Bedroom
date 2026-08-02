@@ -614,7 +614,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7696738504741623810}
+      - m_Target: {fileID: 2105248318630885959}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -1063,6 +1063,7 @@ GameObject:
   - component: {fileID: 4681595913165884680}
   - component: {fileID: 4408641072834035560}
   - component: {fileID: 2483472394213871031}
+  - component: {fileID: 2105248318630885959}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1174,6 +1175,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &2105248318630885959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200918158847785500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a9a200e8c893147b1b1a7e1c1c9de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main: {fileID: 4818935598549219374}
+  settings: {fileID: 4435696889657502769}
+  credits: {fileID: 7288063462073016967}
+  movementSlider: {fileID: 5551735678345575478}
+  positionSlider: {fileID: 3141134877391672960}
+  resetMenus: 1
 --- !u!1 &2542746561976823417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,7 +1675,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7696738504741623810}
+      - m_Target: {fileID: 2105248318630885959}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: ChangeMenu
         m_Mode: 2
@@ -2362,7 +2381,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4172792050335266877}
-  - component: {fileID: 7696738504741623810}
   m_Layer: 0
   m_Name: Main Menu
   m_TagString: Untagged
@@ -2390,24 +2408,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7696738504741623810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4818935598549219374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39a9a200e8c893147b1b1a7e1c1c9de8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  main: {fileID: 4818935598549219374}
-  settings: {fileID: 4435696889657502769}
-  credits: {fileID: 7288063462073016967}
-  movementSlider: {fileID: 5551735678345575478}
-  positionSlider: {fileID: 3141134877391672960}
-  resetMenus: 1
 --- !u!1 &5043514849236166621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7696738504741623810}
+      - m_Target: {fileID: 2105248318630885959}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: ReturnToMain
         m_Mode: 1
@@ -2911,7 +2911,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7696738504741623810}
+      - m_Target: {fileID: 2105248318630885959}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: ChangeMenu
         m_Mode: 2
@@ -5007,7 +5007,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5634497321412035996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2105248318630885959}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: ReturnToMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8960876210032298460
 GameObject:
   m_ObjectHideFlags: 0
@@ -5229,7 +5241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1408951788861946889, guid: 27446c641921a764d8ea9de53512ad9c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0181
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1408951788861946889, guid: 27446c641921a764d8ea9de53512ad9c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5285,6 +5297,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2057933311714595786, guid: 27446c641921a764d8ea9de53512ad9c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4857074133909386068}
+    - targetCorrespondingSourceObject: {fileID: 2057933311714595786, guid: 27446c641921a764d8ea9de53512ad9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7985308734704857406}
   m_SourcePrefab: {fileID: 100100000, guid: 27446c641921a764d8ea9de53512ad9c, type: 3}
 --- !u!1 &3796114601395726805 stripped
 GameObject:
@@ -5412,7 +5427,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -5480,6 +5495,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.33000433, y: 0.00679186, z: 0.23927957}
   m_Center: {x: -0.000022649765, y: -0.000053480268, z: -0.00023642182}
+--- !u!114 &7985308734704857406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3796114601395726805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c10806d649af0548ad58c95470c34b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginalPosition: {x: 0, y: 0, z: 0}
+  OriginalRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &4299854902045754902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1408951788861946889, guid: 27446c641921a764d8ea9de53512ad9c, type: 3}
