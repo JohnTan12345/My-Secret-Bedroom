@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: a630e928a56662d49a427c9482289453, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6c1f3ccaa93fae648ba1605dbf29d3e9, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: c912152d66a34be4f963af716c342a3e, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -5867,17 +5867,6 @@ PrefabInstance:
       addedObject: {fileID: 965601622}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
---- !u!114 &704159839 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 566027788723915682, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
-  m_PrefabInstance: {fileID: 704159838}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d486e0ea59371154eb94673da451d2d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &704159840 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5238055427839631010, guid: d5c393066f2467a47b54fbf7463947c5, type: 3}
@@ -6420,7 +6409,7 @@ PrefabInstance:
     - target: {fileID: 4587393436131762933, guid: 0bbc1abfc371c5743b88b761b0a1bb22, type: 3}
       propertyPath: onTaskStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 784588494}
+      objectReference: {fileID: 0}
     - target: {fileID: 4587393436131762933, guid: 0bbc1abfc371c5743b88b761b0a1bb22, type: 3}
       propertyPath: onTaskStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -6482,17 +6471,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bbc1abfc371c5743b88b761b0a1bb22, type: 3}
---- !u!114 &784588494 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4456288827221446181, guid: 0bbc1abfc371c5743b88b761b0a1bb22, type: 3}
-  m_PrefabInstance: {fileID: 784588493}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b83f77248a12144a4f725fcf11675a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &822339976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7573,6 +7551,7 @@ MonoBehaviour:
   voicemailAudio: {fileID: 958430333}
   playButton: {fileID: 1731101117}
   pauseButton: {fileID: 1363934296}
+  voicemailProgressUI: {fileID: 0}
 --- !u!82 &958430333
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7818,7 +7797,7 @@ PrefabInstance:
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectEnterArea.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 704159839}
+      objectReference: {fileID: 0}
     - target: {fileID: 7825856577485982211, guid: 0880692a8618cbe46b4e9d3d6da5bcf8, type: 3}
       propertyPath: ObjectExitArea.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -11864,6 +11843,7 @@ MonoBehaviour:
   voicemailAudio: {fileID: 1557418828}
   playButton: {fileID: 0}
   pauseButton: {fileID: 1812324025}
+  voicemailProgressUI: {fileID: 0}
 --- !u!82 &1557418828
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12443,6 +12423,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.157
       objectReference: {fileID: 0}
+    - target: {fileID: 1219495312562892094, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1462170551129360725, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12487,9 +12471,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2756134973478721062, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3120256576816127270, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
       propertyPath: m_Name
       value: Mirror Interactable Ashley
+      objectReference: {fileID: 0}
+    - target: {fileID: 3310079996889006189, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6227682237132016595, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12523,6 +12515,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 169.938
       objectReference: {fileID: 0}
+    - target: {fileID: 7398785741643594264, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7471205010405301626, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.0121795
@@ -12542,6 +12538,10 @@ PrefabInstance:
     - target: {fileID: 7471205010405301626, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.104
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627845218261925901, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7829036893213286366, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
       propertyPath: m_AnchorMax.y
@@ -12571,6 +12571,10 @@ PrefabInstance:
       propertyPath: objectHighlighted
       value: 
       objectReference: {fileID: 1729644401}
+    - target: {fileID: 8375588256850976874, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12590,17 +12594,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1219495312562892094, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
   m_PrefabInstance: {fileID: 1729644400}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1729644402 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6724176579677756530, guid: 052daae10ddbe224d981d0eb56b97aba, type: 3}
-  m_PrefabInstance: {fileID: 1729644400}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2565bec5b808afc4d9ea0045c5dd55ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1729644403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12670,7 +12663,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1729644402}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Mirror, Assembly-CSharp
         m_MethodName: OnClothGrab
         m_Mode: 1
@@ -14792,6 +14785,7 @@ MonoBehaviour:
   voicemailAudio: {fileID: 2066758898}
   playButton: {fileID: 264457157}
   pauseButton: {fileID: 444857104}
+  voicemailProgressUI: {fileID: 0}
 --- !u!82 &2066758898
 AudioSource:
   m_ObjectHideFlags: 0
