@@ -215,8 +215,8 @@ MonoBehaviour:
   features:
   - {fileID: -2526469091526913474}
   - {fileID: 3861548538129201588}
-  - {fileID: 5565152917427627785}
-  - {fileID: 5456460263013612854}
+  - {fileID: 5902051218775398258}
+  - {fileID: 5192319535470026523}
   - {fileID: -3692366444067682037}
   - {fileID: 8637456584377050252}
   - {fileID: 1162752439649658604}
@@ -227,7 +227,7 @@ MonoBehaviour:
   - {fileID: -6211116338423009029}
   - {fileID: 1345882285758305515}
   - {fileID: -6691452559726432534}
-  - {fileID: 4672367863429693272}
+  - {fileID: 9185783336584572097}
   - {fileID: -7527718751425538167}
   - {fileID: 6506305831487057476}
   - {fileID: 1201769849398101263}
@@ -986,7 +986,7 @@ MonoBehaviour:
   nameUi: 'Android XR: AR Anchor'
   version: 0.1.0
   featureIdInternal: com.unity.openxr.feature.arfoundation-androidxr-anchor
-  openxrExtensionStrings: XR_ANDROID_trackables
+  openxrExtensionStrings: XR_ANDROID_trackables XR_ANDROID_device_anchor_persistence
   company: Unity Technologies
   priority: 0
   targetOpenXRApiVersion: 
@@ -2424,7 +2424,7 @@ MonoBehaviour:
   nameUi: 'Android XR: AR Anchor'
   version: 0.1.0
   featureIdInternal: com.unity.openxr.feature.arfoundation-androidxr-anchor
-  openxrExtensionStrings: XR_ANDROID_trackables
+  openxrExtensionStrings: XR_ANDROID_trackables XR_ANDROID_device_anchor_persistence
   company: Unity Technologies
   priority: 0
   targetOpenXRApiVersion: 
@@ -2848,18 +2848,8 @@ MonoBehaviour:
   features:
   - {fileID: 5505617561204590878}
   - {fileID: 2646506924569662338}
-  - {fileID: -3273737402990970544}
-  - {fileID: -8194766618075422322}
   - {fileID: 5635854341751055427}
-  - {fileID: 6178680948486311849}
-  - {fileID: 8710888961353749815}
-  - {fileID: 6118168950314068588}
   - {fileID: 2354618993365834639}
-  - {fileID: 5451908488479740446}
-  - {fileID: 8536070215858845148}
-  - {fileID: -2054741899303388969}
-  - {fileID: -2357910877861318321}
-  - {fileID: -4622188352032365600}
   - {fileID: 3717254902358179279}
   - {fileID: 8626327552939442146}
   - {fileID: -102421527898484073}
