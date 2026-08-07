@@ -55,6 +55,18 @@ public class PhoneVoicemail : MonoBehaviour
         pauseButton.SetActive(false);
     }
 
+    public void ToggleVoicemail()
+    {
+        if (!voicemailAudio.isPlaying)
+        {
+            PlayVoicemail();
+        }
+        else
+        {
+            PauseVoicemail();
+        }
+    }
+
     private void ResetVoicemail()
     {
         voicemailAudio.time = 0;

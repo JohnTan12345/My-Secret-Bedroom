@@ -661,8 +661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d66ba0682b31b04992a4be48e43e92d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodAngleThreshold: 10
-  shakeAngleThreshold: 10
+  nodAngleThreshold: 5
+  shakeAngleThreshold: 5
   maxCheck: 3
   head: {fileID: 0}
   onDetectionFinish:
