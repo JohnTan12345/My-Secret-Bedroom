@@ -1,5 +1,6 @@
 # My Secret Bedroom
-Demo: 
+Demo: https://www.youtube.com/watch?v=9RCJf4FjnW0
+
 ## About the game
 - My Secret Bedroom encircles the story of Ash/Ashley, a 19-year-old student in their bedroom and it seems that they have been struggling with mental health. This immersive, interactive game blends learning and recognising the signs of mental health distress such as Anxiety, Depression, Body Image Concerns, Eating Disorder, and indicators such as social withdrawal, low appetite, negative thoughts, etc.
 
@@ -68,14 +69,14 @@ Demo:
 - Player looks at phone and sees a voice message notification and plays it
 - Voice recording plays
 
-
 ## Gameplay features
 - Standing/Seated mode
 - Nodding/Shaking detection mechanic for some of the interactables
 - Highlighting as a guide for some interactable tasks
 
 # Bugs/Limitations
-- Shaking may not be registered as the reference point starts the very moment the player looks at the interactable edge
+- Shaking may not be registered as the reference point starts the very moment the player looks at the interactable edge.
+- The poke interaction for the play button on the voicemail does not work for some reason. The play button itself is fine.
 
 # Credits/References
 ## Project roles
@@ -83,12 +84,13 @@ Demo:
 - Xander Foong - Lead 3D Artist
 - Lucas Tan - Assistant 3D Artist
 - Rayner Chua - UI/UX Designer
+
 ## Credits
 - Janelle for voice acting Chris
 - Rachel Sandy - Little Yellow Petals: [Game Menu] - https://www.epidemicsound.com/music/tracks/7dc1e5f0-54b5-46ac-b70d-f138a2a92c11/
-- Rachel Sandy - Ashes: [Ashley Bluetooth] - https://www.epidemicsound.com/music/tracks/0cdcf2bc-e97e-4953-9e0d-0771194cdb15/
+- Rachel Sandy - Ashes: [Ashley Bluetooth Speaker Music] - https://www.epidemicsound.com/music/tracks/0cdcf2bc-e97e-4953-9e0d-0771194cdb15/
 - Rikard From - Dragonfly: [Corridor BGM] - https://www.epidemicsound.com/music/tracks/ffd78ba6-5dae-4916-b1b6-bf81d833690b/
-- Gavin Luke - Moonlight reflections: [Ash Bluetooth] - https://www.epidemicsound.com/music/tracks/1ec494de-7342-4403-9b86-8ceceadb8f44/
+- Gavin Luke - Moonlight reflections: [Ash Bluetooth Speaker Music] - https://www.epidemicsound.com/music/tracks/1ec494de-7342-4403-9b86-8ceceadb8f44/
 
 Copilot and ChatGPT were used partially to write the following scripts:
 - Calendar.cs
